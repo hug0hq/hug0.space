@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Matter from "matter-js";
 import { EngineContext } from "./useEngine"
 
+import { Player, Hole } from '../components'
+
 export const Engine = (props) => {
 
   const [eg, setEngine] = useState(null);
+  const [playerB, setPlayerB] = useState(null);
+
+ // const [mouse] = useState(  .create(document.querySelector("body")) );
 
   const boxRef = props.box//getRef(null)
   const canvasRef = props.canvas//useRef(null)
@@ -66,10 +71,51 @@ export const Engine = (props) => {
     var wallLeft = Bodies.rectangle(0, localHeight / 2, 40, localHeight, {
       isStatic: true
     });
+
     World.add(engine.world, [wallBottom, wallTop, wallLeft, wallRight]);
 
     //Matter.Body.translate( wallLeft, {x: 100, y: 0});
     //Matter.Body.translate( wallRight, {x: 100, y: 0}) 
+    var ballBody = Bodies.circle(100 + 10, localHeight - 100 - 10, 10 + 5, {
+      restitution: 1,
+      friction: 0.3,
+      frictionAir: 0.05,
+      label: 'ball',
+      collisionFilter: {
+        category: '0x0002'
+      }
+    });
+    var holeBody = Bodies.circle(localWidth - 100, localHeight - 100, 15, {
+      collisionFilter: {
+        category: '0x0002'
+      },
+      label: 'hole',
+      isSensor: true,
+      isStatic: true
+    });
+    World.add(engine.world, [ballBody, holeBody]);
+    setPlayerB(ballBody)
+
+    const handleCollision = (event) => {
+      var { pairs } = event;
+      pairs.forEach((pair) => {
+        var { bodyA, bodyB } = pair;
+        if (bodyA.label === "ball" && bodyB.label === "hole") {
+          Matter.Body.setVelocity(bodyA, {
+            x: 0,
+            y: 0
+          });
+          Matter.Body.setPosition(bodyA, {
+            x: 170,
+            y: 450
+          });
+          console.log("Hole!");
+        }
+      });
+    }
+
+    Matter.Events.on(engine, 'collisionStart', handleCollision);
+
  
     Engine.run(engine)
     Render.run(render)
@@ -97,6 +143,7 @@ export const Engine = (props) => {
       Matter.Body.translate( wallRight, {x: 200, y: 0})  */
       console.log(localWidth + " " + localHeight)
       console.log(wallRight)
+
     }
 
     window.addEventListener('resize', resizeListener);
@@ -134,6 +181,8 @@ export const Engine = (props) => {
 
   return (
     <>
+    {playerB && <Player color={0xeef1f5} radios={10} body={playerB}/*  matter={Matter} */ />}
+    <Hole /> 
       {
         eg &&
         <EngineContext.Provider value={eg}>{props.children}</EngineContext.Provider>

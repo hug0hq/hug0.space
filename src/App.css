@@ -27,18 +27,37 @@ body {
     z-index: 1;
 }
 
+@media screen and (min-width: 768px){
+    h1 {
+        font-size: calc(36px + (3400vw - 26112px)/256);
+        /* line-height: calc(40px + (3000vw - 23040px)/256); */
+       /*  letter-spacing: calc(-1.5px + (-150vw - -1152px)/256); */
+    }
+}
+
+@media screen and (min-width: 1024px){
+    h1 {
+        font-size: calc(70px + (10000vw - 102400px)/1376);
+        /* line-height: calc(70px + (7800vw - 79872px)/1376); */
+        /* letter-spacing: calc(-3px + (-200vw - -2048px)/1376); */
+    }
+}
+
+
 h1 {
     color: #fff;
-    font-size: 100px;
+    /* font-size: 100px; */
+   /*  font-size: 5vw; */
     font-weight: "bold";
     font-family: "Roboto";
     opacity: 0.5;
     margin: 200px 100px;
+    user-select: none;
 }
 
 .logo {
     fill: #f3f3f3;
-    width: 100px;
+    width: 10vw;
     margin: 2rem;
     position: absolute;
     right: 20px;

@@ -57,7 +57,7 @@ const Flag = (props) => {
          g.drawRect(props.x, props.y, props.width, props.height);
          g.endFill(); */
 
-    }, [pw, tmpp1, tmpp2, tmpsize]);
+    }, []);
     return <Graphics draw={draw} />;
 }
 

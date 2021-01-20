@@ -2,17 +2,41 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Graphics, useTick, useApp, Container } from '@inlet/react-pixi';
 
 import {CircleBody} from '../physics/components';
+import Matter from "matter-js";
 
 export const Player = (props) => {
     const app = useApp()
     const height = 40;
 
-    const pDown = () => {
+    const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
 
+    const pDown = (e) => {
+        e.preventDefault()
         setclick(true)
     }
-    const pUp = () => {
+
+    const [mouse] = useState( Matter.Mouse.create(document.querySelector("body")) )
+
+    const pUp = (e) => {
+        e.preventDefault()
         setclick(false)
+
+        
+        //return 
+        if(props.body.velocity.x < 1 || props.body.velocity.y < 1){
+            console.log('tacada')
+            var force = 0.04 // 0.2;
+            var deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
+            var normalizedDelta = Matter.Vector.normalise(deltaVector);
+            var forceVector = Matter.Vector.mult(normalizedDelta, force);
+            var op = Matter.Vector.neg(forceVector);
+            //arrowSize = 0;
+            //mousedown = false;
+            //setclick(false)
+            Matter.Body.applyForce(props.body, props.body.position, op);
+        }
+
     }
 
     useEffect(() => {
@@ -28,7 +52,6 @@ export const Player = (props) => {
         return () => {
             // remove resize listener
 
-
             window.removeEventListener('pointerup', pUp);
             window.removeEventListener('pointerdown', pDown);
         }
@@ -37,22 +60,38 @@ export const Player = (props) => {
 
     const [arrow, update] = useState(0)
     const [click, setclick] = useState(false)
+    
+    const [rotation, setRotation] = useState(0);
     //  useReducer(reducer, initialArgs, init); its a better setState for comprex states
     const angle = (x, y) => {
         return Math.atan2(y, x) + Math.PI / 2;
     }
 
     useTick(delta => {
+
+        setX( props.body.position.x);
+        setY( props.body.position.y); 
+        //player.position = ballBody.position;
+return
         if (click) {
+            //let deltaVector =  Matter.Vector.sub( mouse.position, props.body.position)
+         
+               // console.log(angle(deltaVector.x, deltaVector.y))
+           // setRotation( angle(deltaVector.x, deltaVector.y) )
             update({
-                arrowSize: 60
+                arrowSize: 60,
+               /*  rotation:  */
             })
+
         }
         else {
-            //let deltaVector = Matter.Vector.sub(mouse.position, ballBody.position);
+            //let deltaVector = props.matter.Vector.sub( mouse.position, props.body)
+            
+            /* Matter.Vector.sub(mouse.position, body); */
+            //setRotation(0)
             update({
                 arrowSize: 0,
-                // rotation: angle(deltaVector.x, deltaVector.y)
+            /*     rotation: angle(deltaVector.x, deltaVector.y) */
             })
         }
     })
@@ -70,11 +109,11 @@ export const Player = (props) => {
     }
 }
     return (
-        <Container position={[100, app.screen.height - 100]} >
+        <Container x={x} y={y} rotation={rotation} /* position={[100, app.screen.height - 100]}  */>
             <Arrow {...arrow} height={height}></Arrow>
             <Ball radios={props.radios} />
             {/* <BallBody></BallBody> */}
-            <CircleBody x={100} y={ app.screen.height - 100} radios={props.radios} options={options} ></CircleBody>
+            {/* <CircleBody x={100} y={ app.screen.height - 100} radios={props.radios} options={options} ></CircleBody> */}
         </Container>
     )
 }
@@ -126,6 +165,6 @@ const Arrow = (props) => {
             ]
         );
         g.endFill();
-    }, [props]);
+    }, [props.arrowSize]);
     return <Graphics draw={draw} />;
 }

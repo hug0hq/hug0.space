@@ -97,9 +97,9 @@ const App = () => {
             <Title text={text} textRef={h1text} />
             {/* <Player color={0xeef1f5} radios={10} /> */}
             {/* <CircleBody x={100} y={100} radios={20} options> */}
-            <Player color={0xeef1f5} radios={10} />
+            
             {/* </CircleBody> */}
-            <Hole />
+            {/* <Hole /> */}
           </Engine>
         </Stage>
 
