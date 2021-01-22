@@ -24,27 +24,27 @@ const App = () => {
     console.log('😋')
     //console.log(devicePixelRatio)
 
-   // const resizeListener = () => {
-      //console.log('resize')
+    // const resizeListener = () => {
+    //console.log('resize')
 
-      /* if (!app.current.renderer) {
-        return
-      } */
-
-
-      //console.log(h1text)
-
-      //app.renderer.resize(window.innerWidth, window.innerHeight)
-      // Immediately render because resizing clears the canvas
-      //app.render()
-   // };
-    // set resize listener
-  /*   window.addEventListener('resize', resizeListener);
-    // clean up function
-    return () => {
-      // remove resize listener
-      window.removeEventListener('resize', resizeListener);
+    /* if (!app.current.renderer) {
+      return
     } */
+
+
+    //console.log(h1text)
+
+    //app.renderer.resize(window.innerWidth, window.innerHeight)
+    // Immediately render because resizing clears the canvas
+    //app.render()
+    // };
+    // set resize listener
+    /*   window.addEventListener('resize', resizeListener);
+      // clean up function
+      return () => {
+        // remove resize listener
+        window.removeEventListener('resize', resizeListener);
+      } */
   }, [])
 
   const options = {
@@ -96,7 +96,7 @@ const App = () => {
       </div>
       <header className="main" id="golf">
         {/* <div className="main"> */}
-        <Stage  onMount={_app => (app.current = _app)}
+        <Stage onMount={_app => (app.current = _app)}
           width={window.innerWidth}
           height={window.innerHeight}
           /*  raf={false}
@@ -118,7 +118,12 @@ const App = () => {
         {/*  </div> */}
         <Logo />
       </header>
+      <section className="about">
+        <div className="txt">
+          <p>Hugo Costa is my name, I'm mainly a web and game developer.<br></br>Thank you for passing by!</p>
+        </div>
 
+      </section>
 
       <section className="groupgames">
         <h2 className="t2">Games</h2>
@@ -140,8 +145,68 @@ const App = () => {
 
       <section className="grouppen">
         <h2 className="t2">Pens</h2>
-        <div>
-         {/*  <div className="thumbnail">
+        <div className="pens">
+          <div className="thumbnail" style={{backgroundColor: '#edda5b'}} >
+            <a href="https://codepen.io/hug0Hq/pen/KKMVGQg">
+              <video preload="auto" muted loop
+                onMouseOver={event => { event.target.play() }}
+                onMouseOut={event => { event.target.currentTime = 0; event.target.pause(); }}>
+                <source src="./vid/m1.webm" type="video/webm" />
+                <source src="./vid/b1.mp4" type='video/mp4;' />
+              </video>
+            </a>
+          </div>
+          <div className="thumbnail" style={{backgroundColor: '#1d1d1b'}}>
+            <a href="https://codepen.io/hug0Hq/pen/ExyyYNZ">
+              <video preload="auto" muted loop
+                onMouseOver={event => { event.target.play() }}
+                onMouseOut={event => { event.target.currentTime = 0; event.target.pause(); }}>
+                <source src="./vid/m2.webm" type="video/webm" />
+                <source src="./vid/b2.mp4" type='video/mp4;' />
+              </video>
+            </a>
+          </div>
+          <div className="thumbnail" style={{backgroundColor: '#282c34'}}>
+            <a href="https://codepen.io/hug0Hq/pen/OJXXLyB">
+              <video preload="auto" muted loop
+                onMouseOver={event => { event.target.play() }}
+                onMouseOut={event => { event.target.currentTime = 0; event.target.pause(); }}>
+                <source src="./vid/m3.webm" type="video/webm" />
+                <source src="./vid/b3.mp4" type='video/mp4;' />
+              </video>
+            </a>
+          </div>
+          <div className="thumbnail" style={{backgroundColor: '#0cbab9'}}>
+            <a href="https://codepen.io/hug0Hq/pen/NEXgKa">
+              <video preload="auto" muted loop
+                onMouseOver={event => { event.target.play() }}
+                onMouseOut={event => { event.target.currentTime = 0; event.target.pause(); }}>
+                <source src="./vid/m4.webm" type="video/webm" />
+                <source src="./vid/b4.mp4" type='video/mp4;' />
+              </video>
+            </a>
+          </div>
+          <div className="thumbnail" style={{backgroundColor: '#f6f8ff'}}>
+            <a href="https://codepen.io/hug0Hq/pen/PozNeEQ">
+              <video preload="auto" muted loop
+                onMouseOver={event => { event.target.play() }}
+                onMouseOut={event => { event.target.currentTime = 0; event.target.pause(); }}>
+                <source src="./vid/m5.webm" type="video/webm" />
+                <source src="./vid/b5.mp4" type='video/mp4;' />
+              </video>
+            </a>
+          </div>
+          <div className="thumbnail" style={{backgroundColor: '#A9E2F3'}}>
+            <a href="https://codepen.io/hug0Hq/pen/ZEzPVLP">
+              <video preload="auto" muted loop
+                onMouseOver={event => { event.target.play() }}
+                onMouseOut={event => { event.target.currentTime = 0; event.target.pause(); }}>
+                <source src="./vid/m6.webm" type="video/webm" />
+                <source src="./vid/b6.mp4" type='video/mp4;' />
+              </video>
+            </a>
+          </div>
+          {/*  <div className="thumbnail">
             <video preload="auto" muted>
               <source src="./vid/b1.mp4" type='video/mp4;' />
             </video>
