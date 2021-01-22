@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Graphics, useTick, useApp, Container } from '@inlet/react-pixi';
 
-import {CircleBody} from '../physics/components';
+import { CircleBody } from '../physics/components';
 import Matter from "matter-js";
 
 export const Player = (props) => {
@@ -9,24 +9,49 @@ export const Player = (props) => {
     const height = 40;
 
     const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
+    const [y, setY] = useState(0);
+    const [mposition, setMposition] = useState({ position: { x: 0, y: 0 } });
 
-    const pDown = (e) => {
-        e.preventDefault()
-        setclick(true)
+    const pMove = (e) => {
+        if (e.x && e.y) {
+            let mouse = {
+                position: {
+                    x: e.x,
+                    y: e.y
+                }
+            }
+           // console.log(e)
+
+            setMposition(mouse)
+        }
     }
 
-    const [mouse] = useState( Matter.Mouse.create(document.querySelector("body")) )
+    const pDown = (e) => {
+        //e.preventDefault()
+        setclick(true)
+
+        console.log('m down')
+
+    }
+
+    //const [mouse] = useState(Matter.Mouse.create(document.querySelector("body")))
+    //const [mousestate, setMousestate] = useState(null);
 
     const pUp = (e) => {
-        e.preventDefault()
+        //e.preventDefault()
         setclick(false)
 
-        
-        //return 
-        if(props.body.velocity.x < 1 || props.body.velocity.y < 1){
+        //return;
+        if (props.body.velocity.x < 1 || props.body.velocity.y < 1) {
+
+            let mouse = {
+                position: {
+                    x: e.x,
+                    y: e.y
+                }
+            }
             console.log('tacada')
-            var force = 0.04 // 0.2;
+            var force = 0.1 // 0.2;
             var deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
             var normalizedDelta = Matter.Vector.normalise(deltaVector);
             var forceVector = Matter.Vector.mult(normalizedDelta, force);
@@ -36,31 +61,36 @@ export const Player = (props) => {
             //setclick(false)
             Matter.Body.applyForce(props.body, props.body.position, op);
         }
-
     }
 
-    useEffect(() => {
+    //   const player = useRef(null);
 
+    useEffect(() => {
+        //console.log( mouse)
         //const update = () => setSize(getSize());
         //window.onresize = update;
         //return () => (window.onresize = null);
-        window.addEventListener('pointerup', pUp);
-        window.addEventListener('pointerdown', pDown);
+
+
+        window.addEventListener('mouseup', pUp);
+        window.addEventListener('mousedown', pDown);
         // clean up function
-        
-        console.log('body render')
+        window.addEventListener('mousemove', pMove);
+
+
+        //console.log('body render')
         return () => {
             // remove resize listener
-
-            window.removeEventListener('pointerup', pUp);
-            window.removeEventListener('pointerdown', pDown);
+            window.removeEventListener('mouseup');
+            window.removeEventListener('mousedown');
+            window.removeEventListener('mousemove');
         }
 
     }, []);
 
     const [arrow, update] = useState(0)
     const [click, setclick] = useState(false)
-    
+
     const [rotation, setRotation] = useState(0);
     //  useReducer(reducer, initialArgs, init); its a better setState for comprex states
     const angle = (x, y) => {
@@ -69,49 +99,55 @@ export const Player = (props) => {
 
     useTick(delta => {
 
-        setX( props.body.position.x);
-        setY( props.body.position.y); 
+        setX(props.body.position.x);
+        setY(props.body.position.y);
         //player.position = ballBody.position;
-return
+        //return
         if (click) {
-            //let deltaVector =  Matter.Vector.sub( mouse.position, props.body.position)
-         
-               // console.log(angle(deltaVector.x, deltaVector.y))
-           // setRotation( angle(deltaVector.x, deltaVector.y) )
+
+            let deltaVector = Matter.Vector.sub(mposition.position, props.body.position)
+
+            // console.log(angle(deltaVector.x, deltaVector.y))
+            setRotation(angle(deltaVector.x, deltaVector.y))
             update({
                 arrowSize: 60,
-               /*  rotation:  */
+                /*  rotation:  */
             })
 
         }
         else {
             //let deltaVector = props.matter.Vector.sub( mouse.position, props.body)
-            
+
             /* Matter.Vector.sub(mouse.position, body); */
             //setRotation(0)
             update({
                 arrowSize: 0,
-            /*     rotation: angle(deltaVector.x, deltaVector.y) */
+                /*     rotation: angle(deltaVector.x, deltaVector.y) */
             })
         }
     })
 
 
-    
-  //BallBody(100, 100, props.radios);
-  const options = {
-    restitution: 1,
-    friction: 0.3,
-    frictionAir: 0.05,
-    label: 'ball',
-    collisionFilter: {
-        category: '0x0002'
+
+    //BallBody(100, 100, props.radios);
+    const options = {
+        restitution: 1,
+        friction: 0.3,
+        frictionAir: 0.05,
+        label: 'ball',
+        collisionFilter: {
+            category: '0x0002'
+        }
     }
-}
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        console.log('The link was clicked.');
+    }
     return (
-        <Container x={x} y={y} rotation={rotation} /* position={[100, app.screen.height - 100]}  */>
+        <Container x={x} y={y} rotation={rotation} /*  onPointerDown={console.log('m')} */ /* position={[100, app.screen.height - 100]}  */>
             <Arrow {...arrow} height={height}></Arrow>
-            <Ball radios={props.radios} />
+            <Ball radios={props.radios}  /* interactive={true} onClick={() => {console.log('click')}} */ />
             {/* <BallBody></BallBody> */}
             {/* <CircleBody x={100} y={ app.screen.height - 100} radios={props.radios} options={options} ></CircleBody> */}
         </Container>

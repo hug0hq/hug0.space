@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Matter from "matter-js";
 import { EngineContext } from "./useEngine"
 
-import { Player, Hole } from '../components'
+import { Player, Hole, H } from '../components'
 
 export const Engine = (props) => {
 
   const [eg, setEngine] = useState(null);
   const [playerB, setPlayerB] = useState(null);
 
- // const [mouse] = useState(  .create(document.querySelector("body")) );
+  // const [mouse] = useState(  .create(document.querySelector("body")) );
 
   const boxRef = props.box//getRef(null)
   const canvasRef = props.canvas//useRef(null)
@@ -25,11 +25,11 @@ export const Engine = (props) => {
     let Bodies = Matter.Bodies
 
     let engine = Engine.create({})
-    
+
     setEngine(engine);
     engine.world.gravity.y = 0;
-   /*  console.log(engine)
-    console.log('oo') */
+    /*  console.log(engine)
+     console.log('oo') */
 
     let render = Render.create({
       element: boxRef.current,
@@ -76,7 +76,7 @@ export const Engine = (props) => {
 
     //Matter.Body.translate( wallLeft, {x: 100, y: 0});
     //Matter.Body.translate( wallRight, {x: 100, y: 0}) 
-    var ballBody = Bodies.circle(100 + 10, localHeight - 100 - 10, 10 + 5, {
+    var ballBody = Bodies.circle(100 + 10, localHeight - 100 - 10, 10 + 2 /* + 5 */, {
       restitution: 1,
       friction: 0.3,
       frictionAir: 0.05,
@@ -85,7 +85,7 @@ export const Engine = (props) => {
         category: '0x0002'
       }
     });
-    var holeBody = Bodies.circle(localWidth - 100, localHeight - 100, 15, {
+    var holeBody = Bodies.circle(localWidth - 100, localHeight - 100, 10, {
       collisionFilter: {
         category: '0x0002'
       },
@@ -116,7 +116,7 @@ export const Engine = (props) => {
 
     Matter.Events.on(engine, 'collisionStart', handleCollision);
 
- 
+
     Engine.run(engine)
     Render.run(render)
 
@@ -124,7 +124,7 @@ export const Engine = (props) => {
     const resizeListener = () => {
       localWidth = window.innerWidth;
       localHeight = window.innerHeight;
-      World.remove(engine.world, wallRight );
+      World.remove(engine.world, wallRight);
 
       wallRight = Bodies.rectangle(
         localWidth,
@@ -139,8 +139,8 @@ export const Engine = (props) => {
 
       //wallBottom.setPosition(engine, localWidth / 2, localHeight )
       //Matter.Body.scale( wallRight, 1.5, 1.2);
-     /*  Matter.Body.translate( wallBottom, {x: localWidth / 2, y: localHeight})
-      Matter.Body.translate( wallRight, {x: 200, y: 0})  */
+      /*  Matter.Body.translate( wallBottom, {x: localWidth / 2, y: localHeight})
+       Matter.Body.translate( wallRight, {x: 200, y: 0})  */
       console.log(localWidth + " " + localHeight)
       console.log(wallRight)
 
@@ -151,6 +151,8 @@ export const Engine = (props) => {
     return () => {
       // remove resize listener
       window.removeEventListener('resize', resizeListener);
+
+      Matter.Events.off(engine, 'collisionStart')
     }
 
   }, [/* props.options, props.events */])
@@ -181,8 +183,10 @@ export const Engine = (props) => {
 
   return (
     <>
-    {playerB && <Player color={0xeef1f5} radios={10} body={playerB}/*  matter={Matter} */ />}
-    <Hole /> 
+      <H />
+      {/* <Title text={text} textRef={h1text} /> */}
+      {playerB && <Player color={0xeef1f5} radios={10} body={playerB}/*  matter={Matter} */ />}
+      <Hole />
       {
         eg &&
         <EngineContext.Provider value={eg}>{props.children}</EngineContext.Provider>

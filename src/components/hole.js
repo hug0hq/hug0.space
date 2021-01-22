@@ -1,6 +1,24 @@
 import React, { useCallback, useState } from 'react';
 import { Graphics, useTick, useApp, Container } from '@inlet/react-pixi';
 
+export const H = (props) => {
+    const app = useApp()
+    const [motion, update] = useState()
+
+    useTick(delta => {
+        update({
+            position: [ app.screen.width - 100, app.screen.height - 100]
+        })
+
+    })
+
+    return (
+        <Container {...motion}>
+            <HoleP />
+        </Container>
+    )
+
+}
 
 export const Hole = (props) => {
     const app = useApp()
@@ -25,7 +43,6 @@ export const Hole = (props) => {
 
     return (
         <Container {...motion} /* scale={size}  position={[app.screen.width - 100, app.screen.height - 100]} */ >
-            <HoleP />
             <Flag />
             <FlagStick />
         </Container>
@@ -91,7 +108,8 @@ const HoleP = (props) => {
     const draw = useCallback((g) => {
         g.clear();
         g.beginFill(0x424242);
-        g.drawCircle(0, 0, 15);
+        //g.drawCircle(0, 0, 15);
+        g.drawEllipse(0 , 2, 15, 13)
         g.endFill();
     }, []);
 
