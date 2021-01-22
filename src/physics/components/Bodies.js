@@ -38,7 +38,7 @@ export const CircleBody = (props) => {
   /*  useCallback((g) => { */
 
   useEffect(() => {
-    console.log(props)
+    //console.log(props)
     //let b = Matter.Bodies.circle(100, 100, 20);
     let b = Matter.Bodies.circle(props.x, props.y, props.radios, props.options, props.maxSides)
     // Matter.World.add(engine.world, [body])

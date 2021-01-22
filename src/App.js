@@ -21,7 +21,7 @@ const App = () => {
   //const [stats, setStats] = useState(null);
   useEffect(() => {
     //setWind(document.getElementById('root'));
-    console.log('😋')
+    console.log('Hello! 😋')
     //console.log(devicePixelRatio)
 
     // const resizeListener = () => {
@@ -85,11 +85,14 @@ const App = () => {
       <div
         ref={boxRef}
         style={{
-          width: 300,
-          height: 300,
+         
           position: 'absolute',
           opacity: 0.5,
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
         }}
       >
         <canvas ref={canvasRef} />
@@ -120,25 +123,35 @@ const App = () => {
       </header>
       <section className="about">
         <div className="txt">
-          <p>Hugo Costa is my name, I'm mainly a web and game developer.<br></br>Thank you for passing by!</p>
+          <p>Hugo Costa is my name, I'm mainly a web and game developer.</p>
+          <p>Thank you for passing by <span className="emo">🦾</span></p>
         </div>
 
       </section>
 
       <section className="groupgames">
-        <h2 className="t2">Games</h2>
+        <h2 className="t4">Games</h2>
         <div className="list">
           <div>
-            <h2 className="t3">Sr. Jim!</h2>
-            <p>Video Game</p>
-            <p>Available on Google Play and Game Jolt</p>
-            <div></div>
-          </div>
-          <div>
+            <div className="sname">
+              <img src="./img/steve.svg" alt="Steve Vrum! Vrum!" />
+            </div>
+
             <h2 className="t3">Steve Vrum! Vrum!</h2>
             <p>Video Game</p>
             <p>Available on Google Play</p>
             <div></div>
+          </div>
+          <div>
+            <div className="sname">
+              <img src="./img/jim.svg" alt="Sr. Jim!" />
+            </div>
+
+            <h2 className="t3">Sr. Jim!</h2>
+            <p>Video Game</p>
+            <p>Available on Google Play and Game Jolt</p>
+            <div></div>
+
           </div>
         </div>
       </section>
@@ -146,7 +159,7 @@ const App = () => {
       <section className="grouppen">
         <h2 className="t2">Pens</h2>
         <div className="pens">
-          <div className="thumbnail" style={{backgroundColor: '#edda5b'}} >
+          <div className="thumbnail" style={{ backgroundColor: '#edda5b' }} >
             <a href="https://codepen.io/hug0Hq/pen/KKMVGQg">
               <video preload="auto" muted loop
                 onMouseOver={event => { event.target.play() }}
@@ -156,7 +169,7 @@ const App = () => {
               </video>
             </a>
           </div>
-          <div className="thumbnail" style={{backgroundColor: '#1d1d1b'}}>
+          <div className="thumbnail" style={{ backgroundColor: '#1d1d1b' }}>
             <a href="https://codepen.io/hug0Hq/pen/ExyyYNZ">
               <video preload="auto" muted loop
                 onMouseOver={event => { event.target.play() }}
@@ -166,7 +179,7 @@ const App = () => {
               </video>
             </a>
           </div>
-          <div className="thumbnail" style={{backgroundColor: '#282c34'}}>
+          <div className="thumbnail" style={{ backgroundColor: '#282c34' }}>
             <a href="https://codepen.io/hug0Hq/pen/OJXXLyB">
               <video preload="auto" muted loop
                 onMouseOver={event => { event.target.play() }}
@@ -176,7 +189,7 @@ const App = () => {
               </video>
             </a>
           </div>
-          <div className="thumbnail" style={{backgroundColor: '#0cbab9'}}>
+          <div className="thumbnail" style={{ backgroundColor: '#0cbab9' }}>
             <a href="https://codepen.io/hug0Hq/pen/NEXgKa">
               <video preload="auto" muted loop
                 onMouseOver={event => { event.target.play() }}
@@ -186,7 +199,7 @@ const App = () => {
               </video>
             </a>
           </div>
-          <div className="thumbnail" style={{backgroundColor: '#f6f8ff'}}>
+          <div className="thumbnail" style={{ backgroundColor: '#f6f8ff' }}>
             <a href="https://codepen.io/hug0Hq/pen/PozNeEQ">
               <video preload="auto" muted loop
                 onMouseOver={event => { event.target.play() }}
@@ -196,7 +209,7 @@ const App = () => {
               </video>
             </a>
           </div>
-          <div className="thumbnail" style={{backgroundColor: '#A9E2F3'}}>
+          <div className="thumbnail" style={{ backgroundColor: '#A9E2F3' }}>
             <a href="https://codepen.io/hug0Hq/pen/ZEzPVLP">
               <video preload="auto" muted loop
                 onMouseOver={event => { event.target.play() }}
