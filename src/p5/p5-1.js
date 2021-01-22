@@ -9,15 +9,15 @@ export default class A1 extends React.Component {
 
     Sketch = (p) => {
 
-        var width = 400;
-        var height = 400;
+        const width = 400; //this.props.width;
+        const height = 400; //this.props.height;
 
         let grid = []
 
         p.setup = () => {
-            p.createCanvas(400, 400);
+            p.createCanvas(width, height);
             //frameRate(10);
-            for (var i = 0; i < height; i += height/14) {
+            for (let i = 0; i < height; i += height/14) {
                 grid.push(i)
             }
         }
@@ -29,9 +29,9 @@ export default class A1 extends React.Component {
             //for(var i=0;i<600; i+=h*2){
             grid.forEach(
                 (line, i) => {
-                    var m = p.map(line, 0, height, 0, 1);
+                    const m = p.map(line, 0, height, 0, 1);
                     p.fill( p.lerp(200, 0, m))
-                    var hy = p.lerp(4, 30, m);
+                    const hy = p.lerp(4, 30, m);
                     p.rect(0, line, width, hy)
 
                     grid[i] += 0.5;
@@ -55,7 +55,7 @@ export default class A1 extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}></div>
+            <div ref={this.myRef} {...this.props}></div>
         )
     }
 }

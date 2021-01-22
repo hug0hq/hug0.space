@@ -8,19 +8,20 @@ export default class A7 extends React.Component {
     }
 
     Sketch = (p) => {
-        let w = 400;
+        const width = 400;
+        const height = 400;
         let div = 10;
 
         p.setup = () => {
 
-            p.createCanvas(w, 400);
+            p.createCanvas(width, height);
             p.noStroke();
             //noLoop();  
 
-           // let sqr = 8;
-           // let lastSize = 800;
+            // let sqr = 8;
+            // let lastSize = 800;
 
-            let sq = w / div;
+            let sq = width / div;
 
             for (let i = div; i > 0; i--) {
 
@@ -45,7 +46,7 @@ export default class A7 extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}></div>
+            <div ref={this.myRef} {...this.props}></div>
         )
     }
 }

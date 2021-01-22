@@ -9,12 +9,12 @@ export default class A4 extends React.Component {
 
     Sketch = (p) => {
 
-        var width = 400;
-        var height = 400;
+        const width = 400;
+        const height = 400;
 
         p.setup = () => {
 
-            p.createCanvas(400, 400);
+            p.createCanvas(width, height);
             p.background(250);
             p.noStroke()
 
@@ -45,7 +45,7 @@ export default class A4 extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}></div>
+            <div ref={this.myRef} {...this.props}></div>
         )
     }
 }

@@ -9,9 +9,10 @@ export default class A10 extends React.Component {
 
     Sketch = (p) => {
 
-        let w = 400;
+        const w = 600;
+
         p.setup = () => {
-            p.createCanvas(400, 400);
+            p.createCanvas(w, w);
             p.background(255);
             p.noFill();
 
@@ -34,7 +35,7 @@ export default class A10 extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}></div>
+            <div ref={this.myRef} {...this.props}></div>
         )
     }
 }

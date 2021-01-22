@@ -31,7 +31,6 @@ const App = () => {
       return
     } */
 
-
     //console.log(h1text)
 
     //app.renderer.resize(window.innerWidth, window.innerHeight)
@@ -85,7 +84,7 @@ const App = () => {
       <div
         ref={boxRef}
         style={{
-         
+
           position: 'absolute',
           opacity: 0.5,
           pointerEvents: 'none',
@@ -124,7 +123,7 @@ const App = () => {
       <section className="about">
         <div className="txt">
           <p>Hugo Costa is my name, I'm mainly a web and game developer.</p>
-          <p>Thank you for passing by <span className="emo">🦾</span></p>
+          <p>Thank you for passing by! <span className="emo">🦾</span></p>
         </div>
 
       </section>
@@ -235,16 +234,36 @@ const App = () => {
       <section className="groupart">
         <h2 className="t2">Generative Art</h2>
         <div className="p5js">
-          <A1></A1>
-          <A2></A2>
-          <A3></A3>
-          <A4></A4>
-          <A5></A5>
-          <A6></A6>
-          <A10></A10>
-          <A9></A9>
-          <A8></A8>
-          <A7></A7>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/acMx6vOG4">
+            <A1 className="im"></A1>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/D7RH0Hm9y">
+            <A2 className="im"></A2>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/7b-Me5PCa">
+            <A3 className="im"></A3>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/cxPnkj95Q">
+            <A4 className="im"></A4>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/PUTOVojk1">
+            <A5 className="im"></A5>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/n3X0ZXdxk">
+            <A6 className="im"></A6>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/URwNbuFhB">
+            <A10 className="im"></A10>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/JYV2MMUzW">
+            <A9 className="im"></A9>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/V7SOXVkpw">
+            <A8 className="im"></A8>
+          </a>
+          <a href="https://editor.p5js.org/hug0Hq/sketches/P4vg5KCxF">
+            <A7 className="im"></A7>
+          </a>
         </div>
       </section>
 

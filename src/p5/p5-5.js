@@ -8,7 +8,8 @@ export default class A5 extends React.Component {
     }
 
     Sketch = (p) => {
-        var width = 400;
+        const width = 490;
+        const height = 490;
 
         let size = 40;
         let margin = 20;
@@ -16,7 +17,7 @@ export default class A5 extends React.Component {
         let scale = 1;
 
         p.setup = () => {
-            p.createCanvas(400, 400);
+            p.createCanvas(width, height);
             p.background(255);
             //rend()
             //p.noLoop();
@@ -49,7 +50,7 @@ export default class A5 extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}></div>
+            <div ref={this.myRef} {...this.props}></div>
         )
     }
 }

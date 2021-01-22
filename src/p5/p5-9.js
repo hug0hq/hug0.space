@@ -9,10 +9,12 @@ export default class A9 extends React.Component {
 
     Sketch = (p) => {
 
-        let width = 400;
+        const width = 520;
+        const height = 520;
+
         p.setup = () => {
 
-            p.createCanvas(400, 400);
+            p.createCanvas(width, height);
             p.background(255);
 
             /*  }
@@ -36,7 +38,7 @@ export default class A9 extends React.Component {
 
             let l = width / (size + margin);
 
-            while (t < 1000) {
+            while (t < 1100) {
 
 
                 for (let j = 1; j < l - 1; j++) {
@@ -69,7 +71,7 @@ export default class A9 extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}></div>
+            <div ref={this.myRef} {...this.props}></div>
         )
     }
 }

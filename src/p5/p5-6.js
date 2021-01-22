@@ -9,14 +9,16 @@ export default class A6 extends React.Component {
 
     Sketch = (p) => {
 
-        let width = 400
+        const width = 520;
+        const height = 520;
+
         let size = 40;
         let margin = 20;
 
         let scale = 2;
 
         p.setup = () => {
-            p.createCanvas(400, 400);
+            p.createCanvas(width, height);
             p.background(255);
             p.noLoop();
             p.noStroke();
@@ -35,9 +37,9 @@ export default class A6 extends React.Component {
                     //fill(255)
 
                     if (j % 2 === 0) {
-                        p.circle((size + margin) * j, (size + margin) * i, size - scale * i);
+                        p.circle((size + margin) * j + 20, (size + margin) * i, size - scale * i);
                     } else {
-                        p.circle((size + margin) * j, (size + margin) * i + size, size - scale * (l - i));
+                        p.circle((size + margin) * j + 20, (size + margin) * i + size, size - scale * (l - i));
                     }
                 }
 
@@ -53,7 +55,7 @@ export default class A6 extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}></div>
+            <div ref={this.myRef} {...this.props}></div>
         )
     }
 }

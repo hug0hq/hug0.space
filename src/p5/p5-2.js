@@ -9,12 +9,12 @@ export default class A2 extends React.Component {
 
     Sketch = (p) => {
 
-        var width = 400;
-        var height = 400;
+        const width = 400;
+        const height = 400;
 
         p.setup = () => {
             //function setup() {
-                p.createCanvas(400, 400);
+                p.createCanvas(width, height);
                 p.background(15);
 
                 trunk();
@@ -41,8 +41,8 @@ export default class A2 extends React.Component {
         }
 
         function branches() {
-            var size = 80;
-            for (var h = 320; h > 100; h -= 30) {
+            let size = 80;
+            for (let h = 320; h > 100; h -= 30) {
                 branch(size, h);
                 size -= 10;
             }
@@ -50,8 +50,8 @@ export default class A2 extends React.Component {
         
         function branch(len, h) {
            
-            for (var r = 0; r < len; r += 10) {
-                for (var p0 = 0; p0 < 2; p0++) {
+            for (let r = 0; r < len; r += 10) {
+                for (let p0 = 0; p0 < 2; p0++) {
                     leaf(width / 2 - r, h + p.exp(r / 30), 1.5, 0);
                     leaf(width / 2 - r, h + p.exp(r / 30), -1, 0);
                     leaf(width / 2 + r, h + p.exp(r / 30), 1.5, p.PI);
@@ -78,7 +78,7 @@ export default class A2 extends React.Component {
 
     render() {
         return (
-            <div ref={this.myRef}></div>
+            <div ref={this.myRef} {...this.props}></div>
         )
     }
 }

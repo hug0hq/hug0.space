@@ -9,6 +9,13 @@
 canvas {
     /* vertical-align: middle; *./
 } */
+@media (max-width: 500px) {
+
+  .pp, section, footer {
+    padding: 2em;
+  }
+
+}
 
 body {
     /*   overflow: hidden; */
@@ -74,20 +81,20 @@ h1 {
 
   .grouppen {
     background-color: #77d877;
-    display: grid;
+   /*  display: grid;
 
-    padding: 7em 0;
+    padding: 7em 0; */
   }
 
   .groupart {
       background-color: #f3f3f3;
-      display: grid;
-      padding: 7em 0;
+     /*  display: grid;
+      padding: 7em 0; */
   }
   .t2 {
     font-size: 6vh;
     padding-bottom: 6rem;
-    margin: 0 100px;
+   /*  margin: 0 100px; */
     color: #131618;
     font-family: 'Roboto';
     font-weight: 700;
@@ -105,7 +112,7 @@ h1 {
 
   .mail {
       font-size: 8vh;
-      margin: 100px;
+     /*  margin: 100px; */
       color: #f3f3f3;
       font-family: 'Roboto';
       font-weight: 700;
@@ -116,7 +123,7 @@ h1 {
   }
   .logoGroup {
       display: flex;
-      margin: 100px;
+    /*   margin: 100px; */
 
   }
 
@@ -126,8 +133,8 @@ h1 {
   }
 
   .groupgames {
-    padding: 7em 0;
-    display: grid;
+    /* padding: 7em 0; */
+   /*  display: grid; */
     background-color: #131618;
     color: #f3f3f3;
   }
@@ -135,7 +142,7 @@ h1 {
   .t4 {
     font-size: 6vh;
     padding-bottom: 6rem;
-    margin: 0 100px;
+    /* margin: 0 100px; */
     color: #f3f3f3;
     font-family: 'Roboto';
     font-weight: 700;
@@ -162,11 +169,21 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    /* margin: 0 100px; */
+  }
+
+  .p5js a {
+    margin-bottom: 2em;
+  }
+
+  .im canvas {
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .txt p {
     color: #131618;
-    margin: 0px 100px;
+    /* margin: 0px 100px; */
     font-family: 'Roboto';
     font-size: 1.3em;
     font-weight: 400;
@@ -177,9 +194,9 @@ h1 {
 
   .about {
    
-    padding: 11em 0;
+    /* //padding: 11em 0; */
   
-    display: grid;
+   /*  display: block; */
     background-color: #f3f3f3;
   }
 
