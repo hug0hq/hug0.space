@@ -34,7 +34,7 @@ export default class A6 extends React.Component {
                     //circle( (size+margin)*j , (size+margin)*i , size );
                     //fill(255)
 
-                    if (j % 2 == 0) {
+                    if (j % 2 === 0) {
                         p.circle((size + margin) * j, (size + margin) * i, size - scale * i);
                     } else {
                         p.circle((size + margin) * j, (size + margin) * i + size, size - scale * (l - i));

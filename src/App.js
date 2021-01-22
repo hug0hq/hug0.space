@@ -4,7 +4,7 @@ import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import { Stage } from '@inlet/react-pixi';
 import { Engine } from "./physics"
-import { Logo, Hole, Title, Player } from './components'
+import { Logo } from './components'
 
 import A1 from './p5/p5-1'
 import A2 from './p5/p5-2'
@@ -22,14 +22,14 @@ const App = () => {
   useEffect(() => {
     //setWind(document.getElementById('root'));
     console.log('😋')
-    console.log(devicePixelRatio)
+    //console.log(devicePixelRatio)
 
-    const resizeListener = () => {
-      console.log('resize')
+   // const resizeListener = () => {
+      //console.log('resize')
 
-      if (!app.current.renderer) {
+      /* if (!app.current.renderer) {
         return
-      }
+      } */
 
 
       //console.log(h1text)
@@ -37,14 +37,14 @@ const App = () => {
       //app.renderer.resize(window.innerWidth, window.innerHeight)
       // Immediately render because resizing clears the canvas
       //app.render()
-    };
+   // };
     // set resize listener
-    window.addEventListener('resize', resizeListener);
+  /*   window.addEventListener('resize', resizeListener);
     // clean up function
     return () => {
       // remove resize listener
       window.removeEventListener('resize', resizeListener);
-    }
+    } */
   }, [])
 
   const options = {
@@ -53,7 +53,7 @@ const App = () => {
     autoDensity: true,
     resolution: devicePixelRatio,
     /* transparent: true, */
-    /*  preserveDrawingBuffer: true, */ //fixes flikering 
+    preserveDrawingBuffer: true,  //fixes flikering 
     resizeTo: window ///document.getElementById('root'), // or window, or global.window, etc
   };
 
@@ -78,7 +78,7 @@ const App = () => {
       <div className='tx'>
         <h1 ref={h1text}>
           {
-            text.split('').map((char, index) => char != '\n' ? <span key={index}>{char}</span> : <br key={index} />)
+            text.split('').map((char, index) => char !== '\n' ? <span key={index}>{char}</span> : <br key={index} />)
           }
         </h1>
       </div>
@@ -89,13 +89,14 @@ const App = () => {
           height: 300,
           position: 'absolute',
           opacity: 0.5,
+          pointerEvents: 'none'
         }}
       >
         <canvas ref={canvasRef} />
       </div>
-      <header className="main">
+      <header className="main" id="golf">
         {/* <div className="main"> */}
-        <Stage /*  onMount={_app => (app.current = _app)} */
+        <Stage  onMount={_app => (app.current = _app)}
           width={window.innerWidth}
           height={window.innerHeight}
           /*  raf={false}

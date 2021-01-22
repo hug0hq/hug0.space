@@ -20,9 +20,9 @@ export const Title = (props) => {
             }
         )
 
-       // setChars(ar)
+        setChars(ar)
        // console.log(chars)
-    }, []);
+    }, [props.textRef]);
 
     const style = new TextStyle({
         /* align: "center", */

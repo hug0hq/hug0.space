@@ -17,14 +17,14 @@ export default class A7 extends React.Component {
             p.noStroke();
             //noLoop();  
 
-            let sqr = 8;
-            let lastSize = 800;
+           // let sqr = 8;
+           // let lastSize = 800;
 
             let sq = w / div;
 
             for (let i = div; i > 0; i--) {
 
-                if (p.random([0, 1]) == 0) {
+                if (p.random([0, 1]) === 0) {
                     p.fill(1, 255, 255);
                 } else {
                     p.fill(255, 255, 0);

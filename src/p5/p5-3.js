@@ -13,7 +13,7 @@ export default class A3 extends React.Component {
         var height = 400;
 
         p.setup = () => {
-            p.createCanvas(400, 400);
+            p.createCanvas(width, height);
             p.noStroke();
 
             p.background(255);

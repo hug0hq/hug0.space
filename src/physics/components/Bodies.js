@@ -45,7 +45,7 @@ export const CircleBody = (props) => {
     Matter.World.add(eg.world, b)
 
 
-  }, []);
+  }, [eg.world, props]);
 /* 
   useEffect(() => {
     const body = ref.current!;

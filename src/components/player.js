@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Graphics, useTick, useApp, Container } from '@inlet/react-pixi';
 
-import { CircleBody } from '../physics/components';
+//import { CircleBody } from '../physics/components';
 import Matter from "matter-js";
 
 export const Player = (props) => {
@@ -20,7 +20,7 @@ export const Player = (props) => {
                     y: e.y
                 }
             }
-           // console.log(e)
+            // console.log(e)
 
             setMposition(mouse)
         }
@@ -30,38 +30,13 @@ export const Player = (props) => {
         //e.preventDefault()
         setclick(true)
 
-        console.log('m down')
+       // console.log('m down')
 
     }
 
     //const [mouse] = useState(Matter.Mouse.create(document.querySelector("body")))
     //const [mousestate, setMousestate] = useState(null);
 
-    const pUp = (e) => {
-        //e.preventDefault()
-        setclick(false)
-
-        //return;
-        if (props.body.velocity.x < 1 || props.body.velocity.y < 1) {
-
-            let mouse = {
-                position: {
-                    x: e.x,
-                    y: e.y
-                }
-            }
-            console.log('tacada')
-            var force = 0.1 // 0.2;
-            var deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
-            var normalizedDelta = Matter.Vector.normalise(deltaVector);
-            var forceVector = Matter.Vector.mult(normalizedDelta, force);
-            var op = Matter.Vector.neg(forceVector);
-            //arrowSize = 0;
-            //mousedown = false;
-            //setclick(false)
-            Matter.Body.applyForce(props.body, props.body.position, op);
-        }
-    }
 
     //   const player = useRef(null);
 
@@ -71,22 +46,50 @@ export const Player = (props) => {
         //window.onresize = update;
         //return () => (window.onresize = null);
 
+        const pUp = (e) => {
+            //e.preventDefault()
+            setclick(false)
 
-        window.addEventListener('mouseup', pUp);
-        window.addEventListener('mousedown', pDown);
+            //return;
+            if (props.body.velocity.x < 1 || props.body.velocity.y < 1) {
+
+                let mouse = {
+                    position: {
+                        x: e.x,
+                        y: e.y
+                    }
+                }
+               // console.log('tacada')
+                var force = 0.1 // 0.2;
+                var deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
+                var normalizedDelta = Matter.Vector.normalise(deltaVector);
+                var forceVector = Matter.Vector.mult(normalizedDelta, force);
+                var op = Matter.Vector.neg(forceVector);
+                //arrowSize = 0;
+                //mousedown = false;
+                //setclick(false)
+                Matter.Body.applyForce(props.body, props.body.position, op);
+            }
+        }
+
+      //  const m = document.getElementById()
+        app.view.addEventListener('mouseup', pUp);
+        app.view.addEventListener('mousedown', pDown);
         // clean up function
-        window.addEventListener('mousemove', pMove);
+        app.view.addEventListener('mousemove', pMove);
 
 
         //console.log('body render')
         return () => {
             // remove resize listener
-            window.removeEventListener('mouseup');
-            window.removeEventListener('mousedown');
-            window.removeEventListener('mousemove');
+            app.view.removeEventListener('mouseup', pUp);
+            app.view.removeEventListener('mousedown', pDown);
+            app.view.removeEventListener('mousemove', pMove);
         }
 
-    }, []);
+
+
+    }, [props.body, app.view]);
 
     const [arrow, update] = useState(0)
     const [click, setclick] = useState(false)
@@ -110,7 +113,7 @@ export const Player = (props) => {
             // console.log(angle(deltaVector.x, deltaVector.y))
             setRotation(angle(deltaVector.x, deltaVector.y))
             update({
-                arrowSize: 60,
+                arrowSize: 45,
                 /*  rotation:  */
             })
 
@@ -130,7 +133,7 @@ export const Player = (props) => {
 
 
     //BallBody(100, 100, props.radios);
-    const options = {
+    /* const options = {
         restitution: 1,
         friction: 0.3,
         frictionAir: 0.05,
@@ -138,12 +141,12 @@ export const Player = (props) => {
         collisionFilter: {
             category: '0x0002'
         }
-    }
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        console.log('The link was clicked.');
-    }
+    } */
+    /* 
+        const handleClick = (e) => {
+            e.preventDefault();
+            console.log('The link was clicked.');
+        } */
     return (
         <Container x={x} y={y} rotation={rotation} /*  onPointerDown={console.log('m')} */ /* position={[100, app.screen.height - 100]}  */>
             <Arrow {...arrow} height={height}></Arrow>

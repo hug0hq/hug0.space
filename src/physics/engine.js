@@ -155,7 +155,7 @@ export const Engine = (props) => {
       Matter.Events.off(engine, 'collisionStart')
     }
 
-  }, [/* props.options, props.events */])
+  }, [/* props.options, props.events */ boxRef, canvasRef, props.height, props.width])
 
 
 
