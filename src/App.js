@@ -4,7 +4,7 @@ import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import { Stage } from '@inlet/react-pixi';
 import { Engine } from "./physics"
-import { Logo } from './components'
+import { Logo, Card } from './components'
 
 import A1 from './p5/p5-1'
 import A2 from './p5/p5-2'
@@ -74,13 +74,6 @@ const App = () => {
 
   return (
     <>
-      <div className='tx'>
-        <h1 ref={h1text}>
-          {
-            text.split('').map((char, index) => char !== '\n' ? <span key={index}>{char}</span> : <br key={index} />)
-          }
-        </h1>
-      </div>
       <div
         ref={boxRef}
         style={{
@@ -97,6 +90,13 @@ const App = () => {
         <canvas ref={canvasRef} />
       </div>
       <header className="main" id="golf">
+        {/* <div className='tx'> */}
+        <h1 className="textWhite tx" ref={h1text}>
+          {
+            text.split('').map((char, index) => char !== '\n' ? <span key={index}>{char}</span> : <br key={index} />)
+          }
+        </h1>
+        {/*    </div> */}
         {/* <div className="main"> */}
         <Stage onMount={_app => (app.current = _app)}
           width={window.innerWidth}
@@ -121,16 +121,17 @@ const App = () => {
         <Logo />
       </header>
       <section className="about">
+        <h2 >About</h2>
         <div className="txt">
-          <p>Hugo Costa is my name, I'm mainly a web and game developer.</p>
+          <p>{/* Hugo Costa is my name, I'm mainly a web and game developer. */}Hugo Costa is my name. I'm a web and game developer trying different things out.</p>
           <p>Thank you for passing by! <span className="emo">🦾</span></p>
         </div>
 
       </section>
 
       <section className="groupgames">
-        <h2 className="t4">Games</h2>
-        <div className="list">
+        <h2 className="textWhite">Games</h2>
+        <div className="gamelist">
           <div>
             <div className="sname">
               <img src="./img/steve.svg" alt="Steve Vrum! Vrum!" />
@@ -156,7 +157,7 @@ const App = () => {
       </section>
 
       <section className="grouppen">
-        <h2 className="t2">Pens</h2>
+        <h2 className="">Pens</h2>
         <div className="pens">
           <div className="thumbnail" style={{ backgroundColor: '#edda5b' }} >
             <a href="https://codepen.io/hug0Hq/pen/KKMVGQg">
@@ -232,44 +233,64 @@ const App = () => {
       </section>
 
       <section className="groupart">
-        <h2 className="t2">Generative Art</h2>
+        <h2 className="textBlack">Generative Art</h2>
         <div className="p5js">
-          <a href="https://editor.p5js.org/hug0Hq/sketches/acMx6vOG4">
-            <A1 className="im"></A1>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/D7RH0Hm9y">
-            <A2 className="im"></A2>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/7b-Me5PCa">
-            <A3 className="im"></A3>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/cxPnkj95Q">
-            <A4 className="im"></A4>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/PUTOVojk1">
-            <A5 className="im"></A5>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/n3X0ZXdxk">
-            <A6 className="im"></A6>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/URwNbuFhB">
-            <A10 className="im"></A10>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/JYV2MMUzW">
-            <A9 className="im"></A9>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/V7SOXVkpw">
-            <A8 className="im"></A8>
-          </a>
-          <a href="https://editor.p5js.org/hug0Hq/sketches/P4vg5KCxF">
-            <A7 className="im"></A7>
-          </a>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/acMx6vOG4">
+              <A1 className="im"></A1>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/D7RH0Hm9y">
+              <A2 className="im"></A2>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/7b-Me5PCa">
+              <A3 className="im"></A3>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/cxPnkj95Q">
+              <A4 className="im"></A4>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/PUTOVojk1">
+              <A5 className="im"></A5>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/n3X0ZXdxk">
+              <A6 className="im"></A6>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/URwNbuFhB">
+              <A10 className="im"></A10>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/JYV2MMUzW">
+              <A9 className="im"></A9>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/V7SOXVkpw">
+              <A8 className="im"></A8>
+            </a>
+          </Card>
+          <Card>
+            <a href="https://editor.p5js.org/hug0Hq/sketches/P4vg5KCxF">
+              <A7 className="im"></A7>
+            </a>
+          </Card>
         </div>
       </section>
 
       <footer className="group1">
 
-        <h2 className="mail">Say <a href="mailto:hi@hug0.pt?subject=Hi! 👋">hi@hug0.pt</a></h2>
+        <h2 className="textWhite mail">Say <a className="textWhite" href="mailto:hi@hug0.pt?subject=Hi! 👋">hi@hug0.pt</a></h2>
         <div className="logoGroup">
           <div>
             <a href="https://www.instagram.com/hug0hq" >

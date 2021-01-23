@@ -31,7 +31,7 @@ export const Player = (props) => {
         //e.preventDefault()
         setclick(true)
 
-       // console.log('m down')
+        // console.log('m down')
 
     }
 
@@ -60,7 +60,7 @@ export const Player = (props) => {
                         y: e.y
                     }
                 }
-               // console.log('tacada')
+                // console.log('tacada')
                 var force = 0.1 // 0.2;
                 var deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
                 var normalizedDelta = Matter.Vector.normalise(deltaVector);
@@ -73,7 +73,7 @@ export const Player = (props) => {
             }
         }
 
-      //  const m = document.getElementById()
+        //  const m = document.getElementById()
         app.view.addEventListener('mouseup', pUp);
         app.view.addEventListener('mousedown', pDown);
         // clean up function

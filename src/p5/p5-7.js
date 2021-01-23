@@ -8,8 +8,8 @@ export default class A7 extends React.Component {
     }
 
     Sketch = (p) => {
-        const width = 400;
-        const height = 400;
+        const width = 800;
+        const height = 600;
         let div = 10;
 
         p.setup = () => {
