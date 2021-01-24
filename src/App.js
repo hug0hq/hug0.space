@@ -4,7 +4,7 @@ import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import { Stage } from '@inlet/react-pixi';
 import { Engine } from "./physics"
-import { Logo, GaCard, Social, Pens } from './components'
+import { Logo, GaCard, Social, Pens, Draw, Link } from './components'
 
 import A1 from './p5/p5-1'
 import A2 from './p5/p5-2'
@@ -123,7 +123,7 @@ const App = () => {
           <h3>Short version</h3>
         </header>
         <div className="txt">
-          <p style={{marginTop: 0}}>Hugo Costa is my name. I'm a web and game developer trying different things out.</p>
+          <p style={{ marginTop: 0 }}>Hugo Costa is my name. I'm a web and game developer trying different things out.</p>
           <p>Thank you for passing by! <span className="emo">🦾</span></p>
         </div>
 
@@ -140,20 +140,19 @@ const App = () => {
               <img src="./img/steve.svg" alt="Steve Vrum! Vrum!" />
             </div>
 
-            <h2 className="t3">Steve Vrum! Vrum!</h2>
-            <p>Video Game</p>
-            <p>Available on Google Play</p>
-            <div></div>
+            <h3 className="t3">Steve Vrum! Vrum!</h3>
+
+            <h3 className="t4">Available for Android on <a href="https://play.google.com/store/apps/details?id=com.h0.SteveVrumVrum" target="_blank">Google Play</a></h3>
+
           </div>
           <div>
             <div className="sname">
               <img src="./img/jim.svg" alt="Sr. Jim!" />
             </div>
 
-            <h2 className="t3">Sr. Jim!</h2>
-            <p>Video Game</p>
-            <p>Available on Google Play and Game Jolt</p>
-            <div></div>
+            <h3 className="t3">Sr. Jim!</h3>
+            
+            <h3 className="t4">Available for Android on <a href="https://play.google.com/store/apps/details?id=com.h0.SrJim" target="_blank">Google Play</a> and for the web on <a href="https://gamejolt.com/games/sr-jim/38705" target="_blank">Game Jolt</a></h3>
 
           </div>
         </div>
@@ -212,6 +211,7 @@ const App = () => {
           <h2 className="textWhite mail">Say <a className="textWhite" href="mailto:hi@hug0.pt?subject=Hi! 👋">hi@hug0.pt</a></h2>
         </div>
         <Social></Social>
+        {/* <Draw></Draw> */}
       </footer>
     </>)
 };
