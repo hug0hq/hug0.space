@@ -14,11 +14,11 @@ export const Player = (props) => {
     const [mposition, setMposition] = useState({ position: { x: 0, y: 0 } });
 
     const pMove = (e) => {
-        if (e.x && e.y) {
+        if (e.clientX && e.clientY) {
             let mouse = {
                 position: {
-                    x: e.x,
-                    y: e.y
+                    x: e.clientX,
+                    y: e.clientY
                 }
             }
             // console.log(e)
@@ -52,25 +52,27 @@ export const Player = (props) => {
             setclick(false)
 
             //return;
-            if (props.body.velocity.x < 1 || props.body.velocity.y < 1) {
-
-                let mouse = {
-                    position: {
-                        x: e.x,
-                        y: e.y
-                    }
-                }
-                // console.log('tacada')
-                var force = 0.1 // 0.2;
-                var deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
-                var normalizedDelta = Matter.Vector.normalise(deltaVector);
-                var forceVector = Matter.Vector.mult(normalizedDelta, force);
-                var op = Matter.Vector.neg(forceVector);
-                //arrowSize = 0;
-                //mousedown = false;
-                //setclick(false)
-                Matter.Body.applyForce(props.body, props.body.position, op);
+            if (props.body.velocity.x > 1 || props.body.velocity.y > 1) {
+                return
             }
+            //console.log(props.body.velocity.x)
+            let mouse = {
+                position: {
+                    x: e.clientX,
+                    y: e.clientY
+                }
+            }
+            // console.log('tacada')
+            var force = 0.1 // 0.2;
+            var deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
+            var normalizedDelta = Matter.Vector.normalise(deltaVector);
+            var forceVector = Matter.Vector.mult(normalizedDelta, force);
+            var op = Matter.Vector.neg(forceVector);
+            //arrowSize = 0;
+            //mousedown = false;
+            //setclick(false)
+            Matter.Body.applyForce(props.body, props.body.position, op);
+            // }
         }
 
         //  const m = document.getElementById()
@@ -108,6 +110,9 @@ export const Player = (props) => {
         //player.position = ballBody.position;
         //return
         if (click) {
+            if (props.body.velocity.x > 1 || props.body.velocity.y > 1) {
+                return
+            }
 
             let deltaVector = Matter.Vector.sub(mposition.position, props.body.position)
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import CanvasDraw from "react-canvas-draw";
+import React, {  useRef, useState } from 'react';
+/* import CanvasDraw from "react-canvas-draw"; */
 
 export const Draw = (props) => {
 

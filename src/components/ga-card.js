@@ -7,7 +7,7 @@ export const GaCard = (props) => {
 
     return (
         <Card>
-            <a href={props.href} target="_black">
+            <a href={props.href} target="_black" rel="noreferrer">
                 {props.children}
                 {/*  <img src="./img/arrow.svg" alt="External link icon" style={{
                     position: 'absolute',

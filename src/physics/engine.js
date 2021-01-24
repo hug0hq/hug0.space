@@ -6,15 +6,21 @@ import { Player, Hole, H } from '../components'
 
 import { useApp } from '@inlet/react-pixi';
 
+
+//const golf = document.getElementById('golf')
+
 export const Engine = (props) => {
 
   const app = useApp()
 
+
+  /* const golf = document.eve
+ */
   //const [eg, setEngine] = useState(null);
   const [playerB, setPlayerB] = useState(null);
-/* 
-  const [ww, setW] = useState(null);
-  const [hh, setH] = useState(null); */
+  /* 
+    const [ww, setW] = useState(null);
+    const [hh, setH] = useState(null); */
 
   const [constraints, setContraints] = useState()
   const [scene, setScene] = useState()
@@ -23,6 +29,8 @@ export const Engine = (props) => {
 
   const boxRef = props.box//getRef(null)
   const canvasRef = props.canvas//useRef(null)
+
+  const headerRef = props.header
 
   /*   let Engine = Matter.Engine
     let Render = Matter.Render
@@ -152,33 +160,33 @@ export const Engine = (props) => {
 
   }, [/* props.options, props.events */ boxRef, canvasRef, props.height, props.width])
 
- // useEffect(() => {
-    /*
-        const ballBody = Bodies.circle(100 + 10, hh - 100 - 10, 10 + 2 /* + 5 *./, {
-          restitution: 1,
-          friction: 0.3,
-          frictionAir: 0.05,
-          label: 'ball',
-          collisionFilter: {
-            category: '0x0002'
-          }
-        });
-    
-        const holeBody = Bodies.circle(ww - 100, hh - 100, 10, {
-          collisionFilter: {
-            category: '0x0002'
-          },
-          label: 'hole',
-          isSensor: true,
-          isStatic: true
-        });
-        if (eg)
-          World.add(eg.world, [ballBody, holeBody]);
-        //setPlayerB(ballBody)
-    
-        */
+  // useEffect(() => {
+  /*
+      const ballBody = Bodies.circle(100 + 10, hh - 100 - 10, 10 + 2 /* + 5 *./, {
+        restitution: 1,
+        friction: 0.3,
+        frictionAir: 0.05,
+        label: 'ball',
+        collisionFilter: {
+          category: '0x0002'
+        }
+      });
+  
+      const holeBody = Bodies.circle(ww - 100, hh - 100, 10, {
+        collisionFilter: {
+          category: '0x0002'
+        },
+        label: 'hole',
+        isSensor: true,
+        isStatic: true
+      });
+      if (eg)
+        World.add(eg.world, [ballBody, holeBody]);
+      //setPlayerB(ballBody)
+  
+      */
 
- // }, [ww, hh])
+  // }, [ww, hh])
 
   /*  const createPhysicsDebugRender = () => {
  
@@ -206,21 +214,14 @@ export const Engine = (props) => {
     //console.log(app.screen.width)
   } */
 
-  const handleResize = () => {
-    let tmp = {
-      width: app.screen.width,
-      height: app.screen.height
-    }
-    //console.log(boxRef.current.getBoundingClientRect())
-    setContraints(tmp)
-  }
+
 
 
   const STATIC_DENSITY = 100;
 
- /*  const playerReset = () => {
-
-  } */
+  /*  const playerReset = () => {
+ 
+   } */
 
   const handleCollision = (event) => {
     let { pairs } = event;
@@ -323,32 +324,56 @@ export const Engine = (props) => {
 
     Matter.Events.on(engine, 'collisionStart', handleCollision);
 
+
+    //handleResize()
+    setScene(render)
+
+    const handleResize = () => {
+      app.resize()
+      let tmp = {
+        width: app.screen.width,
+        height: app.screen.height
+      }
+      // console.log(app)
+      //console.log(boxRef.current.getBoundingClientRect())
+      setContraints(tmp)
+
+      //console.log('r')
+    }
+    handleResize()
+
     window.addEventListener('resize', handleResize);
     // clean up function
-    handleResize()
-    setScene(render)
+
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+
+    }
     /*   return () => {
         // remove resize listener
         window.removeEventListener('resize', resize);
   
         //Matter.Events.off(engine, 'collisionStart')
       } */
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [boxRef, canvasRef]);
 
 
+  /*   useEffect(() => {
+      //console.log(app.screen)
+    
+      // eslint-disable-next-line
+    }, [])
+   */
+
+
   useEffect(() => {
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-    // eslint-disable-next-line
-  }, [])
-
-
-
-  useEffect(() => {
+    // console.log('update')
     if (constraints) {
+      //console.log(constraints)
       let { width, height } = constraints
+
       // Dynamically update canvas and bounds
       scene.bounds.max.x = width
       scene.bounds.max.y = height
@@ -385,40 +410,44 @@ export const Engine = (props) => {
 
       const wallL = scene.engine.world.bodies[2]
       Matter.Body.setPosition(wallL, {
-        x: - STATIC_DENSITY / 2,
+        x: - STATIC_DENSITY / 2 + 20, //- STATIC_DENSITY / 2,
         y: height / 2,
       })
       Matter.Body.setVertices(wallL, [
-        { x: 0 - STATIC_DENSITY, y: 0 },
-        { x: 0 - STATIC_DENSITY, y: height },
-        { x: 0 + STATIC_DENSITY, y: height },
-        { x: 0 + STATIC_DENSITY, y: 0 }
+        { x: 0 - STATIC_DENSITY / 2, y: 0 },
+        { x: 0 - STATIC_DENSITY / 2, y: height },
+        { x: 0 + STATIC_DENSITY / 2, y: height },
+        { x: 0 + STATIC_DENSITY / 2, y: 0 }
       ])
 
       const wallR = scene.engine.world.bodies[3]
       Matter.Body.setPosition(wallR, {
-        x: width + STATIC_DENSITY / 2,
+        x: width + STATIC_DENSITY / 2 - 20,
         y: height / 2,
       })
       Matter.Body.setVertices(wallR, [
-        { x: width - STATIC_DENSITY, y: 0 },
-        { x: width - STATIC_DENSITY, y: height },
-        { x: width + STATIC_DENSITY, y: height },
-        { x: width + STATIC_DENSITY, y: 0 }
+        { x: width - STATIC_DENSITY / 2, y: 0 },
+        { x: width - STATIC_DENSITY / 2, y: height },
+        { x: width + STATIC_DENSITY / 2, y: height },
+        { x: width + STATIC_DENSITY / 2, y: 0 }
       ])
 
 
+      const margin =  parseInt( window.getComputedStyle(headerRef.current, null).getPropertyValue('padding-left'), 10);
+      //console.log(margin, 10))
+
       const ballBody = scene.engine.world.bodies[4]
       Matter.Body.setPosition(ballBody, {
-        x: 100 - 12 / 2,
+        x: margin - 12 / 2,
         y: height - 100 + 12 / 2,
       })
 
       const holeBody = scene.engine.world.bodies[5]
       Matter.Body.setPosition(holeBody, {
-        x: width - 100,
+        x: width - margin,
         y: height - 100,
       })
+
 
     }
   }, [scene, constraints])

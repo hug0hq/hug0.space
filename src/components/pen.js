@@ -11,7 +11,7 @@ export const Pen = (props) => {
             
             <div className="thumbnail" style={{ backgroundColor: props.color }} >
         
-                <a href={props.href} target="_black">
+                <a href={props.href} target="_black" rel="noreferrer">
                 
                     <Video onMouseEnter={event => { event.target.play() }}
                         onMouseLeave={event => { event.target.currentTime = 0; event.target.pause(); }}

@@ -23,7 +23,7 @@ canvas {
   width: 140px;
 }
 
-.pp, section, footer, .logo, .tx {
+.pp, section, footer, .logo, header {
   padding: 6em;
 }
 
@@ -31,6 +31,7 @@ canvas {
 
 .logo {
   width: 6em;
+  pointer-events: none;
 }
 
 h2 {
@@ -47,6 +48,19 @@ h2 {
 
 .mail {
   font-size: 5em;
+  user-select: none;
+}
+
+.tx {
+  font-size: 5em;
+  /*  position: absolute; */
+  /*  width: 100%; */
+  /* height: 100vh; */
+  /*   z-index: 1; */
+  /*     pointer-events: none; */
+  /* margin: 0;
+  box-sizing: content-box; */
+  user-select: none;
 }
 
 .p5js .card {
@@ -71,7 +85,7 @@ h2 {
   /*  .sname img {
     width: 140px;
   } */
-  .pp, section, footer, .logo, .tx {
+  .pp, section, footer, .logo, header {
     padding: 4em;
     /* padding-top: 4em; */
   }
@@ -87,11 +101,10 @@ h2 {
     /*  margin: 100px; */
     /*   margin: 100px; */
     font-size: 1.3em;
-  
   }
-  .gamelist {
-    /*  flex-wrap: wrap; */
-  }
+  /*  .gamelist {
+    /*  flex-wrap: wrap; *./
+  } */
   /* .pens .card {
     width: 50%;
   } */
@@ -110,13 +123,12 @@ h2 {
   }
 }
 
-
 @media (max-width: 930px) {
   .gamelist {
     flex-wrap: wrap;
   }
   .gamelist .cont {
-    width: 100% ;
+    width: 100%;
   }
 }
 
@@ -138,7 +150,6 @@ h2 {
   /* h2 {
     font-size: 2.2em;
   } */
-  
   .pens .card {
     width: 100%;
   }
@@ -155,7 +166,7 @@ h2 {
   .sname img {
     width: 40vw;
   }
-  .pp, section, footer, .logo, .tx {
+  .pp, section, footer, .logo, header {
     padding: 2em;
     /* padding-top: 4em; */
   }
@@ -196,11 +207,19 @@ section header {
   padding: 3em 0;
 }
 
+section .container, header .container
+/* footer .container */
+
+  {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
 h3 {
   font-weight: 400;
 }
 
-h2, h3 {
+h1, h2, h3 {
   letter-spacing: 0.05em;
   line-height: 1.5em;
   margin: 0;
@@ -230,26 +249,24 @@ body {
 }
 
 .main {
-  display: flex;
-  justify-content: center;
+  /*  display: flex;
+  justify-content: center; */
   height: 100vh;
   box-sizing: border-box;
 }
 
-.main canvas {
-  touch-action: auto !important;
+.golf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
   overflow: hidden;
+  width: 100%;
 }
 
-.tx {
-  position: absolute;
-  /*  width: 100%; */
-  /* height: 100vh; */
-  /*   z-index: 1; */
-  /*     pointer-events: none; */
-  margin: 0;
-  box-sizing: content-box;
-  user-select: none;
+.main canvas {
+  touch-action: auto !important;
+  /* overflow: hidden; */
 }
 
 @media screen and (min-width: 768px) {
@@ -323,18 +340,26 @@ body {
   /*    padding-bottom: 6rem; */
   /*  margin: 0 100px; */
   color: #f3f3f3;
+  /*  pointer-events: none; */
   /*   font-family: 'Roboto';
    font-weight: 700; */
 }
 
-.group1 {
-  height: 100vh;
-  background-color: #131618;
+.group1 .container {
   display: flex;
   justify-content: flex-end;
   /* align-content: flex-end; */
   flex-flow: column;
+  height: 100%;
+  
   box-sizing: border-box;
+}
+
+.group1 {
+  height: 100vh;
+  
+  box-sizing: border-box;
+  background-color: #131618;
 }
 
 .mail a {
@@ -423,17 +448,19 @@ body {
   will-change: transform;
 }
 
-.card canvas {
+.card canvas, .card .thumbnail {
   transition: box-shadow 0.5s;
 }
 
-.card:hover canvas {
+.card:hover canvas, .card:hover .thumbnail {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
   /* box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4); */
 }
 
 .p5js .card {
   margin-bottom: 2em;
+  min-height: 100px;
+  /*  height: fit-content; */
 }
 
 .im canvas {

@@ -7,7 +7,7 @@ export default class A1 extends React.Component {
         this.myRef = React.createRef()
     }
 
-    Sketch = (p) => {
+    Sketch =  (p) => {
 
         const width = 400; //this.props.width;
         const height = 400; //this.props.height;
@@ -17,11 +17,11 @@ export default class A1 extends React.Component {
         p.setup = () => {
             p.createCanvas(width, height);
             //frameRate(10);
-            for (let i = 0; i < height; i += height/14) {
+            for (let i = 0; i < height; i += height / 14) {
                 grid.push(i)
             }
         }
-        
+
         p.draw = () => {
 
             p.background(255)
@@ -30,7 +30,7 @@ export default class A1 extends React.Component {
             grid.forEach(
                 (line, i) => {
                     const m = p.map(line, 0, height, 0, 1);
-                    p.fill( p.lerp(200, 0, m))
+                    p.fill(p.lerp(200, 0, m))
                     const hy = p.lerp(4, 30, m);
                     p.rect(0, line, width, hy)
 
