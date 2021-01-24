@@ -135,7 +135,7 @@ const App = () => {
           <h3>Or video games</h3>
         </header>
         <div className="gamelist">
-          <div>
+          <div className="cont">
             <div className="sname">
               <img src="./img/steve.svg" alt="Steve Vrum! Vrum!" />
             </div>
@@ -145,7 +145,7 @@ const App = () => {
             <h3 className="t4">Available for Android on <a href="https://play.google.com/store/apps/details?id=com.h0.SteveVrumVrum" target="_blank">Google Play</a></h3>
 
           </div>
-          <div>
+          <div className="cont">
             <div className="sname">
               <img src="./img/jim.svg" alt="Sr. Jim!" />
             </div>

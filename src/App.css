@@ -13,39 +13,187 @@ canvas {
     /* vertical-align: middle; *./
 } */
 
-section header {
-  padding: 3em 0;
+/* //@media (max-width: 1020px) { */
+
+/* body {
+    max-width: 3840px;
+  } */
+
+.sname img {
+  width: 140px;
 }
 
-@media (max-width: 500px) {
+.pp, section, footer, .logo, .tx {
+  padding: 6em;
+}
+
+/* padding-top: 4em; */
+
+.logo {
+  width: 6em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+.gamelist {
+  /*  flex-wrap: wrap; */
+}
+
+.pens .card {
+  width: 48%;
+}
+
+.mail {
+  font-size: 5em;
+}
+
+.p5js .card {
+  /*    margin-bottom: 2em; */
+  width: 32%;
+}
+
+.gamelist .cont {
+  width: 50%;
+}
+
+/* }
+ */
+
+@media (min-width: 1020px) {
+  h3 {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 1020px) {
+  /*  .sname img {
+    width: 140px;
+  } */
   .pp, section, footer, .logo, .tx {
-    padding: 2em;
+    padding: 4em;
     /* padding-top: 4em; */
   }
-  .logo {
+  /*   .logo {
     width: 6em;
-  }
+  } */
   h2 {
     font-size: 2.2em;
   }
+  .groupgames .t3 {
+    /* margin-bottom: 0;
+    font-size: 6vh; */
+    /*  margin: 100px; */
+    /*   margin: 100px; */
+    font-size: 1.3em;
+  
+  }
+  .gamelist {
+    /*  flex-wrap: wrap; */
+  }
+  /* .pens .card {
+    width: 50%;
+  } */
+  .mail {
+    font-size: 5em;
+  }
+  /*  .p5js .card {
+    /*    margin-bottom: 2em; *./
+    width: 50%;
+  } */
+}
+
+@media (max-width: 1210px) {
+  .gamelist .cont {
+    width: 49%;
+  }
+}
+
+
+@media (max-width: 930px) {
   .gamelist {
     flex-wrap: wrap;
   }
+  .gamelist .cont {
+    width: 100% ;
+  }
+}
+
+@media (max-width: 780px) {
+  .p5js .card {
+    /*    margin-bottom: 2em; */
+    width: 100%;
+  }
+  /*  .sname img {
+    width: 140px;
+  } */
+  /* .pp, section, footer, .logo, .tx {
+    padding: 4em;
+    /* padding-top: 4em; *./
+  } */
+  /*  .logo {
+    width: 6em;
+  } */
+  /* h2 {
+    font-size: 2.2em;
+  } */
+  
   .pens .card {
     width: 100%;
   }
   .mail {
     font-size: 10vw;
   }
+  .p5js .card {
+    /*    margin-bottom: 2em; */
+    width: 48%;
+  }
+}
+
+@media (max-width: 420px) {
+  .sname img {
+    width: 40vw;
+  }
+  .pp, section, footer, .logo, .tx {
+    padding: 2em;
+    /* padding-top: 4em; */
+  }
+  /*  .logo {
+    width: 6em;
+  } */
+  /* h2 {
+    font-size: 2.2em;
+  } */
+  /*  .gamelist {
+    flex-wrap: wrap;
+  } */
+  /* .pens .card {
+    width: 100%;
+  } */
+  /*   .mail {
+    font-size: 10vw;
+  } */
+}
+
+@media (max-width: 620px) {
+  .p5js .card {
+    /*    margin-bottom: 2em; */
+    width: 100%;
+  }
 }
 
 @media (max-width: 380px) {
   .mail {
-    font-size: 2em;
+    font-size: 2.1em;
   }
   .logoGroup {
     margin: 0 auto;
   }
+}
+
+section header {
+  padding: 3em 0;
 }
 
 h3 {
@@ -55,7 +203,6 @@ h3 {
 h2, h3 {
   letter-spacing: 0.05em;
   line-height: 1.5em;
-
   margin: 0;
 }
 
@@ -243,12 +390,14 @@ body {
   font-size: 6vh; */
   /*  margin: 100px; */
   /*   margin: 100px; */
-  font-size: 1.3em;
+  font-size: 1.5em;
   /* font-weight: 400; */
   letter-spacing: 0.05em;
   line-height: 1.5em;
   font-weight: 700;
+  margin-top: 1em;
 }
+
 .groupgames .t4 {
   margin-bottom: 4em;
 }
@@ -258,21 +407,15 @@ body {
   color: #f3f3f3;
 }
 
-.sname img {
-  width: 40vw;
-}
-
-
-
 .groupgames .gamelist {
   display: flex;
-/*   justify-content: center; */
+  /*   justify-content: center; */
 }
 
 .p5js {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   /* margin: 0 100px; */
 }
 
@@ -298,9 +441,11 @@ body {
   height: 100% !important;
   border-radius: 10px;
 }
+
 .txt {
   padding-bottom: 3em;
 }
+
 .txt p {
   /*   color: #131618; */
   /* margin: 0px 100px; */
@@ -344,7 +489,7 @@ video::-webkit-media-controls {
 .pens {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 /* .sname {
@@ -352,6 +497,7 @@ video::-webkit-media-controls {
   height: auto;
 }
  */
+
 .link {
   position: absolute;
   bottom: 0;
