@@ -13,9 +13,14 @@ canvas {
     /* vertical-align: middle; *./
 } */
 
+section header {
+  padding: 3em 0;
+}
+
 @media (max-width: 500px) {
   .pp, section, footer, .logo, .tx {
     padding: 2em;
+    /* padding-top: 4em; */
   }
   .logo {
     width: 6em;
@@ -26,6 +31,47 @@ canvas {
   .gamelist {
     flex-wrap: wrap;
   }
+  .pens .card {
+    width: 100%;
+  }
+  .mail {
+    font-size: 10vw;
+  }
+}
+
+@media (max-width: 380px) {
+  .mail {
+    font-size: 2em;
+  }
+  .logoGroup {
+    margin: 0 auto;
+  }
+}
+
+h3 {
+  font-weight: 400;
+}
+
+h2, h3 {
+  letter-spacing: 0.05em;
+  line-height: 1.5em;
+
+  margin: 0;
+}
+
+.mailContainer h2 {
+  height: fit-content;
+}
+
+.mailContainer {
+  flex-grow: 1;
+  justify-content: center;
+  flex-flow: column;
+  display: flex;
+}
+
+.mail {
+  word-break: break-word;
 }
 
 body {
@@ -144,14 +190,6 @@ body {
   box-sizing: border-box;
 }
 
-.mail {
-  font-size: 8vh;
-  /*  margin: 100px; */
-  /*   color: #f3f3f3;
-      font-family: 'Roboto';
-      font-weight: 700; */
-}
-
 .mail a {
   text-decoration: none;
   /*  color: #f3f3f3; */
@@ -159,12 +197,30 @@ body {
 
 .logoGroup {
   display: flex;
+  height: 60px;
   /*   margin: 100px; */
 }
 
 .logoGroup div {
   margin: 10px;
+  width: 25px;
 }
+
+.logoGroup img {
+  position: absolute;
+  /* animation: marginTop 0.5s ease-in-out; */
+  transition: margin 0.1s ease-in-out;
+}
+
+.logoGroup img:hover {
+  margin-top: -5px;
+  /* animation: all 0.5s ease-in-out; */
+}
+
+/* .logoGroup:hover img {
+  margin-bottom: 2em;
+  transition: all 0.6s ease;
+} */
 
 .groupgames {
   /* padding: 7em 0; */
@@ -227,7 +283,9 @@ body {
   height: 100% !important;
   border-radius: 10px;
 }
-
+.txt {
+  padding-bottom: 3em;
+}
 .txt p {
   /*   color: #131618; */
   /* margin: 0px 100px; */
@@ -245,9 +303,14 @@ body {
 }
 
 .thumbnail {
-  width: 400px;
+  /* width: 400px; */
   overflow: hidden;
   cursor: pointer;
+  border-radius: 10px;
+}
+
+.pens .card {
+  margin-bottom: 2em;
 }
 
 video {
@@ -272,4 +335,14 @@ video::-webkit-media-controls {
 .sname {
   width: 200px;
   height: auto;
+}
+
+.link {
+  position: absolute;
+  bottom: 0;
+  width: 1.2em;
+  /*  right: 0; */
+  margin: 0.6em;
+  pointer-events: none;
+  opacity: 0.8;
 }
