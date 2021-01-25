@@ -6,13 +6,11 @@ import { Player, Hole, H } from '../components'
 
 import { useApp } from '@inlet/react-pixi';
 
-
 //const golf = document.getElementById('golf')
 
 export const Engine = (props) => {
 
   const app = useApp()
-
 
   /* const golf = document.eve
  */
@@ -258,8 +256,7 @@ export const Engine = (props) => {
       engine: engine,
       canvas: canvasRef.current,
       options: {
-        /*  width: props.width,
-         height: props.height, */
+    
         showAngleIndicator: true,
         wireframeBackground: 'transparent',
         background: 'transparent'
@@ -320,7 +317,7 @@ export const Engine = (props) => {
 
     World.add(engine.world, [wallB, wallT, wallL, wallR, ballBody, holeBody])
     Engine.run(engine)
-    Render.run(render)
+    //Render.run(render)
 
     Matter.Events.on(engine, 'collisionStart', handleCollision);
 

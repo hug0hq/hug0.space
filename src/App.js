@@ -113,6 +113,11 @@ const App = () => {
         </div>
         {/*  </div> */}
         <Logo />
+        <div className="arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.402 197.402">
+            <polygon points="146.883,197.402 45.255,98.698 146.883,0 152.148,5.418 56.109,98.698 152.148,191.98" />
+          </svg>
+        </div>
       </header>
       <section className="about">
         <div className="container">

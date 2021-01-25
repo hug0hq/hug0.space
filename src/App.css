@@ -23,7 +23,10 @@ canvas {
   width: 140px;
 }
 
-.pp, section, footer, /* .logo, */ header {
+.pp, section, footer,
+/* .logo, */
+
+header {
   padding: 6em;
 }
 
@@ -54,16 +57,14 @@ h2 {
 }
 
 .tx {
-  
   font-size: 5em;
-
   z-index: 1;
   position: relative;
   /*  position: absolute; */
   /*  width: 100%; */
   /* height: 100vh; */
   /*   z-index: 1; */
-      pointer-events: none;
+  pointer-events: none;
   /* margin: 0;
   box-sizing: content-box; */
   user-select: none;
@@ -80,6 +81,7 @@ h2 {
 
 /* }
  */
+
 @media (max-width: 1930px) {
   .tx {
     font-size: 12vh;
@@ -90,7 +92,6 @@ h2 {
   .gamelist .cont {
     width: 49%;
   }
- 
 }
 
 @media (min-width: 1020px) {
@@ -106,7 +107,8 @@ h2 {
   /*  .sname img {
     width: 140px;
   } */
-  .pp, section, footer,/*  .logo, */ header {
+  .pp, section, footer, /*  .logo, */
+  header {
     padding: 4em;
     /* padding-top: 4em; */
   }
@@ -138,7 +140,6 @@ h2 {
   } */
 }
 
-
 @media (max-width: 930px) {
   /* .tx {
     font-size: 4em;
@@ -152,15 +153,12 @@ h2 {
 }
 
 @media (max-width: 780px) {
-
   .logo {
     width: 7em;
   }
-  
-.tx {
-  font-size: 12vh;
-}
-
+  .tx {
+    font-size: 12vh;
+  }
   .p5js .card {
     /*    margin-bottom: 2em; */
     width: 100%;
@@ -197,7 +195,8 @@ h2 {
   .sname img {
     width: 40vw;
   }
-  .pp, section, footer, /* .logo, */ header {
+  .pp, section, footer, /* .logo, */
+  header {
     padding: 2em;
     /* padding-top: 4em; */
   }
@@ -226,12 +225,9 @@ h2 {
 }
 
 @media (max-width: 380px) {
-
   .tx {
     font-size: 10vw;
   }
-
-  
   .mail {
     font-size: 2.1em;
   }
@@ -306,8 +302,6 @@ body {
   /* overflow: hidden; */
 }
 
-
-
 /* .tx h1 {
     color: #f3f3f3;
     /* font-size: 100px; */
@@ -374,13 +368,11 @@ body {
   /* align-content: flex-end; */
   flex-flow: column;
   height: 100%;
-  
   box-sizing: border-box;
 }
 
 .group1 {
   height: 100vh;
-  
   box-sizing: border-box;
   background-color: #131618;
 }
@@ -393,6 +385,7 @@ body {
 .logoGroup {
   display: flex;
   height: 60px;
+  user-select: none;
   /*   margin: 100px; */
 }
 
@@ -556,4 +549,33 @@ video::-webkit-media-controls {
   margin: 0.6em;
   pointer-events: none;
   opacity: 0.8;
+}
+
+@keyframes updown {
+  from {
+    margin-bottom: 6px;
+  }
+
+  to {
+    margin-bottom: 10px;
+  }
+}
+
+.arrow svg {
+  animation-duration: 0.4s;
+  animation-name: updown;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+  width: 16px;
+  fill: #f3f3f3;
+  position: absolute;
+  bottom: 0;
+  transform: rotate(-90deg);
+}
+
+.arrow {
+  user-select: none;
+  display: flex;
+  justify-content: center;
 }
