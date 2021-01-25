@@ -486,6 +486,8 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  /* it fix safari border not render whit a transform */ 
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .txt {
@@ -573,6 +575,7 @@ video::-webkit-media-controls {
   position: absolute;
   bottom: 0;
   transform: rotate(-90deg);
+  user-select: none;
 }
 
 .arrow {
