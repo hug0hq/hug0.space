@@ -1,263 +1,48 @@
 import './App.css';
 
 /* import Stats from 'stats.js'; */
-import React, { useCallback, useEffect, useState, useRef, useContext } from 'react';
-import { Stage, Graphics, Text, useTick, useApp, Container, useReducer } from '@inlet/react-pixi';
-import { TextStyle } from 'pixi.js';
+import React, { useEffect, useState, useRef } from 'react';
+import { Stage } from '@inlet/react-pixi';
+import { Engine } from "./physics"
+import { Logo, Social, Pens, GaGroup /*, Link  */ } from './components'
 
-import {Engine, usePhysics} from "./physics"
-import { Bodies } from 'matter-js';
-
-const Player = (props) => {
-  const app = useApp()
-  const height = 40;
-
-  const pDown = () => {
-
-    setclick(true)
-  }
-  const pUp = () => {
-    setclick(false)
-  }
-
-  useEffect(() => {
-
-    //const update = () => setSize(getSize());
-    //window.onresize = update;
-    //return () => (window.onresize = null);
-    window.addEventListener('pointerup', pUp);
-    window.addEventListener('pointerdown', pDown);
-    // clean up function
-    return () => {
-      // remove resize listener
-
-
-      window.removeEventListener('pointerup', pUp);
-      window.removeEventListener('pointerdown', pDown);
-    }
-  }, []);
-
-  const [arrow, update] = useState(0)
-  const [click, setclick] = useState(false)
-  //  useReducer(reducer, initialArgs, init); its a better setState for comprex states
-  const angle = (x, y) => {
-    return Math.atan2(y, x) + Math.PI / 2;
-  }
-
-  useTick(delta => {
-    if (click) {
-      update({
-        arrowSize: 60
-      })
-    }
-    else {
-      //let deltaVector = Matter.Vector.sub(mouse.position, ballBody.position);
-      update({
-        arrowSize: 0,
-        //  rotation: angle(deltaVector.x, deltaVector.y)
-      })
-    }
-  })
-
-  return (
-    <Container position={[100, app.screen.height - 100]} >
-      <Arrow {...arrow} height={height}></Arrow>
-      <Ball radios={props.radios} />
-    </Container>
-  )
-}
-
-const BallBody = () => {
- /*  Bodies.circle(100 + playerSize.radios, localHeight - 100 - playerSize.radios, playerSize.radios + 5, {
-    restitution: 1,
-    friction: 0.3,
-    frictionAir: 0.05,
-    label: 'ball',
-    collisionFilter: {
-      category: '0x0002'
-    }
-  } */
-  const options = {
-    restitution: 1,
-    friction: 0.3,
-    frictionAir: 0.05,
-    label: 'ball',
-    collisionFilter: {
-      category: '0x0002'
-    }
-  }
-  //Bodies(x, y, options)
-}
-
-const Ball = (props) => {
-  const draw = useCallback((g) => {
-    g.clear()
-    g.beginFill(0xf3f3f3);
-    g.drawCircle(0, 0, props.radios);
-    g.endFill();
-  }, [props]);
-  return <Graphics draw={draw} />;
-}
-const Arrow = (props) => {
-  /*  useTick(delta => {
-     // do something here
-   }) */
-  const draw = useCallback((g) => {
-    g.clear()
-    g.beginFill(0xF04D4D);
-    g.drawPolygon(
-      [
-        8,
-        props.arrowSize,
-        0,
-        props.arrowSize + 8,
-        -8,
-        props.arrowSize,
-        -8,
-        0,
-        8,
-        0
-      ]
-    );
-    g.endFill();
-  }, [props]);
-  return <Graphics draw={draw} />;
-}
-
-const Flag = (props) => {
-  /*  useTick(delta => {
-     // do something here
-   }) */
-  const pw = 10 //pole width
-  const ph = 80 //pole height
-
-  let tmpp1 = -pw / 2 - 40
-  let tmpp2 = -ph + 2
-  const tmpsize = 40
-
-  const draw = useCallback((g) => {
-    g.clear()
-      .beginFill(0xF04D4D)
-      .moveTo(-pw / 2, tmpp2)
-      .lineTo(tmpp1, tmpp2 + tmpsize / 2 - 5)
-      .quadraticCurveTo(tmpp1 - 10, tmpp2 + tmpsize / 2, tmpp1, tmpp2 + tmpsize / 2 + 5)
-      .lineTo(-pw / 2, tmpp2 + tmpsize)
-      .endFill()
-    /*  g.clear();
-     g.beginFill(props.color);
-     g.drawRect(props.x, props.y, props.width, props.height);
-     g.endFill(); */
-
-  }/* , [props] */);
-  return <Graphics draw={draw} />;
-}
-
-const FlagStick = (props) => {
-  /*  useTick(delta => {
-     // do something here
-   })
-  */
-  const pw = 10 //pole width
-  const ph = 80 //pole height
-  let sp = - pw / 2 //mid
-
-  const draw = useCallback((g) => {
-    g.clear()
-      .beginFill(0xf3f3f3)
-      .moveTo(sp, 15)
-      .arc(sp + pw / 2, -ph, pw / 2, Math.PI, 0)
-      .lineTo(sp + pw, 15)
-      .endFill()
-    /*  g.clear();
-     g.beginFill(props.color);
-     g.drawRect(props.x, props.y, props.width, props.height);
-     g.endFill(); */
-
-  }/* , [props] */);
-  return <Graphics draw={draw} />;
-}
-
-//const reducer = (_, { data }) => data
-
-const Hole = (props) => {
-  const app = useApp()
-  //const [size, setSize] = useState(window.innerWidth/window.innerHeight);
-  const [motion, update] = useState()
-  //  useReducer(reducer, initialArgs, init); its a better setState for comprex states
-  useTick(delta => {
-
-    update({
-      position: [app.screen.width - 100, app.screen.height - 100]
-    })
-  })
-  /* useTick(delta => {
-    //const i = (iter.current += 0.05 * delta)
-    update({
-      type: 'update',
-      data: {
-        position: [app.screen.width - 100, app.screen.height - 100]
-      }
-    })
-  }) */
-
-  return (
-    <Container {...motion} /* scale={size}  position={[app.screen.width - 100, app.screen.height - 100]} */ >
-      <Hole_p />
-      <Flag />
-      <FlagStick />
-    </Container>
-  );
-}
-const Hole_p = (props) => {
-  const draw = useCallback((g) => {
-    g.clear();
-    g.beginFill(0x424242);
-    g.drawCircle(0, 0, 15);
-    g.endFill();
-  }/* , [props] */);
-
-  return (
-    <Graphics draw={draw} />
-  );
-}
 
 const App = () => {
   //const [stats, setStats] = useState(null);
   useEffect(() => {
     //setWind(document.getElementById('root'));
-    console.log('😋')
-    console.log(devicePixelRatio)
+    console.log('Hello! 😋')
+    //console.log(devicePixelRatio)
 
-    const resizeListener = () => {
-      console.log('resize')
+    // const resizeListener = () => {
+    //console.log('resize')
 
-      if (!app.current.renderer) {
-        return
-      }
+    /* if (!app.current.renderer) {
+      return
+    } */
 
+    //console.log(h1text)
 
-      console.log(h1text)
-
-      //app.renderer.resize(window.innerWidth, window.innerHeight)
-      // Immediately render because resizing clears the canvas
-      //app.render()
-    };
+    //app.renderer.resize(window.innerWidth, window.innerHeight)
+    // Immediately render because resizing clears the canvas
+    //app.render()
+    // };
     // set resize listener
-    window.addEventListener('resize', resizeListener);
-    // clean up function
-    return () => {
-      // remove resize listener
-      window.removeEventListener('resize', resizeListener);
-    }
+    /*   window.addEventListener('resize', resizeListener);
+      // clean up function
+      return () => {
+        // remove resize listener
+        window.removeEventListener('resize', resizeListener);
+      } */
   }, [])
 
   const options = {
-    backgroundColor: 0x000000,
+    backgroundColor: 0x131618,
     antialias: true,
     autoDensity: true,
     resolution: devicePixelRatio,
-    transparent: true,
-    /*  preserveDrawingBuffer: true, */ //fixes flikering 
+    /* transparent: true, */
+    preserveDrawingBuffer: true,  //fixes flikering 
     resizeTo: window ///document.getElementById('root'), // or window, or global.window, etc
   };
 
@@ -270,89 +55,146 @@ const App = () => {
   const app = useRef()
   const h1text = useRef()
 
-  const [text] = useState('Hello from html')
+  const [text] = useState('Hi there!\nI make cool things')
+
+  const boxRef = useRef()
+  const canvasRef = useRef()
+
+  const headerRef = useRef()
 
   return (
     <>
-      <div className='tx'>
-        <h1 ref={h1text}>
-          {
-            text.split('').map((char, index) => <span key={index}>{char}</span>)
-          }
-        </h1>
+      <div
+        ref={boxRef}
+        style={{
+          position: 'absolute',
+          opacity: 0.5,
+          zIndex: 1,
+          pointerEvents: 'none',
+          display: 'flex',
+          justifyContent: 'center',
+          height: '100vh',
+          width: '100%',
+          overflow: 'hidden'
+        }}
+      >
+        <canvas ref={canvasRef} />
       </div>
-      <Engine/>
-      <div className="main">
-        <Stage onMount={_app => (app.current = _app)}
-          width={window.innerWidth}
-          height={window.innerHeight}
-          /*  raf={false}
-           renderOnComponentChange={true} */
-          options={options} >
-          <MyComponent text={text} textRef={h1text} />
-          <Player color={0xeef1f5} radios={10} />
-          <Hole />
-        </Stage>
-      </div>
+      <header className="main" id="golf" >
+        <div className="container" ref={headerRef}>
+          {/* <div className='tx'> */}
+          <h1 className="textWhite tx" ref={h1text}>
+            {
+              text.split('').map((char, index) => char !== '\n' ? <span key={index}>{char}</span> : <br key={index} />)
+            }
+          </h1>
+          {/*    </div> */}
+          {/* <div className="main"> */}
+          <div className="golf">
+            <Stage onMount={_app => (app.current = _app)}
+              width={window.innerWidth}
+              height={window.innerHeight}
+              /*  raf={false}
+               renderOnComponentChange={true} */
+              options={options}
+
+            >
+              <Engine width={window.innerWidth} height={window.innerHeight} header={headerRef} box={boxRef} canvas={canvasRef}>
+
+                {/* <Title text={text} textRef={h1text} /> */}
+                {/* <Player color={0xeef1f5} radios={10} /> */}
+                {/* <CircleBody x={100} y={100} radios={20} options> */}
+
+                {/* </CircleBody> */}
+                {/* <Hole /> */}
+              </Engine>
+            </Stage>
+          </div>
+        </div>
+        {/*  </div> */}
+        <Logo />
+        <div className="arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.402 197.402">
+            <polygon points="146.883,197.402 45.255,98.698 146.883,0 152.148,5.418 56.109,98.698 152.148,191.98" />
+          </svg>
+        </div>
+      </header>
+      <section className="about">
+        <div className="container">
+          <header>
+            <h2>About Me</h2>
+            <h3>Short version</h3>
+          </header>
+          <div className="txt">
+            <p style={{ marginTop: 0 }}>Hugo Costa is my name. I'm a web and game developer trying different things out.</p>
+            <p>Thank you for passing by! <span className="emo">🦾</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section className="groupgames">
+        <div className="container">
+          <header>
+            <h2 className="textWhite">Games</h2>
+            <h3>Or video games</h3>
+          </header>
+          <div className="gamelist">
+            <div className="cont">
+              <div className="sname">
+                <img src="./img/steve.svg" alt="Steve Vrum! Vrum!" />
+              </div>
+
+              <h3 className="t3">Steve Vrum! Vrum!</h3>
+
+              <h3 className="t4">Available for Android on <a href="https://play.google.com/store/apps/details?id=com.h0.SteveVrumVrum" target="_blank" rel="noreferrer">Google Play</a></h3>
+
+            </div>
+            <div className="cont">
+              <div className="sname">
+                <img src="./img/jim.svg" alt="Sr. Jim!" />
+              </div>
+
+              <h3 className="t3">Sr. Jim!</h3>
+
+              <h3 className="t4">Available for Android on <a href="https://play.google.com/store/apps/details?id=com.h0.SrJim" target="_blank" rel="noreferrer">Google Play</a> and for the web on <a href="https://gamejolt.com/games/sr-jim/38705" target="_blank" rel="noreferrer">Game Jolt</a></h3>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="grouppen">
+        <div className="container">
+          <header>
+            <h2>Pens</h2>
+            <h3>Cool code experiments</h3>
+          </header>
+          <Pens></Pens>
+        </div>
+      </section>
+
+      <section className="groupart">
+        <div className="container">
+          <header>
+            <h2 className="textBlack">Generative Art</h2>
+            <h3>It's code and art</h3>
+          </header>
+          <div className="p5js">
+            <GaGroup></GaGroup>
+          </div>
+        </div>
+      </section>
+
+      <footer className="group1">
+        <div className="container">
+          <div className="mailContainer">
+            <h2 className="textWhite mail">Say <a className="textWhite" href="mailto:hi@hug0.pt?subject=Hi! 👋">hi@hug0.pt</a></h2>
+          </div>
+          <Social></Social>
+          {/* <Draw></Draw> */}
+        </div>
+      </footer>
     </>)
 };
-
-/* const charsReducer = (state, action) => {
-  switch (action.type) {
-    case 'add':
-      return {count: state.count + 1};   
-    default:
-      throw new Error();
-  }
-} */
-
-const MyComponent = (props) => {
-
-  const [chars, setChars] = useState([])
-
-  useEffect(() => {
-
-    const ar = [];
-    // console.log(props.textRef.current.childNodes)
-    props.textRef.current.childNodes.forEach(
-      c => {
-        const tmp = c.getBoundingClientRect()
-
-        // console.log(tmp)
-        ar.push({ char: c.innerText, x: tmp.x, y: tmp.y, })
-      }
-    )
-
-    setChars(ar)
-    console.log(chars)
-  }, []);
-
-  const style = new TextStyle({
-    /* align: "center", */
-    fontFamily: "Arial",
-    fontSize: 100,
-    fontWeight: "bold",
-    fill: '#ffffff',
-    stroke: "#000000",
-    strokeThickness: 2,
-    /*  fill: ["#26f7a3", "#01d27e"],
-   
-     letterSpacing: 5, */
-    /*  wordWrap: true */
-    /*wordWrapWidth: 10 */
-  });
-
-  return (
-    <Container>
-      {/*  <Text text={props.text} x={0} y={0} style={style} /> */}
-      {
-        chars.map((c, index) =>
-          <Text key={index} text={c.char} x={c.x} y={c.y} style={style} />
-          /* console.log(c) */
-        )
-      }
-    </Container>
-  )
-}
 
 export default App;
