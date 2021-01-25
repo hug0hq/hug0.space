@@ -4,7 +4,7 @@ import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import { Stage } from '@inlet/react-pixi';
 import { Engine } from "./physics"
-import { Logo, Social, Pens, GaGroup /* Draw, Link  */ } from './components'
+import { Logo, Social, Pens, GaGroup /*, Link  */ } from './components'
 
 
 const App = () => {
@@ -69,6 +69,7 @@ const App = () => {
         style={{
           position: 'absolute',
           opacity: 0.5,
+          zIndex: 1,
           pointerEvents: 'none',
           display: 'flex',
           justifyContent: 'center',

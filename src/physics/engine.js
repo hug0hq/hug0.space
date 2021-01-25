@@ -30,7 +30,7 @@ export const Engine = (props) => {
   const boxRef = props.box//getRef(null)
   const canvasRef = props.canvas//useRef(null)
 
-  const headerRef = props.header
+  //const headerRef = props.header
 
   /*   let Engine = Matter.Engine
     let Render = Matter.Render
@@ -433,8 +433,9 @@ export const Engine = (props) => {
       ])
 
 
-      const margin =  parseInt( window.getComputedStyle(headerRef.current, null).getPropertyValue('padding-left'), 10);
+      //const margin =  parseInt( window.getComputedStyle(headerRef.current, null).getPropertyValue('padding-left'), 10);
       //console.log(margin, 10))
+      const margin = 100;
 
       const ballBody = scene.engine.world.bodies[4]
       Matter.Body.setPosition(ballBody, {
@@ -442,9 +443,11 @@ export const Engine = (props) => {
         y: height - 100 + 12 / 2,
       })
 
+      const margin2 = 200;
+
       const holeBody = scene.engine.world.bodies[5]
       Matter.Body.setPosition(holeBody, {
-        x: width - margin,
+        x: width - margin2,
         y: height - 100,
       })
 

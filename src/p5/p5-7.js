@@ -1,21 +1,16 @@
 import React from 'react';
-import p5 from 'p5';
+import Sketch from "react-p5";
 
-export default class A7 extends React.Component {
-    constructor(props) {
-        super(props)
-        this.myRef = React.createRef()
-    }
+export const A7 = (props) => {
 
-    Sketch = (p) => {
         const width = 800;
         const height = 600;
         let div = 10;
 
-        p.setup = () => {
+        const setup = (p5, canvasParentRef) => {
 
-            p.createCanvas(width, height);
-            p.noStroke();
+            p5.createCanvas(width, height).parent(canvasParentRef);
+            p5.noStroke();
             //noLoop();  
 
             // let sqr = 8;
@@ -25,28 +20,24 @@ export default class A7 extends React.Component {
 
             for (let i = div; i > 0; i--) {
 
-                if (p.random([0, 1]) === 0) {
-                    p.fill(1, 255, 255);
+                if (p5.random([0, 1]) === 0) {
+                    p5.fill(1, 255, 255);
                 } else {
-                    p.fill(255, 255, 0);
+                    p5.fill(255, 255, 0);
                 }
 
                 let m = sq * 3 / 4;
-                p.rect(0, 0, sq * i, m * i);
+                p5.rect(0, 0, sq * i, m * i);
 
             }
 
         }
 
-    }
+    
 
-    componentDidMount() {
-        this.myP5 = new p5(this.Sketch, this.myRef.current)
-    }
-
-    render() {
-        return (
-            <div ref={this.myRef} {...this.props}></div>
-        )
-    }
+    return (
+        <div {...props}>
+            <Sketch setup={setup}/*  draw={draw} */ />
+        </div>
+    );
 }

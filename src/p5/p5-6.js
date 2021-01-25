@@ -1,61 +1,52 @@
 import React from 'react';
-import p5 from 'p5';
+import Sketch from "react-p5";
 
-export default class A6 extends React.Component {
-    constructor(props) {
-        super(props)
-        this.myRef = React.createRef()
-    }
+export const A6 = (props) => {
 
-    Sketch = (p) => {
 
-        const width = 520;
-        const height = 520;
 
-        let size = 40;
-        let margin = 20;
+    const width = 520;
+    const height = 520;
 
-        let scale = 2;
+    let size = 40;
+    let margin = 20;
 
-        p.setup = () => {
-            p.createCanvas(width, height);
-            p.background(255);
-            p.noLoop();
-            p.noStroke();
+    let scale = 2;
 
-            p.colorMode( p.HSB, 360, 100, 100);
+    const setup = (p5, canvasParentRef) => {
+        p5.createCanvas(width, height).parent(canvasParentRef);
+        p5.background(255);
+        p5.noLoop();
+        p5.noStroke();
 
-            let l = width / (size + margin);
+        p5.colorMode(p5.HSB, 360, 100, 100);
 
-            for (let j = 1; j < l - 1; j++) {
+        let l = width / (size + margin);
 
-                for (let i = 1; i < l - 1; i++) {
+        for (let j = 1; j < l - 1; j++) {
 
-                    p.fill( p.random(100), 80, 100);
+            for (let i = 1; i < l - 1; i++) {
 
-                    //circle( (size+margin)*j , (size+margin)*i , size );
-                    //fill(255)
+                p5.fill(p5.random(100), 80, 100);
 
-                    if (j % 2 === 0) {
-                        p.circle((size + margin) * j + 20, (size + margin) * i, size - scale * i);
-                    } else {
-                        p.circle((size + margin) * j + 20, (size + margin) * i + size, size - scale * (l - i));
-                    }
+                //circle( (size+margin)*j , (size+margin)*i , size );
+                //fill(255)
+
+                if (j % 2 === 0) {
+                    p5.circle((size + margin) * j + 20, (size + margin) * i, size - scale * i);
+                } else {
+                    p5.circle((size + margin) * j + 20, (size + margin) * i + size, size - scale * (l - i));
                 }
-
             }
 
         }
 
     }
 
-    componentDidMount() {
-        this.myP5 = new p5(this.Sketch, this.myRef.current)
-    }
 
-    render() {
-        return (
-            <div ref={this.myRef} {...this.props}></div>
-        )
-    }
+    return (
+        <div {...props}>
+            <Sketch setup={setup} /* draw={draw} */ />
+        </div>
+    );
 }

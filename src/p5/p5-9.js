@@ -1,21 +1,16 @@
 import React from 'react';
-import p5 from 'p5';
 
-export default class A9 extends React.Component {
-    constructor(props) {
-        super(props)
-        this.myRef = React.createRef()
-    }
+import Sketch from "react-p5";
 
-    Sketch = (p) => {
+export const A9 = (props) => {
 
         const width = 520;
         const height = 520;
 
-        p.setup = () => {
+        const setup = (p5, canvasParentRef) => {
 
-            p.createCanvas(width, height);
-            p.background(255);
+            p5.createCanvas(width, height).parent(canvasParentRef);
+            p5.background(255);
 
             /*  }
              
@@ -45,16 +40,16 @@ export default class A9 extends React.Component {
 
                     for (let i = 1; i < l - 1; i++) {
 
-                        p.stroke(35, 40, 110);
+                        p5.stroke(35, 40, 110);
                         //rect( (size+margin)*j , (size+margin)*i , size , size);
-                        p.fill(255)
+                        p5.fill(255)
 
-                        p.push(); // Start a new drawing state
+                        p5.push(); // Start a new drawing state
 
-                        p.rotate(p.PI / t);
-                        p.rect((size + margin) * j + (scale * i) / 2, (size + margin) * i + (scale * i) / 2, size - scale * i, size - scale * i);
+                        p5.rotate(p5.PI / t);
+                        p5.rect((size + margin) * j + (scale * i) / 2, (size + margin) * i + (scale * i) / 2, size - scale * i, size - scale * i);
 
-                        p.pop(); // Restore original state
+                        p5.pop(); // Restore original state
 
                     }
 
@@ -62,16 +57,12 @@ export default class A9 extends React.Component {
                 t += 1
             }
 
-        }
+        
     }
 
-    componentDidMount() {
-        this.myP5 = new p5(this.Sketch, this.myRef.current)
-    }
-
-    render() {
-        return (
-            <div ref={this.myRef} {...this.props}></div>
-        )
-    }
+    return (
+        <div {...props}>
+            <Sketch setup={setup} /* draw={draw} */ />
+        </div>
+    );
 }

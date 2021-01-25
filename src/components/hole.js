@@ -1,13 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import { Graphics, useTick, useApp, Container } from '@inlet/react-pixi';
 
+const margin2 = 200;
+  
+
 export const H = (props) => {
     const app = useApp()
     const [motion, update] = useState()
 
     useTick(delta => {
         update({
-            position: [ app.screen.width - 100, app.screen.height - 100]
+            position: [ app.screen.width - margin2, app.screen.height - 100]
         })
 
     })
@@ -25,10 +28,11 @@ export const Hole = (props) => {
     //const [size, setSize] = useState(window.innerWidth/window.innerHeight);
     const [motion, update] = useState()
     //  useReducer(reducer, initialArgs, init); its a better setState for comprex states
+    
     useTick(delta => {
 
         update({
-            position: [app.screen.width - 100, app.screen.height - 100]
+            position: [app.screen.width - margin2, app.screen.height - 100]
         })
     })
     /* useTick(delta => {

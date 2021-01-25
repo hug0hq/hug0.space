@@ -1,51 +1,43 @@
 import React from 'react';
-import p5 from 'p5';
+import Sketch from "react-p5";
 
-export default class A4 extends React.Component {
-    constructor(props) {
-        super(props)
-        this.myRef = React.createRef()
-    }
+export const A4 = (props) => {
 
-    Sketch = (p) => {
+    
 
         const width = 400;
         const height = 400;
 
-        p.setup = () => {
+        const setup = (p5, canvasParentRef) => {
 
-            p.createCanvas(width, height);
-            p.background(250);
-            p.noStroke()
+            p5.createCanvas(width, height).parent(canvasParentRef);
+            p5.background(250);
+            p5.noStroke()
 
 
             for (let i = 130; i > 0; i--) {
 
                 if (i <= 1) {
-                    p.fill(20)
+                    p5.fill(20)
                 } else {
                     //norm(i,1,130)
-                    p.fill( p.map(i, 130, 1, 80, 230));
+                    p5.fill( p5.map(i, 130, 1, 80, 230));
                 }
-                p.ellipse(width / 2 + i, height / 2 + i, 200)
+                p5.ellipse(width / 2 + i, height / 2 + i, 200)
             }
 
 
 
-        }
+        
 
         /*   p.draw = () => {
   
           } */
     }
 
-    componentDidMount() {
-        this.myP5 = new p5(this.Sketch, this.myRef.current)
-    }
-
-    render() {
-        return (
-            <div ref={this.myRef} {...this.props}></div>
-        )
-    }
+    return (
+        <div {...props}>
+            <Sketch setup={setup}/*  draw={draw} */ />
+        </div>
+    );
 }

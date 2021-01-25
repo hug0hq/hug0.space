@@ -1,22 +1,13 @@
 import React from 'react';
 
 import { GaCard } from './ga-card'
-import loadable from '@loadable/component'
+//import loadable from '@loadable/component'
 
-//import A1 from '../p5/p5-1'
-/* import A2 from '../p5/p5-2'
-import A3 from '../p5/p5-3'
-import A4 from '../p5/p5-4'
-import A5 from '../p5/p5-5'
-import A6 from '../p5/p5-6'
-import A7 from '../p5/p5-7'
-import A8 from '../p5/p5-8'
-import A9 from '../p5/p5-9'
-import A10 from '../p5/p5-10' */
+import { A1, A2, A3, A4, A5, A6, A7, A8, A9, A10 } from '../p5'
 
 //const A1 = React.lazy(() => import('../p5/p5-1'))
-const A1 = loadable(() => import('../p5/p5-1'), { fallback: <div>Loading...</div> })
-const A2 = loadable(() => import('../p5/p5-2'), { fallback: <div>Loading...</div> })
+//const {A1} = loadable(() => import('../p5/p5-1'), { fallback: <div>Loading...</div> })
+/* const A2 = loadable(() => import('../p5/p5-2'), { fallback: <div>Loading...</div> })
 const A3 = loadable(() => import('../p5/p5-3'), { fallback: <div>Loading...</div> })
 const A4 = loadable(() => import('../p5/p5-4'), { fallback: <div>Loading...</div> })
 const A5 = loadable(() => import('../p5/p5-5'), { fallback: <div>Loading...</div> })
@@ -25,7 +16,7 @@ const A7 = loadable(() => import('../p5/p5-7'), { fallback: <div>Loading...</div
 const A8 = loadable(() => import('../p5/p5-8'), { fallback: <div>Loading...</div> })
 const A9 = loadable(() => import('../p5/p5-9'), { fallback: <div>Loading...</div> })
 const A10 = loadable(() => import('../p5/p5-10'), { fallback: <div>Loading...</div> })
-
+ */
 /* const A1 = loadable(() =>
  
     import('../p5/p5-1'),

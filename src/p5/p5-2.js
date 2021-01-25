@@ -1,43 +1,38 @@
 import React from 'react';
-import p5 from 'p5';
+import Sketch from "react-p5";
 
-export default class A2 extends React.Component {
-    constructor(props) {
-        super(props)
-        this.myRef = React.createRef()
-    }
+export const A2 = (props) => {
 
-    Sketch = (p) => {
 
-        const width = 400;
-        const height = 400;
+    const width = 400;
+    const height = 400;
 
-        p.setup = () => {
-            //function setup() {
-                p.createCanvas(width, height);
-                p.background(15);
+    const setup = (p5, canvasParentRef) => {
+        //function setup() {
+        p5.createCanvas(width, height).parent(canvasParentRef);
+        p5.background(15);
 
-                trunk();
-                branches();
-            //}
+        trunk();
+        branches();
+        //}
 
-        }
+        //}
 
-        
+
         function trunk() {
-            p.stroke(180);
-            p.strokeWeight(2);
-            p.line(width / 2, height, width / 2, height - 310);
+            p5.stroke(180);
+            p5.strokeWeight(2);
+            p5.line(width / 2, height, width / 2, height - 310);
         }
 
         function leaf(x, y, direction, angle) {
-            p.push();
-            p.stroke(180);
-            p.strokeWeight(1);
-            p.translate(x, y);
-            p.rotate(direction * (angle - p.PI / p.random(1.0, 1.4)));
-            p.line(0, 0, 20, 0);
-            p.pop();
+            p5.push();
+            p5.stroke(180);
+            p5.strokeWeight(1);
+            p5.translate(x, y);
+            p5.rotate(direction * (angle - p5.PI / p5.random(1.0, 1.4)));
+            p5.line(0, 0, 20, 0);
+            p5.pop();
         }
 
         function branches() {
@@ -47,38 +42,37 @@ export default class A2 extends React.Component {
                 size -= 10;
             }
         }
-        
+
         function branch(len, h) {
-           
+
             for (let r = 0; r < len; r += 10) {
                 for (let p0 = 0; p0 < 2; p0++) {
-                    leaf(width / 2 - r, h + p.exp(r / 30), 1.5, 0);
-                    leaf(width / 2 - r, h + p.exp(r / 30), -1, 0);
-                    leaf(width / 2 + r, h + p.exp(r / 30), 1.5, p.PI);
-                    leaf(width / 2 + r, h + p.exp(r / 30), 1, p.PI);
+                    leaf(width / 2 - r, h + p5.exp(r / 30), 1.5, 0);
+                    leaf(width / 2 - r, h + p5.exp(r / 30), -1, 0);
+                    leaf(width / 2 + r, h + p5.exp(r / 30), 1.5, p5.PI);
+                    leaf(width / 2 + r, h + p5.exp(r / 30), 1, p5.PI);
                 }
 
-                if (p.random(10) > 7) {
-                    p.noStroke();
-                    p.fill( p.random(140, 250), 0, 0);
-                    p.circle(width / 2 - r, h + p.exp(r / 30), p.random(6.0, 10.0));
-                    p.circle(width / 2 + r, h + p.exp(r / 30), p.random(6.0, 10.0));
+                if (p5.random(10) > 7) {
+                    p5.noStroke();
+                    p5.fill(p5.random(140, 250), 0, 0);
+                    p5.circle(width / 2 - r, h + p5.exp(r / 30), p5.random(6.0, 10.0));
+                    p5.circle(width / 2 + r, h + p5.exp(r / 30), p5.random(6.0, 10.0));
                 }
             }
         }
-
-        /* p.draw = () => {
-
-        } */
     }
 
-    componentDidMount() {
-        this.myP5 = new p5(this.Sketch, this.myRef.current)
-    }
+    /* p.draw = () => {
 
-    render() {
-        return (
-            <div ref={this.myRef} {...this.props}></div>
-        )
-    }
+    } */
+
+
+
+
+    return (
+        <div {...props}>
+            <Sketch setup={setup}  />
+        </div>
+    );
 }
