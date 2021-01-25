@@ -240,10 +240,7 @@ section header {
   padding: 3em 0;
 }
 
-section .container, header .container
-/* footer .container */
-
-  {
+section .container, header .container, footer .container {
   max-width: 1500px;
   margin: 0 auto;
 }
@@ -485,6 +482,12 @@ body {
   border-radius: 10px;
 }
 
+.im {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
 .txt {
   padding-bottom: 3em;
 }
@@ -555,7 +558,6 @@ video::-webkit-media-controls {
   from {
     margin-bottom: 6px;
   }
-
   to {
     margin-bottom: 10px;
   }
@@ -566,7 +568,6 @@ video::-webkit-media-controls {
   animation-name: updown;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-
   width: 16px;
   fill: #f3f3f3;
   position: absolute;
