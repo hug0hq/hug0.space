@@ -321,7 +321,6 @@ export const Engine = (props) => {
 
     Matter.Events.on(engine, 'collisionStart', handleCollision);
 
-
     //handleResize()
     setScene(render)
 
