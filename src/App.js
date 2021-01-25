@@ -80,8 +80,8 @@ const App = () => {
       >
         <canvas ref={canvasRef} />
       </div>
-      <header className="main" id="golf" >
-        <div className="container" ref={headerRef}>
+      <header className="main" /* id="golf" */ >
+        <div className="container" /* ref={headerRef} */>
           {/* <div className='tx'> */}
           <h1 className="textWhite tx" ref={h1text}>
             {
@@ -90,7 +90,7 @@ const App = () => {
           </h1>
           {/*    </div> */}
           {/* <div className="main"> */}
-          <div className="golf">
+          <div /* className="golf" */>
             <Stage onMount={_app => (app.current = _app)}
               width={window.innerWidth}
               height={window.innerHeight}

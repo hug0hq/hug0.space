@@ -157,7 +157,7 @@ h2 {
     width: 7em;
   }
   .tx {
-    font-size: 12vh;
+    font-size: 10vh;
   }
   .p5js .card {
     /*    margin-bottom: 2em; */
@@ -189,8 +189,13 @@ h2 {
 }
 
 @media (max-width: 420px) {
+  .tx {
+    font-size: 9vh;
+  }
+
   .logo {
     width: 6em;
+    padding-right: 2em;
   }
   .sname img {
     width: 40vw;
@@ -295,9 +300,19 @@ body {
   pointer-events: none;
 }
 
+/* .main {
+  overflow: hidden;
+} */
 .main canvas {
   touch-action: auto !important;
   /* overflow: hidden; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  width: 100% !important;
+  /* width: 100%; */
 }
 
 /* .tx h1 {
