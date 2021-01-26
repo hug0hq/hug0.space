@@ -8,6 +8,13 @@ import { Logo, Social, Pens, GaGroup /*, Link  */ } from './components'
 
 
 const App = () => {
+
+  //google analytics
+  useEffect(() => {
+    ReactGA.initialize('UA-55839128-1');
+    ReactGA.pageview(window.location.pathname);
+  })
+
   //const [stats, setStats] = useState(null);
   useEffect(() => {
     //setWind(document.getElementById('root'));
