@@ -225,7 +225,7 @@ export const Engine = (props) => {
   //const [reset, setReset] = useState(0);
   //const [reset, setReset] = useState(1)
   const force = 0.001 // 0.2;
-    
+
 
 
   const handleCollision = (event) => {
@@ -245,7 +245,7 @@ export const Engine = (props) => {
         });
         //setReset(reset + 1)
         //reset();
-        
+
         console.log("Hole! ⛳");
 
       }
@@ -256,13 +256,13 @@ export const Engine = (props) => {
   /* useEffect(() => {
     console.log('reset'+ reset)
     if (playerB) { */
- /*  const reset = () => {
-    const p = {
-      x: playerB.position.x + 2,
-      y: playerB.position.y
-    } */
-   
-  
+  /*  const reset = () => {
+     const p = {
+       x: playerB.position.x + 2,
+       y: playerB.position.y
+     } */
+
+
   /* }, [playerB, reset]) */
 
   useEffect(() => {
@@ -326,7 +326,7 @@ export const Engine = (props) => {
       }
     });
 
-  
+
 
     const holeBody = Bodies.circle(0, 0, 12, {
       collisionFilter: {
@@ -350,7 +350,7 @@ export const Engine = (props) => {
         //  console.log(c.getBounds())
         //console.log(tmp)
         // console.log(tmp)
-        ar.push(tmp /* { char: c.innerText, x: tmp.x, y: tmp.y, } */)
+        if (c.innerText) { ar.push(tmp) }
       }
     )
     /* 
@@ -368,7 +368,6 @@ export const Engine = (props) => {
     let leterBody = [];
 
     ar.forEach((letter, i) => {
-      //console.log(letter)
       /*  if (letter == '\n') {
          last.left = 0;
          last.line += last.height;
@@ -418,7 +417,7 @@ export const Engine = (props) => {
 
 
     Engine.run(engine)
-    //Render.run(render)
+   // Render.run(render)
 
     Matter.Events.on(engine, 'collisionStart', handleCollision);
 
@@ -570,7 +569,7 @@ export const Engine = (props) => {
           //  console.log(c.getBounds())
           //console.log(tmp)
           // console.log(tmp)
-          ar.push(tmp /* { char: c.innerText, x: tmp.x, y: tmp.y, } */)
+          if (c.innerText) { ar.push(tmp) }
         }
       )
 

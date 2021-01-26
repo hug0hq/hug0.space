@@ -297,7 +297,7 @@ body {
   z-index: 0;
   overflow: hidden;
   width: 100%;
-  pointer-events: none;
+ /*  pointer-events: none; */
 }
 
 /* .main {
@@ -306,12 +306,14 @@ body {
 .main canvas {
   touch-action: auto !important;
   /* overflow: hidden; */
-  position: absolute;
+ /*  position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
   overflow: hidden;
-  width: 100% !important;
+  width: 100% !important; */
+
+  
   /* width: 100%; */
 }
 

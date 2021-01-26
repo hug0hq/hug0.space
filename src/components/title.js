@@ -9,8 +9,8 @@ export const Title = (props) => {
     //const [ch, setX] = useState(0);
     const [ch, setCh] = useState();
     const [fontSize, setFontSize] = useState(100);
-    /* const [offsetX, setOffsetX] = useState(0)
-    const [offsetY, setOffsetY] = useState(0) */
+    const [offsetX, setOffsetX] = useState(0)
+    const [offsetY, setOffsetY] = useState(0)
 
     const font = window.getComputedStyle(props.textRef.current).fontSize
 
@@ -19,14 +19,14 @@ export const Title = (props) => {
         setFontSize(fs)
         //console.log(fs)
 
-      /*   props.textBodys.forEach(
+        props.textBodys.forEach(
             (e) => {
                 setOffsetX(e.bounds.max.x - e.bounds.min.x)
                 setOffsetY(e.bounds.max.y - e.bounds.min.y)
                 //console.log(e)
-            }); */
+            });
 
-    }, [font, props.textRef])
+    }, [font, props.textRef, props.textBodys])
 
     useEffect(() => {
 
@@ -35,8 +35,10 @@ export const Title = (props) => {
         props.textRef.current.childNodes.forEach(
             c => {
                 const tmp = c.getBoundingClientRect()
-                // console.log(tmp)
-                ar.push({ char: c.innerText, x: tmp.x, y: tmp.y, })
+                //console.log(c.innerText)
+                if (c.innerText) {
+                    ar.push({ char: c.innerText, x: tmp.x, y: tmp.y, })
+                }
             }
         )
 
@@ -131,7 +133,7 @@ export const Title = (props) => {
             {/*  <Text text={props.text} x={0} y={0} style={style} /> */}
             { ch &&
                 chars.map((c, index) =>
-                    <Text anchor={0.5}  key={index} text={c.char} x={ch[index].x} y={ch[index].y} rotation={ch[index].r} style={style} />
+                    <Text anchor={0.5} key={index} text={c.char} x={ch[index].x} y={ch[index].y} rotation={ch[index].r} style={style} />
                     /* console.log(c) */
                 )
             }
