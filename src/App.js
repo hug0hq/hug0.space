@@ -6,8 +6,16 @@ import { Stage } from '@inlet/react-pixi';
 import { Engine } from "./physics"
 import { Logo, Social, Pens, GaGroup /*, Link  */ } from './components'
 
+import ReactGA from 'react-ga'; 
 
 const App = () => {
+
+  //google analytics
+  useEffect(() => {
+    ReactGA.initialize('UA-55839128-1');
+    ReactGA.pageview(window.location.pathname);
+  }, [])
+
   //const [stats, setStats] = useState(null);
   useEffect(() => {
     //setWind(document.getElementById('root'));
