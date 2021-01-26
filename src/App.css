@@ -298,6 +298,7 @@ body {
   overflow: hidden;
   width: 100%;
  /*  pointer-events: none; */
+  touch-action: pan-y;
 }
 
 /* .main {
