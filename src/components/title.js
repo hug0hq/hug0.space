@@ -9,8 +9,8 @@ export const Title = (props) => {
     //const [ch, setX] = useState(0);
     const [ch, setCh] = useState();
     const [fontSize, setFontSize] = useState(100);
-    const [offsetX, setOffsetX] = useState(0)
-    const [offsetY, setOffsetY] = useState(0)
+   /*  const [offsetX, setOffsetX] = useState(0)
+    const [offsetY, setOffsetY] = useState(0) */
 
     const font = window.getComputedStyle(props.textRef.current).fontSize
 
@@ -19,12 +19,12 @@ export const Title = (props) => {
         setFontSize(fs)
         //console.log(fs)
 
-        props.textBodys.forEach(
+       /*  props.textBodys.forEach(
             (e) => {
                 setOffsetX(e.bounds.max.x - e.bounds.min.x)
                 setOffsetY(e.bounds.max.y - e.bounds.min.y)
                 //console.log(e)
-            });
+            }); */
 
     }, [font, props.textRef, props.textBodys])
 
@@ -110,7 +110,7 @@ export const Title = (props) => {
         fontSize: fontSize,
         fontWeight: "bold",
         fill: '#ffffff',
-        /* stroke: "#000000", */
+        stroke: "#ffffff", 
         strokeThickness: 2,
         /*  fill: ["#26f7a3", "#01d27e"],
        
