@@ -80,7 +80,7 @@ const App = () => {
       >
         <canvas ref={canvasRef} />
       </div>
-      <header className="main" /* id="golf" */ >
+      <header className="main" id="golf" >
         <div className="container" /* ref={headerRef} */>
           {/* <div className='tx'> */}
           <h1 className="textWhite tx" ref={h1text} style={{opacity: 0}}>

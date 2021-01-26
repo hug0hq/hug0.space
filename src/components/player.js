@@ -41,7 +41,7 @@ export const Player = (props) => {
 
 
     //   const player = useRef(null);
-    
+
 
     useEffect(() => {
         //console.log( mouse)
@@ -77,20 +77,21 @@ export const Player = (props) => {
             // }
         }
 
-        //  const m = document.getElementById()
-       // console.log(app.view.parentNode)
-        app.view.addEventListener('mouseup', pUp);
-        app.view.addEventListener('mousedown', pDown);
+        const m = document.getElementById('golf')
+        // console.log(app.view.parentNode)
+        //app.view.parentNode
+        m.addEventListener('mouseup', pUp);
+        m.addEventListener('mousedown', pDown);
         // clean up function
-        app.view.addEventListener('mousemove', pMove);
+        m.addEventListener('mousemove', pMove);
 
 
         //console.log('body render')
         return () => {
             // remove resize listener
-            app.view.removeEventListener('mouseup', pUp);
-            app.view.removeEventListener('mousedown', pDown);
-            app.view.removeEventListener('mousemove', pMove);
+            m.removeEventListener('mouseup', pUp);
+            m.removeEventListener('mousedown', pDown);
+            m.removeEventListener('mousemove', pMove);
         }
 
 

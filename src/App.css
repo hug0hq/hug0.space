@@ -297,8 +297,8 @@ body {
   z-index: 0;
   overflow: hidden;
   width: 100%;
- /*  pointer-events: none; */
-  touch-action: pan-y;
+  pointer-events: none;
+  /* touch-action: pan-y; */
 }
 
 /* .main {
