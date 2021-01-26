@@ -80,17 +80,17 @@ const App = () => {
       >
         <canvas ref={canvasRef} />
       </div>
-      <header className="main" id="golf" >
-        <div className="container" ref={headerRef}>
+      <header className="main" /* id="golf" */ >
+        <div className="container" /* ref={headerRef} */>
           {/* <div className='tx'> */}
-          <h1 className="textWhite tx" ref={h1text}>
+          <h1 className="textWhite tx" ref={h1text} style={{opacity: 0}}>
             {
               text.split('').map((char, index) => char !== '\n' ? <span key={index}>{char}</span> : <br key={index} />)
             }
           </h1>
           {/*    </div> */}
           {/* <div className="main"> */}
-          <div className="golf">
+          <div /* className="golf" */>
             <Stage onMount={_app => (app.current = _app)}
               width={window.innerWidth}
               height={window.innerHeight}
@@ -99,9 +99,8 @@ const App = () => {
               options={options}
 
             >
-              <Engine width={window.innerWidth} height={window.innerHeight} header={headerRef} box={boxRef} canvas={canvasRef}>
+              <Engine width={window.innerWidth} height={window.innerHeight} header={headerRef} box={boxRef} canvas={canvasRef} text={text} textRef={h1text} >
 
-                {/* <Title text={text} textRef={h1text} /> */}
                 {/* <Player color={0xeef1f5} radios={10} /> */}
                 {/* <CircleBody x={100} y={100} radios={20} options> */}
 

@@ -13,6 +13,7 @@ export const Player = (props) => {
     const [y, setY] = useState(0);
     const [mposition, setMposition] = useState({ position: { x: 0, y: 0 } });
 
+
     const pMove = (e) => {
         if (e.clientX && e.clientY) {
             let mouse = {
@@ -40,6 +41,7 @@ export const Player = (props) => {
 
 
     //   const player = useRef(null);
+    
 
     useEffect(() => {
         //console.log( mouse)
@@ -63,11 +65,11 @@ export const Player = (props) => {
                 }
             }
             // console.log('tacada')
-            var force = 0.1 // 0.2;
-            var deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
-            var normalizedDelta = Matter.Vector.normalise(deltaVector);
-            var forceVector = Matter.Vector.mult(normalizedDelta, force);
-            var op = Matter.Vector.neg(forceVector);
+            const force = 0.1 // 0.2;
+            const deltaVector = Matter.Vector.sub(mouse.position, props.body.position);
+            const normalizedDelta = Matter.Vector.normalise(deltaVector);
+            const forceVector = Matter.Vector.mult(normalizedDelta, force);
+            const op = Matter.Vector.neg(forceVector);
             //arrowSize = 0;
             //mousedown = false;
             //setclick(false)
