@@ -15,7 +15,7 @@ export const Pen = (props) => {
                 
                     <Video onMouseEnter={event => { event.target.play() }}
                         onMouseLeave={event => { event.target.currentTime = 0; event.target.pause(); }}
-                        cloudName="hug0" publicId={props.id} loop="loop" controls={false} poster=""></Video>
+                        cloudName="hug0" publicId={props.id} loop="loop" controls={false} poster={'https://res.cloudinary.com/hug0/image/upload/'+props.id+'-poster'}></Video>
                     {/* <video preload="auto" muted loop
                         onMouseEnter={event => { event.target.play() }}
                         onMouseLeave={event => { event.target.currentTime = 0; event.target.pause(); }}>
