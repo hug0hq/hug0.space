@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Matter from "matter-js";
 //import { EngineContext } from "./useEngine"
 
-import { Player, Hole, H } from '../components'
+import { Player, Hole, H, Title } from '../components'
 
 import { useApp } from '@inlet/react-pixi';
 
@@ -16,6 +16,8 @@ export const Engine = (props) => {
  */
   //const [eg, setEngine] = useState(null);
   const [playerB, setPlayerB] = useState(null);
+
+  const [textBodys, setTextBodys] = useState();
   /* 
     const [ww, setW] = useState(null);
     const [hh, setH] = useState(null); */
@@ -220,6 +222,11 @@ export const Engine = (props) => {
   /*  const playerReset = () => {
  
    } */
+  //const [reset, setReset] = useState(0);
+  //const [reset, setReset] = useState(1)
+  const force = 0.001 // 0.2;
+    
+
 
   const handleCollision = (event) => {
     let { pairs } = event;
@@ -236,10 +243,27 @@ export const Engine = (props) => {
           x: 100 - 12 / 2,
           y: height - 100 + 12 / 2,
         });
+        //setReset(reset + 1)
+        //reset();
+        
         console.log("Hole! ⛳");
+
       }
     });
   }
+
+
+  /* useEffect(() => {
+    console.log('reset'+ reset)
+    if (playerB) { */
+ /*  const reset = () => {
+    const p = {
+      x: playerB.position.x + 2,
+      y: playerB.position.y
+    } */
+   
+  
+  /* }, [playerB, reset]) */
 
   useEffect(() => {
 
@@ -256,7 +280,7 @@ export const Engine = (props) => {
       engine: engine,
       canvas: canvasRef.current,
       options: {
-    
+
         showAngleIndicator: true,
         wireframeBackground: 'transparent',
         background: 'transparent'
@@ -302,9 +326,9 @@ export const Engine = (props) => {
       }
     });
 
-    setPlayerB(ballBody)
+  
 
-    const holeBody = Bodies.circle(0, 0, 10, {
+    const holeBody = Bodies.circle(0, 0, 12, {
       collisionFilter: {
         category: '0x0002'
       },
@@ -313,9 +337,86 @@ export const Engine = (props) => {
       isStatic: true
     });
 
-
-
     World.add(engine.world, [wallB, wallT, wallL, wallR, ballBody, holeBody])
+
+
+    // console.log(props.text)
+    const ar = [];
+    // console.log(props.textRef.current.childNodes)
+    props.textRef.current.childNodes.forEach(
+      c => {
+        //console.log(c.offsetTop)
+        const tmp = c.getBoundingClientRect()
+        //  console.log(c.getBounds())
+        //console.log(tmp)
+        // console.log(tmp)
+        ar.push(tmp /* { char: c.innerText, x: tmp.x, y: tmp.y, } */)
+      }
+    )
+    /* 
+        var offset = {
+          x: 0,
+          y: 0
+        }
+        var last = {
+          //width : 0,
+          //height : 0,
+          left: 0,
+          line: 0,
+          height: 0
+        } */
+    let leterBody = [];
+
+    ar.forEach((letter, i) => {
+      //console.log(letter)
+      /*  if (letter == '\n') {
+         last.left = 0;
+         last.line += last.height;
+         return
+       } */
+
+      /*   var charMesh = new PIXI.Text(letter, {
+          fontFamily: "Trispace",
+          fontSize: 0.1 * app.renderer.width,
+          fill: "#fff",
+        });
+  
+        var lb = charMesh.getBounds();
+  
+        if (letter == ' ') {
+          //        
+          var lb = charMesh.getBounds()
+          last.left += lb.width;
+          return
+        }
+  
+        charMesh.pivot.set(charMesh.width / 2, charMesh.height / 2);
+        app.stage.addChild(charMesh) */
+      //var lb =  letter;
+      const textBody = Bodies.rectangle(letter.x + letter.width / 2, letter.y + letter.height / 2, letter.width, letter.height, {
+
+        //var b = Bodies.rectangle(last.left + offset.x + lb.width / 2 - 5, last.line + offset.y + lb.height / 2, lb.width - 10, lb.height / 2, {
+        restitution: 1,
+        friction: 0.3,
+        collisionFilter: {
+          category: '0x0002'
+        }
+      });
+      /*   last.left += lb.width;
+     last.height = lb.height; */
+
+      World.add(engine.world, [textBody]);
+      leterBody.push(textBody);
+      /* leterBody.push({
+        //mesh: charMesh,
+        body: b
+      }) */
+
+    });
+    // setTextBodys(ar);
+    setTextBodys(leterBody)
+
+
     Engine.run(engine)
     //Render.run(render)
 
@@ -428,7 +529,6 @@ export const Engine = (props) => {
         { x: width + STATIC_DENSITY / 2, y: 0 }
       ])
 
-
       //const margin =  parseInt( window.getComputedStyle(headerRef.current, null).getPropertyValue('padding-left'), 10);
       //console.log(margin, 10))
       const margin = 100;
@@ -439,6 +539,17 @@ export const Engine = (props) => {
         y: height - 100 + 12 / 2,
       })
 
+      setPlayerB(ballBody)
+      const p = {
+        x: ballBody.position.x + 2,
+        y: ballBody.position.y
+      }
+      const deltaVector = Matter.Vector.sub(p, ballBody.position);
+      const normalizedDelta = Matter.Vector.normalise(deltaVector);
+      const forceVector = Matter.Vector.mult(normalizedDelta, force);
+      //var op = Matter.Vector.neg(forceVector);
+      Matter.Body.applyForce(ballBody, ballBody.position, forceVector);
+
       const margin2 = 200;
 
       const holeBody = scene.engine.world.bodies[5]
@@ -447,9 +558,51 @@ export const Engine = (props) => {
         y: height - 100,
       })
 
+      //let textObj = textBodys;
+      //textObj.map
+      const ar = [];
+      const startID = 6;
+      // console.log(props.textRef.current.childNodes)
+      props.textRef.current.childNodes.forEach(
+        c => {
+          //console.log(c.offsetTop)
+          const tmp = c.getBoundingClientRect()
+          //  console.log(c.getBounds())
+          //console.log(tmp)
+          // console.log(tmp)
+          ar.push(tmp /* { char: c.innerText, x: tmp.x, y: tmp.y, } */)
+        }
+      )
+
+      ar.forEach((p, i) => {
+
+        const letter = scene.engine.world.bodies[startID + i]
+        //letter.setVelocity(0)
+        /*  Matter.Body.setVelocity(letter, {
+           x: 0,
+           y: 0
+         }); */
+        /*   Matter.Body.setVelocity(bodyA, {
+            x: 0,
+            y: 0
+          }); */
+
+        Matter.Body.setPosition(letter, {
+          x: p.x + p.width / 2,
+          y: p.y + p.height / 2,
+        })
+        Matter.Body.setVertices(letter, [
+          { x: p.x - p.width / 2, y: p.y - p.height / 2 },
+          { x: p.x + p.width / 2, y: p.y - p.height / 2 },
+          { x: p.x + p.width / 2, y: p.y + p.height / 2 },
+          { x: p.x - p.width / 2, y: p.y + p.height / 2 }
+        ])
+
+      })
 
     }
-  }, [scene, constraints])
+
+  }, [scene, constraints, props.textRef])
 
 
   /*   return (
@@ -480,7 +633,9 @@ export const Engine = (props) => {
       {/* <Title text={text} textRef={h1text} /> */}
       {playerB && <Player color={0xeef1f5} radios={10} body={playerB}/*  matter={Matter} */ />}
       <Hole />
-      {props.children}
+
+      {textBodys && <Title text={props.text} textRef={props.textRef} textBodys={textBodys} />}
+      {/*  {props.children} */}
       {/*  {
         eg &&
         <EngineContext.Provider value={eg}></EngineContext.Provider>
