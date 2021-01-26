@@ -90,7 +90,7 @@ const App = () => {
           </h1>
           {/*    </div> */}
           {/* <div className="main"> */}
-          <div /* className="golf" */>
+          <div className="golf">
             <Stage onMount={_app => (app.current = _app)}
               width={window.innerWidth}
               height={window.innerHeight}

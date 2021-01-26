@@ -78,18 +78,19 @@ export const Player = (props) => {
         }
 
         //  const m = document.getElementById()
-        app.view.addEventListener('mouseup', pUp);
-        app.view.addEventListener('mousedown', pDown);
+       // console.log(app.view.parentNode)
+        app.view.parentNode.addEventListener('mouseup', pUp);
+        app.view.parentNode.addEventListener('mousedown', pDown);
         // clean up function
-        app.view.addEventListener('mousemove', pMove);
+        app.view.parentNode.addEventListener('mousemove', pMove);
 
 
         //console.log('body render')
         return () => {
             // remove resize listener
-            app.view.removeEventListener('mouseup', pUp);
-            app.view.removeEventListener('mousedown', pDown);
-            app.view.removeEventListener('mousemove', pMove);
+            app.view.parentNode.removeEventListener('mouseup', pUp);
+            app.view.parentNode.removeEventListener('mousedown', pDown);
+            app.view.parentNode.removeEventListener('mousemove', pMove);
         }
 
 
