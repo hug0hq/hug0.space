@@ -417,7 +417,7 @@ export const Engine = (props) => {
 
 
     Engine.run(engine)
-    Render.run(render)
+    //Render.run(render)
 
     Matter.Events.on(engine, 'collisionStart', handleCollision);
 
