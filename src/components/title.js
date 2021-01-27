@@ -110,7 +110,7 @@ export const Title = (props) => {
 
     const style = new TextStyle({
         /* align: "center", */
-        fontFamily: "Roboto",
+        fontFamily: ["Roboto", "Arial"],
         fontSize: fontSize,
         fontWeight: "bold",
         fill: '#ffffff',
