@@ -3,21 +3,16 @@ import Sketch from "react-p5";
 
 export const A2 = (props) => {
 
-
     const width = 400;
     const height = 400;
 
     const setup = (p5, canvasParentRef) => {
-        //function setup() {
+
         p5.createCanvas(width, height).parent(canvasParentRef);
         p5.background(15);
 
         trunk();
         branches();
-        //}
-
-        //}
-
 
         function trunk() {
             p5.stroke(180);
@@ -63,16 +58,9 @@ export const A2 = (props) => {
         }
     }
 
-    /* p.draw = () => {
-
-    } */
-
-
-
-
     return (
         <div {...props}>
-            <Sketch setup={setup}  />
+            <Sketch setup={setup} />
         </div>
     );
 }

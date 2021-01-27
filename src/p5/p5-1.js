@@ -3,15 +3,14 @@ import Sketch from "react-p5";
 
 export const A1 = (props) => {
 
-    const width = 400; //this.props.width;
-    const height = 400; //this.props.height;
+    const width = 400;
+    const height = 400;
 
     let grid = []
 
     const setup = (p5, canvasParentRef) => {
 
         p5.createCanvas(width, height).parent(canvasParentRef);
-        //frameRate(10);
         for (let i = 0; i < height; i += height / 14) {
             grid.push(i)
         }
@@ -21,7 +20,7 @@ export const A1 = (props) => {
 
         p5.background(255)
         p5.noStroke()
-        //for(var i=0;i<600; i+=h*2){
+
         grid.forEach(
             (line, i) => {
                 const m = p5.map(line, 0, height, 0, 1);
@@ -40,7 +39,6 @@ export const A1 = (props) => {
         p5.stroke(255)
         p5.strokeWeight(width / 3)
         p5.circle(width / 2, height / 2, width + width / 6)
-        //console.log('oi')
     }
 
     return (
