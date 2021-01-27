@@ -1,7 +1,4 @@
-import React from 'react';
-
 export const Link = (props) => {
-
     return (
         <div className="link">
             <svg fill={props.color} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.97 512.01" >

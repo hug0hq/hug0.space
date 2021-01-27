@@ -1,6 +1,6 @@
 {
   "name": "hug0.pt",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "private": true,
   "dependencies": {
     "@inlet/react-pixi": "^6.0.6",
