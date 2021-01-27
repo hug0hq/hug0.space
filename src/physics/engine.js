@@ -350,7 +350,7 @@ export const Engine = (props) => {
         //  console.log(c.getBounds())
         //console.log(tmp)
         // console.log(tmp)
-        if (c.innerText) { ar.push(tmp) }
+        if (c.innerText && c.innerText !== ' ') { ar.push(tmp) }
       }
     )
     /* 
@@ -417,7 +417,7 @@ export const Engine = (props) => {
 
 
     Engine.run(engine)
-   // Render.run(render)
+    Render.run(render)
 
     Matter.Events.on(engine, 'collisionStart', handleCollision);
 
@@ -569,7 +569,7 @@ export const Engine = (props) => {
           //  console.log(c.getBounds())
           //console.log(tmp)
           // console.log(tmp)
-          if (c.innerText) { ar.push(tmp) }
+          if (c.innerText && c.innerText !== ' ') { ar.push(tmp) }
         }
       )
 
@@ -630,10 +630,11 @@ export const Engine = (props) => {
     <>
       <H />
       {/* <Title text={text} textRef={h1text} /> */}
+      {textBodys && <Title /*  text={props.text} */ textRef={props.textRef} textBodys={textBodys} />}
+     
       {playerB && <Player color={0xeef1f5} radios={10} body={playerB}/*  matter={Matter} */ />}
       <Hole />
 
-      {textBodys && <Title text={props.text} textRef={props.textRef} textBodys={textBodys} />}
       {/*  {props.children} */}
       {/*  {
         eg &&

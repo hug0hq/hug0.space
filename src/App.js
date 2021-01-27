@@ -1,3 +1,4 @@
+//import './assets/font.css'
 import './App.css';
 
 /* import Stats from 'stats.js'; */
@@ -50,7 +51,7 @@ const App = () => {
     autoDensity: true,
     resolution: devicePixelRatio,
     /* transparent: true, */
-    preserveDrawingBuffer: true,  //fixes flikering 
+   /*  preserveDrawingBuffer: true,  */ //fixes flikering 
     resizeTo: window ///document.getElementById('root'), // or window, or global.window, etc
   };
 
@@ -107,7 +108,7 @@ const App = () => {
               options={options}
 
             >
-              <Engine width={window.innerWidth} height={window.innerHeight} header={headerRef} box={boxRef} canvas={canvasRef} text={text} textRef={h1text} >
+              <Engine width={window.innerWidth} height={window.innerHeight} header={headerRef} box={boxRef} canvas={canvasRef} /* text={text} */ textRef={h1text} >
 
                 {/* <Player color={0xeef1f5} radios={10} /> */}
                 {/* <CircleBody x={100} y={100} radios={20} options> */}
