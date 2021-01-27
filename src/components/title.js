@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, Container, useTick } from '@inlet/react-pixi';
 import { TextStyle } from 'pixi.js';
 
+//import { Char } from './char';
+
 export const Title = (props) => {
 
+    const text = useRef()
     const [chars, setChars] = useState([])
 
     //const [ch, setX] = useState(0);
-    const [ch, setCh] = useState();
     const [fontSize, setFontSize] = useState(100);
-   /*  const [offsetX, setOffsetX] = useState(0)
-    const [offsetY, setOffsetY] = useState(0) */
+    /*  const [offsetX, setOffsetX] = useState(0)
+     const [offsetY, setOffsetY] = useState(0) */
 
     const font = window.getComputedStyle(props.textRef.current).fontSize
 
     useEffect(() => {
         const fs = parseInt(font, 10)
         setFontSize(fs)
-        //console.log(fs)
 
-       /*  props.textBodys.forEach(
-            (e) => {
-                setOffsetX(e.bounds.max.x - e.bounds.min.x)
-                setOffsetY(e.bounds.max.y - e.bounds.min.y)
-                //console.log(e)
-            }); */
+        /* text.current.children.forEach( (t)=> {
+           // t.updateText()
+            console.log(t)
+        }) */
+      
+
+        /*  props.textBodys.forEach(
+             (e) => {
+                 setOffsetX(e.bounds.max.x - e.bounds.min.x)
+                 setOffsetY(e.bounds.max.y - e.bounds.min.y)
+                 //console.log(e)
+             }); */
 
     }, [font, props.textRef, props.textBodys])
 
@@ -36,7 +43,7 @@ export const Title = (props) => {
             c => {
                 const tmp = c.getBoundingClientRect()
                 //console.log(c.innerText)
-                if (c.innerText) {
+                if (c.innerText && c.innerText !== ' ') {
                     ar.push({ char: c.innerText, x: tmp.x, y: tmp.y, })
                 }
             }
@@ -50,11 +57,7 @@ export const Title = (props) => {
                  console.log(e)
              }); */
 
-
     }, [props.textRef]);
-
-
-
 
     /*     useEffect(() => {
     
@@ -71,19 +74,18 @@ export const Title = (props) => {
             setCh(tmp);
     
         }, [props.textBodys]); */
-
-
-
+    const [ch, setCh] = useState();
+  
     useTick(delta => {
 
         let tmp = []
+      
         props.textBodys.forEach(
             (e) => {
                 //console.log(e.position)
                 //let offsetX = 80; //e.bounds.max.x - e.bounds.min.x;
                 //let offsetY = 80; //e.bounds.max.y - e.bounds.min.y;
                 //pivot.set(charMesh.width / 2, charMesh.height / 2)
-
                 tmp.push({
                     x: e.position.x, //- offsetX / 2,
                     y: e.position.y, //- offsetY / 2,
@@ -91,6 +93,8 @@ export const Title = (props) => {
                 })
             }
         )
+      /*   setXX(x)
+        setYY(y) */
         setCh(tmp);
 
         /*  props.textBodys.forEach(
@@ -106,11 +110,11 @@ export const Title = (props) => {
 
     const style = new TextStyle({
         /* align: "center", */
-        fontFamily: "Roboto",
+        fontFamily: ["Roboto", "Arial"],
         fontSize: fontSize,
         fontWeight: "bold",
         fill: '#ffffff',
-        stroke: "#ffffff", 
+        stroke: "#ffffff",
         strokeThickness: 2,
         /*  fill: ["#26f7a3", "#01d27e"],
        
@@ -126,17 +130,24 @@ export const Title = (props) => {
       char.mesh.rotation = char.body.angle;
     }) */
 
-
     return (
 
-        <Container>
+        <Container ref={text}>
             {/*  <Text text={props.text} x={0} y={0} style={style} /> */}
             { ch &&
-                chars.map((c, index) =>
-                    <Text anchor={0.5} key={index} text={c.char} x={ch[index].x} y={ch[index].y} rotation={ch[index].r} style={style} />
-                    /* console.log(c) */
+                chars.map((c, i) =>
+                    <Text isSprite anchor={0.5} key={i} text={c.char} x={ch[i].x} y={ch[i].y} rotation={ch[i].r} style={style} />
+
                 )
             }
+            {/*  { chars[0] &&
+
+                chars.forEach((c, index) =>
+                    <Char fontSize={fontSize} char={c}></Char>
+                )
+
+            } */}
+
         </Container>
     )
 }
