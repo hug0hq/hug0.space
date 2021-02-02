@@ -385,12 +385,12 @@ video::-webkit-media-controls {
     margin-bottom: 6px;
   }
   to {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 }
 
 .arrow svg {
-  animation-duration: 0.4s;
+  animation-duration: 0.6s;
   animation-name: updown;
   animation-iteration-count: infinite;
   animation-direction: alternate;
@@ -398,7 +398,6 @@ video::-webkit-media-controls {
   fill: #f3f3f3;
   position: absolute;
   bottom: 0;
-  transform: rotate(-90deg);
   user-select: none;
 }
 

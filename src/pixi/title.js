@@ -49,8 +49,8 @@ export const Title = (props) => {
         fontFamily: ["Roboto", "Arial"],
         fontSize: fontSize,
         fontWeight: "bold",
-        fill: '#ffffff',
-        stroke: "#ffffff",
+        fill: '#f3f3f3',
+        stroke: "#f3f3f3",
         strokeThickness: 2,
     });
 

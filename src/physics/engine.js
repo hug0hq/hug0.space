@@ -21,7 +21,7 @@ export const Engine = (props) => {
 
   const handleCollision = (event) => {
     let { pairs } = event;
-    let height = app.screen.height;
+    //let height = app.screen.height;
 
     pairs.forEach((pair) => {
       let { bodyA, bodyB } = pair;
@@ -30,9 +30,13 @@ export const Engine = (props) => {
           x: 0,
           y: 0
         });
+
+        let w = Math.floor(Math.random() * app.screen.width-200) + 200; 
+        let h = Math.floor(Math.random() * app.screen.height-200) + 200; 
+        
         Matter.Body.setPosition(bodyA, {
-          x: 100 - 12 / 2,
-          y: height - 100 + 12 / 2,
+          x: w, //100 - 12 / 2,
+          y: h //height - 100 + 12 / 2,
         });
         console.log("Hole! ⛳");
       }
