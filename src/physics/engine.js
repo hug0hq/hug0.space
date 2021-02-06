@@ -19,6 +19,14 @@ export const Engine = (props) => {
   const STATIC_DENSITY = 100;
   const force = 0.001 // 0.2;
 
+  const [a, _setMyState] = useState(0);
+
+  const aStateRef = React.useRef(a);
+  const setMyState = data => {
+    aStateRef.current = data;
+    _setMyState(data);
+  };
+
   const handleCollision = (event) => {
     let { pairs } = event;
     //let height = app.screen.height;
@@ -31,13 +39,16 @@ export const Engine = (props) => {
           y: 0
         });
 
-        let w = Math.floor(Math.random() * app.screen.width-200) + 200; 
-        let h = Math.floor(Math.random() * app.screen.height-200) + 200; 
-        
+        let w = Math.floor(Math.random() * app.screen.width - 200) + 200;
+        let h = Math.floor(Math.random() * app.screen.height - 200) + 200;
+
         Matter.Body.setPosition(bodyA, {
           x: w, //100 - 12 / 2,
           y: h //height - 100 + 12 / 2,
         });
+
+        setMyState(aStateRef.current + 1);
+
         console.log("Hole! ⛳");
       }
     });
@@ -266,7 +277,7 @@ export const Engine = (props) => {
       <H />
       {textBodys && <Title textRef={props.textRef} textBodys={textBodys} />}
       {playerB && <Player color={0xeef1f5} radios={10} body={playerB} />}
-      <Hole />
+      <Hole point={a} />
     </>
   )
 }
