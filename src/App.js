@@ -12,8 +12,10 @@ const App = () => {
 
   //google analytics
   useEffect(() => {
-    ReactGA.initialize('UA-55839128-1');
-    ReactGA.pageview(window.location.pathname);
+    if (process.env.NODE_ENV === 'production') {
+      ReactGA.initialize('UA-55839128-1');
+      ReactGA.pageview(window.location.pathname);
+    }
   }, [])
 
   useEffect(() => {
