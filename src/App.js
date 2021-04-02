@@ -141,7 +141,7 @@ const App = () => {
       <footer className="group1">
         <div className="container">
           <div className="mailContainer">
-            <h2 className="textWhite mail">Say <a className="textWhite" href="mailto:hi@hug0.pt?subject=Hi! 👋">hi@hug0.pt</a></h2>
+            <h2 className="textWhite mail">Say <a className="textWhite" href="mailto:hi@hug0.pt?subject=Hi! 👋">hi@hug0.space</a></h2>
           </div>
           <Social />
         </div>
