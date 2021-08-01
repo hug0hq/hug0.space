@@ -1,26 +1,55 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
+import { useGesture } from '@use-gesture/react'
 
-let limitNumberWithinRange = (num, min, max) => {
+const limitNumberWithinRange = (num, min, max) => {
     const MIN = min || 1;
     const MAX = max || 20;
-    const parsed = parseInt(num)
-    return Math.min(Math.max(parsed, MIN), MAX)
+    const parsed = parseInt(num);
+    return Math.min(Math.max(parsed, MIN), MAX);
 }
 
-const calc = (x, y) => [limitNumberWithinRange(-(y - window.innerHeight / 2) / 20, -4, 4), limitNumberWithinRange((x - window.innerWidth / 2) / 20, -4, 4), 1.01]
-const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
+const calcX = (y) => limitNumberWithinRange(-(y - window.innerHeight / 2) / 20, -4, 4);
+const calcY = (x) => limitNumberWithinRange((x - window.innerWidth / 2) / 20, -4, 4);
 
 export const Card = (props) => {
 
-    const [p, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 10 /* 5 */, tension: 350, friction: 40 } }))
+    const domTarget = useRef(null)
+
+    const [{ rotateX, rotateY }, api] = useSpring(
+        () => ({
+            rotateX: 0,
+            rotateY: 0,
+            config: { mass: 10 /* 5 */, tension: 350, friction: 40 },
+        })
+    )
+
+    useGesture(
+        {
+            onMoveStart: ({ xy: [px, py] }) =>
+                api({
+                rotateX: calcX(py),
+                rotateY: calcY(px),
+                }),
+
+            onMoveEnd: () =>
+                api({
+                rotateX: 0,
+                rotateY: 0,
+                }),
+        },
+        { target: domTarget, eventOptions: { passive: false } }
+      )
 
     return (
         <animated.div
+            ref={domTarget}
             className="card"
-            onMouseMove={({ clientX: x, clientY: y }) => { set({ xys: calc(x, y) }); }}
-            onMouseLeave={() => set({ xys: [0, 0, 1] })}
-            style={{ transform: p.xys.interpolate(trans) }}
+            style={{
+                transform: 'perspective(600px)',
+                rotateX,
+                rotateY,
+              }}
         >
             {props.children}
         </animated.div>

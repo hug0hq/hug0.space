@@ -1,7 +1,7 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Graphics, useTick, Container, useApp } from '@inlet/react-pixi';
 
-import { useSpring, useChain, animated } from 'react-spring';
+import { useSpring, useChain, animated, useSpringRef } from 'react-spring';
 
 const margin2 = 200;
 
@@ -101,21 +101,37 @@ export const Hole = (props) => {
         // eslint-disable-next-line 
     }, [props.point])
 
-    const spring1Ref = useRef()
-    const spring2Ref = useRef()
+    const spring1Ref = useSpringRef()
+    const spring2Ref = useSpringRef()
 
-    const stickanim = useSpring({ to: { d: 1, y: 80 }, from: { d: 0, y: 0 }, config: { mass: 5, tension: 1000, friction: 100 }, ref: spring1Ref })
-    const flaganim = useSpring({ to: { d: 1, w: 40, h: 15 }, from: { d: 0, w: 0, h: 0 }, delay: 41, config: { mass: 5, tension: 2000, friction: 200 }, ref: spring2Ref })
+    const stickanim = useSpring({ 
+        to: { d: 1, y: 80 }, 
+        from: { d: 0, y: 0 }, 
+        config: { mass: 5, tension: 1000, friction: 100 }, 
+        ref: spring1Ref
+    })
+        
+    const flaganim = useSpring({ 
+        to: { d: 1, w: 40, h: 15 }, 
+        from: { d: 0, w: 0, h: 0 }, 
+        delay: 1000, 
+        config: { mass: 5, tension: 2000, friction: 200 }, 
+        ref: spring2Ref 
+    })
 
     useChain([spring1Ref, spring2Ref])
 
-    const { r } = useSpring({ from: { r: 0 }, r: play ? 1 : 0, config: { mass: 5, tension: 2000, friction: 40 } })
+    const { r } = useSpring({ 
+        from: { r: 0 }, 
+        r: play ? 1 : 0, 
+        config: { mass: 5, tension: 2000, friction: 40 } 
+    })
 
     return (
-        <AnimatedContainer {...motion} rotation={r.interpolate({ range: [0, 0.5, 1], output: [0, 0.08, 0] })}>
+        <AnimatedContainer {...motion} rotation={r.interpolate({ range: [0, 0.5, 1], output: [0, 0.08, 0] })} >
             <AnimatedFlag  {...flaganim} />
             <AnimatedFlagStick  {...stickanim} />
-        </AnimatedContainer>
+        </AnimatedContainer> 
     );
 }
 

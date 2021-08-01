@@ -3,11 +3,11 @@ import React from 'react';
 export const Social = (props) => {
     return (
         <div className="logoGroup">
-            <div>
+            {/* <div>
                 <a href="https://www.instagram.com/hug0hq" rel="noreferrer" >
                     <img width="25px" src="./logos/insta.svg" alt="Instagram logo"></img>
                 </a>
-            </div>
+            </div> */}
             <div>
                 <a href="https://twitter.com/hug0Hq" rel="noreferrer">
                     <img width="25px" src="./logos/twitter.svg" alt="Twitter logo"></img>
