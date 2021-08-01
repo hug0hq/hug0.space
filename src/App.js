@@ -90,7 +90,7 @@ const App = () => {
           </header>
           <div className="txt">
             <p style={{ marginTop: 0 }}>Hugo Costa is my name. I'm a web and game developer trying different things out.</p>
-            <p>Thank you for passing by! <span className="emo">🦾</span></p>
+            <p>Thank you for passing by! {/* <span className="emo">🦾</span> */}</p>
           </div>
         </div>
       </section>
@@ -98,7 +98,7 @@ const App = () => {
         <div className="container">
           <header>
             <h2 className="textWhite">Games</h2>
-            <h3>Or video games</h3>
+            {/* <h3>Or video games</h3> */}
           </header>
           <div className="gamelist">
             <div className="cont">
@@ -141,7 +141,7 @@ const App = () => {
       <footer className="group1">
         <div className="container">
           <div className="mailContainer">
-            <h2 className="textWhite mail">Say <a className="textWhite" href="mailto:hi@hug0.pt?subject=Hi! 👋">hi@hug0.space</a></h2>
+            <h2 className="textWhite mail">Say <a className="textWhite" href="mailto:hi@hug0.space?subject=Hi! 👋">hi@hug0.space</a></h2>
           </div>
           <Social />
         </div>
