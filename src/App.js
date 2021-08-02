@@ -89,8 +89,8 @@ const App = () => {
             <h3>Short version</h3>
           </header>
           <div className="txt">
-            <p style={{ marginTop: 0 }}>Hugo Costa is my name. I'm a web and game developer trying different things out.</p>
-            <p>Thank you for passing by! {/* <span className="emo">🦾</span> */}</p>
+            <p style={{ marginTop: 0 }}>Hugo Costa is my name. I'm a creative developer doing interactive experiences and games. I also do normal software sometimes. Mostly self-taught. I learned a lot by playing around and reading the internet.</p>
+            <p>Thank you for passing by 🙏 {/* <span className="emo">🦾</span> */}</p>
           </div>
         </div>
       </section>

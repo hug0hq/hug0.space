@@ -7,6 +7,9 @@ import { A1, A2, /* A3, A4, A5, A6, */ A7, /* A8, A9, A10 */ } from '../p5'
 export const GaGroup = (props) => {
     return (
         <>
+            <GaCard linkColor="#000" href="https://editor.p5js.org/hug0Hq/sketches/qSd-4t2Wt">
+                <Image className="im" cloudName="hug0" publicId="go-sqrgradient1" crop="scale" />
+            </GaCard>
             <GaCard href="https://editor.p5js.org/hug0Hq/sketches/acMx6vOG4">
                 <A1 className="im"></A1>
             </GaCard>
