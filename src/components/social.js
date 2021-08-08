@@ -9,17 +9,17 @@ export const Social = (props) => {
                 </a>
             </div> */}
             <div>
-                <a href="https://twitter.com/hug0Hq" rel="noreferrer">
+                <a href="https://twitter.com/hug0hq" rel="noreferrer">
                     <img width="25px" src="./logos/twitter.svg" alt="Twitter logo"></img>
                 </a>
             </div>
             <div>
-                <a href="https://github.com/hug0Hq" rel="noreferrer">
+                <a href="https://github.com/hug0hq" rel="noreferrer">
                     <img width="25px" src="./logos/github.svg" alt="Github logo"></img>
                 </a>
             </div>
             <div>
-                <a href="https://codepen.io/hug0Hq" rel="noreferrer">
+                <a href="https://codepen.io/hug0hq" rel="noreferrer">
                     <img width="25px" src="./logos/codepen.svg" alt="Codepen logo"></img>
                 </a>
             </div>
