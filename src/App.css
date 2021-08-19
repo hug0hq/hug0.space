@@ -2,7 +2,10 @@
   width: 140px;
 }
 
-.pp, section, footer, header {
+.pp,
+section,
+footer,
+header {
   padding: 6em;
 }
 
@@ -64,7 +67,10 @@ h2 {
 }
 
 @media (max-width: 1020px) {
-  .pp, section, footer, header {
+  .pp,
+  section,
+  footer,
+  header {
     padding: 4em;
   }
   h2 {
@@ -119,7 +125,10 @@ h2 {
   .sname img {
     width: 40vw;
   }
-  .pp, section, footer, header {
+  .pp,
+  section,
+  footer,
+  header {
     padding: 2em;
   }
 }
@@ -146,7 +155,9 @@ section header {
   padding: 3em 0;
 }
 
-section .container, header .container, footer .container {
+section .container,
+header .container,
+footer .container {
   max-width: 1500px;
   margin: 0 auto;
 }
@@ -155,7 +166,9 @@ h3 {
   font-weight: 400;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   letter-spacing: 0.05em;
   line-height: 1.5em;
   margin: 0;
@@ -300,13 +313,17 @@ body {
   will-change: transform;
 }
 
-.card canvas, .card img, .card .thumbnail {
+.card canvas,
+.card img,
+.card .thumbnail {
   transition: box-shadow 0.5s;
   box-shadow: none;
 }
 
-.card:hover canvas, .card:hover img, .card:hover .thumbnail {
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
+.card:hover canvas,
+.card:hover img,
+.card:hover .thumbnail {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
 }
 
 .p5js .card {
@@ -350,6 +367,13 @@ body {
 
 .pens .card {
   margin-bottom: 2em;
+  border-radius: 10px;
+  transition: box-shadow 0.5s;
+  box-shadow:  none;
+}
+
+.pens .card:hover {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
 }
 
 video {
@@ -373,7 +397,8 @@ video::-webkit-media-controls {
 
 .link {
   position: absolute;
-  bottom: 0;
+  top: 0;
+  right: 0;
   width: 1.2em;
   margin: 0.6em;
   pointer-events: none;
@@ -405,4 +430,14 @@ video::-webkit-media-controls {
   user-select: none;
   display: flex;
   justify-content: center;
+}
+
+.dummy::after {
+  content: '';
+  flex: auto;
+}
+
+.dummy {
+  margin: 0 !important;
+  min-height: 0 !important;
 }
