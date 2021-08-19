@@ -1,20 +1,19 @@
-import './App.css';
+import './App.css'
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react'
 
-import { Stage } from '@inlet/react-pixi';
-import { Engine } from "./physics";
-import { Logo, Social } from './components';
-import { Pens, GaGroup } from './containers';
-import ReactGA from 'react-ga';
+import { Stage } from '@inlet/react-pixi'
+import { Engine } from './physics'
+import { Logo, Social } from './components'
+import { Pens, GaGroup } from './containers'
+import ReactGA from 'react-ga'
 
 const App = () => {
-
   //google analytics
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
-      ReactGA.initialize('UA-55839128-1');
-      ReactGA.pageview(window.location.pathname);
+      ReactGA.initialize('UA-55839128-1')
+      ReactGA.pageview(window.location.pathname)
     }
   }, [])
 
@@ -28,9 +27,9 @@ const App = () => {
     autoDensity: true,
     resolution: devicePixelRatio,
     // transparent: true,
-    // preserveDrawingBuffer: true, //fixes flikering 
-    resizeTo: window
-  };
+    // preserveDrawingBuffer: true, //fixes flikering
+    resizeTo: window,
+  }
 
   const [text] = useState('Hi there!\nI make cool things')
 
@@ -53,25 +52,39 @@ const App = () => {
           justifyContent: 'center',
           height: '100vh',
           width: '100%',
-          overflow: 'hidden'
+          overflow: 'hidden',
         }}
       >
         <canvas ref={canvasRef} />
       </div>
-      <header className="main" id="golf" >
+      <header className="main" id="golf">
         <div className="container">
           <h1 className="textWhite tx" ref={h1text} style={{ opacity: 0 }}>
-            {
-              text.split('').map((char, index) => char !== '\n' ? <span key={index}>{char}</span> : <br key={index} />)
-            }
+            {text
+              .split('')
+              .map((char, index) =>
+                char !== '\n' ? (
+                  <span key={index}>{char}</span>
+                ) : (
+                  <br key={index} />
+                ),
+              )}
           </h1>
           <div className="golf">
-            <Stage onMount={_app => (app.current = _app)}
+            <Stage
+              onMount={(_app) => (app.current = _app)}
               width={window.innerWidth}
               height={window.innerHeight}
               options={options}
             >
-              <Engine width={window.innerWidth} height={window.innerHeight} header={headerRef} box={boxRef} canvas={canvasRef} textRef={h1text} />
+              <Engine
+                width={window.innerWidth}
+                height={window.innerHeight}
+                header={headerRef}
+                box={boxRef}
+                canvas={canvasRef}
+                textRef={h1text}
+              />
             </Stage>
           </div>
         </div>
@@ -89,8 +102,15 @@ const App = () => {
             <h3>Short version</h3>
           </header>
           <div className="txt">
-            <p style={{ marginTop: 0 }}>Hugo Costa is my name. I'm a creative developer doing interactive experiences and games. I also do normal software sometimes. Mostly self-taught. I learned a lot by playing around and reading the internet.</p>
-            <p>Thank you for passing by 🙏 {/* <span className="emo">🦾</span> */}</p>
+            <p style={{ marginTop: 0 }}>
+              Hugo Costa is my name. I'm a creative developer doing interactive
+              experiences, games and art. Mostly self-taught. I learned a lot by
+              playing around and reading the internet.
+            </p>
+            <p>
+              Thank you for passing by. 🙏{' '}
+              {/* <span className="emo">🦾</span> */}
+            </p>
           </div>
         </div>
       </section>
@@ -106,14 +126,40 @@ const App = () => {
                 <img src="./img/steve.svg" alt="Steve Vrum! Vrum!" />
               </div>
               <h3 className="t3">Steve Vrum! Vrum!</h3>
-              <h3 className="t4">Available for Android on <a href="https://play.google.com/store/apps/details?id=com.h0.SteveVrumVrum" target="_blank" rel="noreferrer">Google Play</a></h3>
+              <h3 className="t4">
+                Available for Android on{' '}
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.h0.SteveVrumVrum"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Google Play
+                </a>
+              </h3>
             </div>
             <div className="cont">
               <div className="sname">
                 <img src="./img/jim.svg" alt="Sr. Jim!" />
               </div>
               <h3 className="t3">Sr. Jim!</h3>
-              <h3 className="t4">Available for Android on <a href="https://play.google.com/store/apps/details?id=com.h0.SrJim" target="_blank" rel="noreferrer">Google Play</a> and for the web on <a href="https://gamejolt.com/games/sr-jim/38705" target="_blank" rel="noreferrer">Game Jolt</a></h3>
+              <h3 className="t4">
+                Available for Android on{' '}
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.h0.SrJim"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Google Play
+                </a>{' '}
+                and for the web on{' '}
+                <a
+                  href="https://gamejolt.com/games/sr-jim/38705"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Game Jolt
+                </a>
+              </h3>
             </div>
           </div>
         </div>
@@ -141,12 +187,21 @@ const App = () => {
       <footer className="group1">
         <div className="container">
           <div className="mailContainer">
-            <h2 className="textWhite mail">Say <a className="textWhite" href="mailto:hi@hug0.space?subject=Hi! 👋">hi@hug0.space</a></h2>
+            <h2 className="textWhite mail">
+              Say{' '}
+              <a
+                className="textWhite"
+                href="mailto:hi@hug0.space?subject=Hi! 👋"
+              >
+                hi@hug0.space
+              </a>
+            </h2>
           </div>
           <Social />
         </div>
       </footer>
-    </>)
-};
+    </>
+  )
+}
 
-export default App;
+export default App

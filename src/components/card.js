@@ -20,7 +20,7 @@ export const Card = (props) => {
         () => ({
             rotateX: 0,
             rotateY: 0,
-            config: { mass: 10 /* 5 */, tension: 350, friction: 40 },
+            config: { mass: 14 /* 5 */, tension: 350, friction: 40 },
         })
     )
 
