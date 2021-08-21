@@ -1,5 +1,3 @@
-import './App.css'
-
 import React, { useEffect, useState, useRef } from 'react'
 
 import { Stage } from '@inlet/react-pixi'
@@ -57,7 +55,7 @@ const App = () => {
       >
         <canvas ref={canvasRef} />
       </div>
-      <header className="main" id="golf">
+      <header className="main pp" id="golf">
         <div className="container">
           <h1 className="textWhite tx" ref={h1text} style={{ opacity: 0 }}>
             {text
@@ -95,96 +93,98 @@ const App = () => {
           </svg>
         </div>
       </header>
-      <section className="about">
-        <div className="container">
-          <header>
-            <h2>About Me</h2>
-            <h3>Short version</h3>
-          </header>
-          <div className="txt">
-            <p style={{ marginTop: 0 }}>
-              Hugo Costa is my name. I'm a creative developer doing interactive
-              experiences, games and art. Mostly self-taught. I learned a lot by
-              playing around and reading the internet.
-            </p>
-            <p>
-              Thank you for passing by. 🙏{' '}
-              {/* <span className="emo">🦾</span> */}
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className="groupgames">
-        <div className="container">
-          <header>
-            <h2 className="textWhite">Games</h2>
-            {/* <h3>Or video games</h3> */}
-          </header>
-          <div className="gamelist">
-            <div className="cont">
-              <div className="sname">
-                <img src="./img/steve.svg" alt="Steve Vrum! Vrum!" />
-              </div>
-              <h3 className="t3">Steve Vrum! Vrum!</h3>
-              <h3 className="t4">
-                Available for Android on{' '}
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.h0.SteveVrumVrum"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Google Play
-                </a>
-              </h3>
-            </div>
-            <div className="cont">
-              <div className="sname">
-                <img src="./img/jim.svg" alt="Sr. Jim!" />
-              </div>
-              <h3 className="t3">Sr. Jim!</h3>
-              <h3 className="t4">
-                Available for Android on{' '}
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.h0.SrJim"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Google Play
-                </a>{' '}
-                and for the web on{' '}
-                <a
-                  href="https://gamejolt.com/games/sr-jim/38705"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Game Jolt
-                </a>
-              </h3>
+      <main>
+        <section className="about pp">
+          <div className="container">
+            <header>
+              <h2>About Me</h2>
+              <h3>Short version</h3>
+            </header>
+            <div className="txt">
+              <p style={{ marginTop: 0 }}>
+                Hugo Costa is my name. I'm a creative developer doing
+                interactive experiences, games and art. Mostly self-taught. I
+                learned a lot by playing around and reading the internet.
+              </p>
+              <p>
+                Thank you for passing by. 🙏{' '}
+                {/* <span className="emo">🦾</span> */}
+              </p>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="grouppen">
-        <div className="container">
-          <header>
-            <h2>Pens</h2>
-            <h3>Cool code experiments</h3>
-          </header>
-          <Pens />
-        </div>
-      </section>
-      <section className="groupart">
-        <div className="container">
-          <header>
-            <h2 className="textBlack">Generative Art</h2>
-            <h3>It's code and art</h3>
-          </header>
-          <div className="p5js">
-            <GaGroup />
+        </section>
+        <section className="groupgames pp">
+          <div className="container">
+            <header>
+              <h2 className="textWhite">Games</h2>
+              {/* <h3>Or video games</h3> */}
+            </header>
+            <div className="gamelist">
+              <div className="cont">
+                <div className="sname">
+                  <img src="./img/steve.svg" alt="Steve Vrum! Vrum!" />
+                </div>
+                <h3 className="t3">Steve Vrum! Vrum!</h3>
+                <h3 className="t4">
+                  Available for Android on{' '}
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.h0.SteveVrumVrum"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Google Play
+                  </a>
+                </h3>
+              </div>
+              <div className="cont">
+                <div className="sname">
+                  <img src="./img/jim.svg" alt="Sr. Jim!" />
+                </div>
+                <h3 className="t3">Sr. Jim!</h3>
+                <h3 className="t4">
+                  Available for Android on{' '}
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.h0.SrJim"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Google Play
+                  </a>{' '}
+                  and for the web on{' '}
+                  <a
+                    href="https://gamejolt.com/games/sr-jim/38705"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Game Jolt
+                  </a>
+                </h3>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-      <footer className="group1">
+        </section>
+        <section className="grouppen pp">
+          <div className="container">
+            <header>
+              <h2>Pens</h2>
+              <h3>Cool code experiments</h3>
+            </header>
+            <Pens />
+          </div>
+        </section>
+        <section className="groupart pp">
+          <div className="container">
+            <header>
+              <h2 className="textBlack">Generative Art</h2>
+              <h3>It's code and art</h3>
+            </header>
+            <div className="p5js">
+              <GaGroup />
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className="group1 pp">
         <div className="container">
           <div className="mailContainer">
             <h2 className="textWhite mail">
