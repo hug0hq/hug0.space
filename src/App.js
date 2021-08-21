@@ -39,22 +39,6 @@ const App = () => {
 
   return (
     <>
-      <div
-        ref={boxRef}
-        style={{
-          position: 'absolute',
-          opacity: 0.5,
-          zIndex: 1,
-          pointerEvents: 'none',
-          display: 'flex',
-          justifyContent: 'center',
-          height: '100vh',
-          width: '100%',
-          overflow: 'hidden',
-        }}
-      >
-        <canvas ref={canvasRef} />
-      </div>
       <header className="main pp" id="golf">
         <div className="container">
           <h1 className="textWhite tx" ref={h1text} style={{ opacity: 0 }}>
@@ -68,6 +52,13 @@ const App = () => {
                 ),
               )}
           </h1>
+          <div
+            /* debuger */
+            ref={boxRef}
+            className="debuger"
+          >
+            <canvas ref={canvasRef} />
+          </div>
           <div className="golf">
             <Stage
               onMount={(_app) => (app.current = _app)}
