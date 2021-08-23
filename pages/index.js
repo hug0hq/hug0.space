@@ -10,7 +10,7 @@ const App = dynamic(() => import('../src/App'), { ssr: false })
 
 export default function Home() {
 
-  const baseURL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"
+  const baseURL = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : "http://localhost:3000"
 
   const data = {
     title: "hug0's home on the internet",
