@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react'
 
 const limitNumberWithinRange = (num, min, max) => {

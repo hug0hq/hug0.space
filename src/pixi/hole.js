@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { Graphics, useTick, Container, useApp } from '@inlet/react-pixi';
 
-import { useSpring, useChain, animated, useSpringRef } from 'react-spring';
+import { useSpring, useChain, animated, useSpringRef } from '@react-spring/web';
 
 const margin2 = 200;
 
