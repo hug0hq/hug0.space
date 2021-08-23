@@ -2,10 +2,8 @@
   width: 140px;
 }
 
-.pp,
-section,
-footer,
-header {
+/* section, footer, header, */
+.pp {
   padding: 6em;
 }
 
@@ -14,10 +12,6 @@ header {
   padding-top: 2em;
   padding-right: 4em;
   pointer-events: none;
-}
-
-h2 {
-  font-size: 3em;
 }
 
 .pens .card {
@@ -61,21 +55,23 @@ h2 {
   .logo {
     width: 8em;
   }
-  h3 {
+  /* h3 {
     font-size: 1.5em;
-  }
+  } */
 }
 
 @media (max-width: 1020px) {
-  .pp,
+  /* 
   section,
   footer,
-  header {
+  header,*/
+  .pp {
     padding: 4em;
   }
-  h2 {
+
+  /*  h2 {
     font-size: 2.2em;
-  }
+  }  */
   .groupgames .t3 {
     font-size: 1.3em;
   }
@@ -125,10 +121,11 @@ h2 {
   .sname img {
     width: 40vw;
   }
-  .pp,
+  /* ,
   section,
   footer,
-  header {
+  header*/
+  .pp {
     padding: 2em;
   }
 }
@@ -151,27 +148,15 @@ h2 {
   }
 }
 
-section header {
+/* section header {
   padding: 3em 0;
-}
+} */
 
 section .container,
 header .container,
 footer .container {
   max-width: 1500px;
   margin: 0 auto;
-}
-
-h3 {
-  font-weight: 400;
-}
-
-h1,
-h2,
-h3 {
-  letter-spacing: 0.05em;
-  line-height: 1.5em;
-  margin: 0;
 }
 
 .mailContainer h2 {
@@ -187,13 +172,6 @@ h3 {
 
 .mail {
   word-break: break-word;
-}
-
-body {
-  background-color: #1d1d1b;
-  color: #131618;
-  font-family: 'Roboto';
-  font-weight: 400;
 }
 
 .main {
@@ -369,24 +347,11 @@ body {
   margin-bottom: 2em;
   border-radius: 10px;
   transition: box-shadow 0.5s;
-  box-shadow:  none;
+  box-shadow: none;
 }
 
 .pens .card:hover {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
-}
-
-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  -moz-transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-video::-webkit-media-controls {
-  display: none !important;
 }
 
 .pens {
@@ -440,4 +405,18 @@ video::-webkit-media-controls {
 .dummy {
   margin: 0 !important;
   min-height: 0 !important;
+}
+
+.debuger {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
 }
