@@ -137,7 +137,7 @@ export const Engine = (props) => {
     Matter.Runner.run(engine)
 
     if (process.env.NODE_ENV !== 'production') {
-      Render.run(render)
+      // Render.run(render)
     }
 
     Matter.Events.on(engine, 'collisionStart', handleCollision)

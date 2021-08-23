@@ -15,7 +15,7 @@ export const Pen = (props) => {
   return (
     <Card>
       <div className="thumbnail" style={{ backgroundColor: props.color }}>
-        <a href={props.href} target="_black" rel="noreferrer">
+        <a href={props.href} target="_black" rel="noreferrer" aria-label="source code">
           
           <Video
             onMouseEnter={(event) => {
