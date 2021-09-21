@@ -1,29 +1,40 @@
+import { useEffect } from 'react'
+
 import Head from 'next/head'
-import Image from 'next/image'
+//import Image from 'next/image'
 
-/* import styles from '../styles/Home.module.css'
- */
-// import App from '../src/App'
 import dynamic from 'next/dynamic'
+//import Games from '../src/Games'
+//const App = dynamic(() => import('../src/App'), { ssr: false })
+import Header from '../src/containers/header'
+//const Header = dynamic(() => import('../src/containers/Header'), { ssr: false })
 
-const App = dynamic(() => import('../src/App'), { ssr: false })
+const About = dynamic(() => import('../src/containers/about'))
+const Games = dynamic(() => import('../src/containers/games'))
+const Code = dynamic(() => import('../src/containers/code'))
+const Art = dynamic(() => import('../src/containers/art'), { ssr: false })
+const Footer = dynamic(() => import('../src/containers/footer'))
 
 export default function Home() {
-
-  const baseURL = process.env.DOMAIN ? `https://${process.env.DOMAIN}` : "http://localhost:3000"
+  const baseURL = process.env.DOMAIN
+    ? `https://${process.env.DOMAIN}`
+    : 'http://localhost:3000'
 
   const data = {
     title: "hug0's home on the internet",
     description:
       'Creative developer doing interactive experiences, games and art. o_o',
-    metaCard: baseURL+'/meta-card.png',
+    metaCard: baseURL + '/meta-card.png',
   }
 
+  useEffect(() => {
+    console.log('Hello! 😋')
+  }, [])
+
   return (
-    <div /* className={styles.container} */>
+    <div>
       <Head>
         <meta charSet="utf-8" />
-
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -44,7 +55,14 @@ export default function Home() {
         <meta property="twitter:image" content={data.metaCard} />
       </Head>
 
-      <App></App>
+      <Header />
+      <main>
+        <About />
+        <Games />
+        <Code />
+        <Art />
+      </main>
+      <Footer />
     </div>
   )
 }

@@ -1,4 +1,6 @@
-export * from './logo'
-export * from './ga-card'
-export * from './pen'
-export * from './social'
+export * from './art-card'
+export * from './pen-card'
+export * from './connections'
+export * from './contact'
+
+export * from './video'

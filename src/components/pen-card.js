@@ -2,7 +2,9 @@ import React from 'react'
 
 import { Card } from './card'
 import { Link } from './link'
- import { Video } from 'cloudinary-react'
+//import { Video } from 'cloudinary-react'
+
+import { Video } from './video'
 //import { buildVideoUrl } from 'cloudinary-build-url'
 
 export const Pen = (props) => {
@@ -15,8 +17,12 @@ export const Pen = (props) => {
   return (
     <Card>
       <div className="thumbnail" style={{ backgroundColor: props.color }}>
-        <a href={props.href} target="_black" rel="noreferrer" aria-label="source code">
-          
+        <a
+          href={props.href}
+          target="_black"
+          rel="noreferrer"
+          aria-label="source code"
+        >
           <Video
             onMouseEnter={(event) => {
               event.target.play()
@@ -34,7 +40,7 @@ export const Pen = (props) => {
               props.id +
               '-poster'
             }
-          /> 
+          />
         </a>
       </div>
       <Link color={props.linkColor}></Link>
