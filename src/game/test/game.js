@@ -9,8 +9,9 @@ import { Walls } from './components/walls'
 import { TitleContainer } from './components/titleContiner'
 import { useRender, useApp } from './util'
 import { Debug } from './components/debug'
+import { Physics } from './components/physics'
 
-const TwoRenderer = () => {
+const Game = () => {
   const textRef = useRef()
 
   //const [text] = useState()
@@ -36,19 +37,21 @@ const TwoRenderer = () => {
           height: '100%',
           width: '100%',
         }}
-        type="SVGRenderer"
+        //type="SVGRenderer"
         autostart
         fitted
         imageSmoothingEnabled
       >
-        {/* <Walls /> */}
-        <TextFromDom textRef={textRef}></TextFromDom>
-        <Player />
-        <Hole />
-        <Debug/>
+        <Physics>
+          <Walls />
+          <TextFromDom textRef={textRef}></TextFromDom>
+          <Player />
+          <Hole />
+          <Debug />
+        </Physics>
       </Stage>
     </>
   )
 }
 
-export default TwoRenderer
+export default Game

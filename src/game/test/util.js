@@ -46,3 +46,10 @@ export const useRender = (/* fn, deps = [] */ callback) => {
     [callback, app] /* deps */,
   )
 }
+
+export const EngineContext = React.createContext(null)
+
+export const usePhysics = () => {
+  const  physics  = useContext(EngineContext)
+  return physics
+}

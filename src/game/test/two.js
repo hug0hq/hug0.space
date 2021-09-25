@@ -2,6 +2,7 @@ import Group from './two/group'
 import Text from './two/text'
 import Ellipse from './two/ellipse'
 import RoundedRectangle from './two/roundedrectangle'
+import Rectangle from './two/rectangle'
 import Path from './two/path'
 
 export const createElement = (type, props = {}, root = null) => {
@@ -10,6 +11,7 @@ export const createElement = (type, props = {}, root = null) => {
     Text: /* () => */ Text,
     Ellipse: /* () => */ Ellipse,
     RoundedRectangle: /* () => */ RoundedRectangle,
+    Rectangle: Rectangle,
     Path: Path,
     default: undefined,
   }
@@ -41,7 +43,7 @@ export const applyNodeProps = (instance, oldProps, newProps) => {
         //console.log(p, newProps[p])
 
         if (p != 'children') {
-          console.log(p, newProps[p])
+          //console.log(p, newProps[p])
           instance[p] = newProps[p]
         }
       }

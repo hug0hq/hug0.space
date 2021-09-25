@@ -1,29 +1,18 @@
 import Two from 'two.js'
 
 const Path = (root, props) => {
-  const {
-    vertices,
-    x = 0,
-    y = 0,
-    width = 10,
-    height = 10,
-    fill = '#fff',
-    stroke = '#000',
-    noStroke = false,
-  } = props
+  const { vertices, fill = '#fff', stroke = '#000', noStroke = false } = props
 
-  //vertices, closed, curved, manual
+  const twoPath = new Two.Path(vertices)
 
-  const pixiPath = new Two.Path(vertices)
-
-  pixiPath.fill = fill
-  pixiPath.stroke = stroke
+  twoPath.fill = fill
+  twoPath.stroke = stroke
 
   if (noStroke) {
-    pixiPath.noStroke()
+    twoPath.noStroke()
   }
 
-  return pixiPath
+  return twoPath
 }
 
 export default Path

@@ -10,16 +10,17 @@ const Ellipse = (root, props) => {
     stroke = '#000',
     noStroke = false,
   } = props
-  const pixiEllipse = new Two.Ellipse(x, y, width, height)
 
-  pixiEllipse.fill = fill
-  pixiEllipse.stroke = stroke
+  const twoEllipse = new Two.Ellipse(x, y, width, height)
+
+  twoEllipse.fill = fill
+  twoEllipse.stroke = stroke
 
   if (noStroke) {
-    pixiEllipse.noStroke()
+    twoEllipse.noStroke()
   }
 
-  return pixiEllipse
+  return twoEllipse
 }
 
 export default Ellipse

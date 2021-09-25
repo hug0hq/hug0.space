@@ -7,7 +7,8 @@ import React, {
   useState,
 } from 'react'
 import { Text, Ellipse, Group, RoundedRectangle, Path } from '../type'
-import { useApp, useRender } from '../util'
+import { useApp, useRender, usePhysics } from '../util'
+import { useBox, useTextBox } from './physics'
 
 import Matter from 'matter-js'
 import Two from 'two.js'
@@ -29,25 +30,46 @@ const useComputedStyle = (textRef) => {
 
 export const TextFromDom = (props) => {
   const style = useComputedStyle(props.textRef)
+  const engine = usePhysics()
+  const app = useApp()
 
-  const textGroup = useCallback(() => {
+  const getGroup = useCallback(() => {
     const items = []
     if (props.textRef && style) {
+
+      const bounding = app.renderer.domElement.getBoundingClientRect()
+
       props.textRef.current.childNodes.forEach((c, index) => {
         const tmp = c.getBoundingClientRect()
-        //console.log(tmp)
+
         if (c.innerText && c.innerText !== ' ') {
           items.push({
             text: c.innerText,
             x: tmp.x,
-            y: tmp.y + tmp.height/2,
+            y: tmp.y + tmp.height / 2 - bounding.top,
             size: style.fontSize,
             weight: style.fontWeight,
             family: style.fontFamily,
             alignment: 'left',
-            //baseline: 'top',
-            fill: '#8eaafd',
+            fill: '#f3f3f3',
+
+            width: tmp.width,
+            height: tmp.height
           })
+
+          const offset = {
+            x: 0,
+            y: 0,
+          }
+
+          /* const boxBody = Matter.Bodies.rectangle(
+            tmp.left + (tmp.width - offset.x) / 2,
+            tmp.top + (tmp.height - offset.y) / 2,
+            tmp.width - offset.x,
+            tmp.height - offset.y,
+          )
+
+          Matter.Composite.add(engine.world, boxBody) */
         }
       })
       //console.log('m', items)
@@ -55,31 +77,24 @@ export const TextFromDom = (props) => {
     return items
   }, [props.textRef, style])
 
-  /* const mm = useMemo(() => {
-    return (
-      <Text
-        x={100}
-        y={100}
-        alignment={'left'}
-        baseline={'top'}
-        text="hello"
-        fill={'#8eaafd'}
-      ></Text>
-    )
-  }, [])
-  console.log(mm) */
+  const textGroup = useMemo(() => {
+    return getGroup().map((config, index) => (
+      <TextBody key={index} {...config} />
+    ))
+  }, [getGroup])
 
-  const mm2 = useMemo(() => {
-    return textGroup().map((config, index) => <Text key={index} {...config} />)
-  }, [textGroup])
-  //console.log(mm2())
+  return <Group>{textGroup}</Group>
+}
 
-  return (
-    <Group >
-      {mm2}
-      {/* {textGroup.map((config, index) => (
-        <Text key={index} {...config} />
-      ))} */}
-    </Group>
-  )
+const TextBody = (props) => {
+  const [textBody, api] = useTextBox(props.width, props.height, {
+    restitution: 1,
+    friction: 0.3,
+    collisionFilter: {
+      category: '0x0002',
+    },
+  })
+  //console.log('text body call')
+
+  return <Text ref={textBody} /*  key={index} */ {...props} />
 }

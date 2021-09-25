@@ -5,6 +5,7 @@ import { useApp } from '../util'
 import { useSpring, useChain, animated, useSpringRef } from '@react-spring/web'
 
 import Two from 'two.js'
+import { useCircle } from './physics'
 
 const AnimatedGroup = animated(Group)
 
@@ -19,9 +20,20 @@ export const Hole = (props) => {
     config: { mass: 5, tension: 2000, friction: 40 },
   })
 
+  /* const [pointhole, api] = useCircle(() => ({
+    mass: 1,
+    position: [0, 5, 0],
+  })) */
+
   return (
     <Group x={app.width - 100} y={app.height - 100}>
-      <Ellipse width={16} height={12} fill={'#424242'} noStroke />
+      <Ellipse
+        //ref={pointhole}
+        width={16}
+        height={12}
+        fill={'#424242'}
+        noStroke
+      />
       <AnimatedGroup
         rotation={r.to({ range: [0, 0.5, 1], output: [0, 0.08, 0] })}
       >

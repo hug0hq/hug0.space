@@ -1,6 +1,6 @@
 import Two from 'two.js'
 
-const RoundedRectangle = (root, props) => {
+const Rectangle = (root, props) => {
   const {
     x = 0,
     y = 0,
@@ -8,11 +8,10 @@ const RoundedRectangle = (root, props) => {
     height = 10,
     fill = '#fff',
     stroke = '#000',
-    radius = 2,
     noStroke = false,
   } = props
 
-  const twoRoundedRec = new Two.RoundedRectangle(x, y, width, height, radius)
+  const twoRoundedRec = new Two.Rectangle(x, y, width, height)
 
   twoRoundedRec.fill = fill
   twoRoundedRec.stroke = stroke
@@ -24,4 +23,4 @@ const RoundedRectangle = (root, props) => {
   return twoRoundedRec
 }
 
-export default RoundedRectangle
+export default Rectangle

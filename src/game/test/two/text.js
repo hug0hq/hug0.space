@@ -12,12 +12,12 @@ const Text = (root, props) => {
     alignment = 'middle',
     baseline = 'middle',
   } = props
-  const style = { size, fill, weight, family, alignment, baseline }
-  // message, x, y, styles
-  const pixiText = new Two.Text(text, x, y, style)
 
-  // console.log('two text', pixiText, y)
-  return pixiText
+  const style = { size, fill, weight, family, alignment, baseline }
+
+  const twoText = new Two.Text(text, x, y, style)
+
+  return twoText
 }
 
 export default Text
