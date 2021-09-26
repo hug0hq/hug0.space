@@ -1,23 +1,19 @@
 import { useCallback, useEffect, useRef, useMemo, useState } from 'react'
-import { Ellipse, Group, Path } from '../type'
-import { useApp, useRender } from '../util'
 
 import Matter from 'matter-js'
 import Two from 'two.js'
 
-import { useCircle } from './physics'
+import { Ellipse, Group, Path, useApp } from '../two'
+import { useCircle } from '../matter'
 
 const angle = (x, y) => {
   return Math.atan2(y, x) + Math.PI / 2
 }
 
-export const Player = (props) => {
+export const Player = () => {
   const app = useApp()
   const arrow = useRef()
 
-  const [pointerDown, setPointerDown] = useState(false)
-
-  const [rotationAngle, setRotationAngle] = useState(0)
   const [mousePosition, setMousePosition] = useState(null)
 
   //mouse
@@ -44,7 +40,6 @@ export const Player = (props) => {
           y: e.clientY - bounding.top,
         })
       setMousePosition(null)
-      //setPointerDown(false)
     }
   }, [])
 
@@ -57,38 +52,23 @@ export const Player = (props) => {
         y: e.clientY - bounding.top,
       })
     }
-
-    //setPointerDown(true)
   }, [])
 
   useEffect(() => {
-    //window.addEventListener('pointermove', move)
     window.addEventListener('pointerup', up)
     window.addEventListener('pointerdown', down)
 
     return () => {
-      //window.addEventListener('pointermove', move)
       window.removeEventListener('pointerup', up)
       window.removeEventListener('pointerdown', down)
     }
   }, [])
-
-  useRender((frameCount) => {
-    //if (mousePosition) {
-    //return
-    //let deltaVector = Matter.Vector.sub(mousePosition, body.current.position)
-    //Matter.Vector.neg( //)
-    // arrow.current.rotation = rotationAngle
-    // setRotationAngle(angle(deltaVector.x, deltaVector.y))
-    //}
-  })
 
   useEffect(() => {
     if (mousePosition && !api.isMoving()) {
       const deltaVector = Matter.Vector.neg(
         Matter.Vector.sub(mousePosition, body.current.position),
       )
-
       arrow.current.rotation =
         angle(deltaVector.x, deltaVector.y) - body.current.rotation
       arrow.current.opacity = 1

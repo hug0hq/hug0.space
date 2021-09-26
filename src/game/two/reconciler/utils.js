@@ -1,9 +1,9 @@
-import Group from '../two/group'
-import Text from '../two/text'
-import Ellipse from '../two/ellipse'
-import RoundedRectangle from '../two/roundedrectangle'
-import Rectangle from '../two/rectangle'
-import Path from '../two/path'
+import Group from '../components/group'
+import Text from '../components/text'
+import Ellipse from '../components/ellipse'
+import RoundedRectangle from '../components/roundedrectangle'
+import Rectangle from '../components/rectangle'
+import Path from '../components/path'
 
 export const createElement = (type, props = {}, root = null) => {
   const COMPONENTS = {

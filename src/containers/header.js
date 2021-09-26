@@ -6,7 +6,7 @@ import React, { useEffect, useState, useRef } from 'react'
 
 //const GameThree = dynamic(() => import('../components/game'), { ssr: false })
 //import GameThree from '../components/game'
-import Game from '../game/test/game'
+import Game from '../game/game'
 
 import { Logo } from '../svg'
 

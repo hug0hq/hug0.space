@@ -1,4 +1,4 @@
-import { createElement, applyNodeProps } from './two'
+import { createElement, applyNodeProps } from './utils'
 
 export const HostConfig = {
   getRootHostContext: () => {

@@ -1,44 +1,33 @@
 import React, { useLayoutEffect, useCallback, useMemo, useState } from 'react'
-import {
-  Text,
-  Ellipse,
-  Group,
-  RoundedRectangle,
-  Path,
-  Rectangle,
-} from '../type'
-import { useApp, useRender, usePhysics } from '../util'
-import { useBox, useTextBox } from './physics'
 
-import Matter from 'matter-js'
-import Two from 'two.js'
+import { Text, Group, Rectangle, useApp } from '../two'
+import { useBox } from '../matter'
 
-const useComputedStyle = (textRef) => {
+const useComputedStyle = (textDomRef) => {
   const [style, setStyle] = useState()
 
   useLayoutEffect(() => {
-    const computedStyle = window.getComputedStyle(textRef.current)
+    const computedStyle = window.getComputedStyle(textDomRef.current)
 
     setStyle({
       fontSize: parseInt(computedStyle.fontSize, 10),
       fontWeight: parseInt(computedStyle.fontWeight, 10) || 700,
       fontFamily: computedStyle.fontFamily,
     })
-  }, [textRef])
+  }, [textDomRef])
   return style
 }
 
 export const TextFromDom = (props) => {
-  const style = useComputedStyle(props.textRef)
-  const engine = usePhysics()
+  const style = useComputedStyle(props.textDomRef)
   const app = useApp()
 
   const getGroup = useCallback(() => {
     const items = []
-    if (props.textRef && style) {
+    if (props.textDomRef && style) {
       const bounding = app.renderer.domElement.getBoundingClientRect()
 
-      props.textRef.current.childNodes.forEach((c, index) => {
+      props.textDomRef.current.childNodes.forEach((c, index) => {
         const tmp = c.getBoundingClientRect()
 
         if (c.innerText && c.innerText !== ' ') {

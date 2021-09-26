@@ -7,10 +7,9 @@ import {
   useLayoutEffect,
   useCallback,
 } from 'react'
+import { EngineContext } from './context'
+import { useRender, useApp } from '../two'
 import Matter from 'matter-js'
-
-import { EngineContext } from '../util'
-import { useRender, useApp } from '../util'
 
 const useBody = (type, args) => {
   const physics = useContext(EngineContext)

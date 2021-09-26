@@ -6,15 +6,21 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { Text, Ellipse, Group, RoundedRectangle, Path } from '../type'
-import { useApp, useRender, usePhysics } from '../util'
+import {
+  Rectangle,
+  Text,
+  Ellipse,
+  Group,
+  RoundedRectangle,
+  Path,
+  useApp,
+  useRender,
+} from '../two'
 
 import Matter from 'matter-js'
 import Two from 'two.js'
 
-import { Rectangle } from '../type'
-
-import { useBox } from './physics'
+import { usePhysics, useBox } from '../matter'
 
 export const Walls = (props) => {
   const physics = usePhysics()
@@ -102,7 +108,7 @@ export const Walls = (props) => {
       ></Rectangle>
       <Rectangle
         ref={textBody2}
-        x={two.width + 190 }
+        x={two.width + 190}
         y={two.height / 2}
         width={400}
         height={two.height}

@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
-import { useApp, useRender, usePhysics } from '../util'
 
 import Two from 'two.js'
 import Stats from 'stats.js'
 import Matter from 'matter-js'
-import { update } from 'lodash'
+
+import { useApp, useRender } from '../two'
+import { usePhysics } from '../matter'
 
 export const Debug = (props) => {
   const [stats] = useState(new Stats())
