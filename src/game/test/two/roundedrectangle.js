@@ -10,13 +10,19 @@ const RoundedRectangle = (root, props) => {
     stroke = '#000',
     radius = 2,
     noStroke = false,
+    noFill = false,
+    linewidth = 1,
   } = props
 
   const twoRoundedRec = new Two.RoundedRectangle(x, y, width, height, radius)
 
   twoRoundedRec.fill = fill
   twoRoundedRec.stroke = stroke
+  twoRoundedRec.linewidth = linewidth
 
+  if (noFill) {
+    twoRoundedRec.noFill()
+  }
   if (noStroke) {
     twoRoundedRec.noStroke()
   }

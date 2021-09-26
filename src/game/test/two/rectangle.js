@@ -10,23 +10,23 @@ const Rectangle = (root, props) => {
     stroke = '#000',
     noStroke = false,
     noFill = false,
-    linewidth = 1
+    linewidth = 1,
   } = props
 
-  const twoRoundedRec = new Two.Rectangle(x, y, width, height)
+  const twoRec = new Two.Rectangle(x, y, width, height)
 
-  twoRoundedRec.fill = fill
-  twoRoundedRec.stroke = stroke
-  twoRoundedRec.linewidth = linewidth
+  twoRec.fill = fill
+  twoRec.stroke = stroke
+  twoRec.linewidth = linewidth
 
   if (noFill) {
-    twoRoundedRec.noFill()
+    twoRec.noFill()
   }
   if (noStroke) {
-    twoRoundedRec.noStroke()
+    twoRec.noStroke()
   }
 
-  return twoRoundedRec
+  return twoRec
 }
 
 export default Rectangle

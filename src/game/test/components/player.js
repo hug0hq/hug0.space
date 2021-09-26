@@ -125,6 +125,7 @@ export const Player = (props) => {
     <Group ref={body} x={100} y={app.height - 100}>
       <Path ref={arrow} noStroke fill={'#F04D4D'} vertices={draw} />
       <Ellipse width={10} height={10} fill={'#f3f3f3'} noStroke />
+      <Ellipse width={12} height={12} noFill linewidth={2} stroke={'#FFED4A'} />
     </Group>
   )
 }

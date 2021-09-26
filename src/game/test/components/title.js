@@ -21,7 +21,7 @@ const useComputedStyle = (textRef) => {
 
     setStyle({
       fontSize: parseInt(computedStyle.fontSize, 10),
-      fontWeight: parseInt(computedStyle.fontWeight, 10),
+      fontWeight: parseInt(computedStyle.fontWeight, 10) || 700,
       fontFamily: computedStyle.fontFamily,
     })
   }, [textRef])
@@ -45,8 +45,7 @@ export const TextFromDom = (props) => {
           items.push({
             text: {
               text: c.innerText,
-              //x: 0,
-              //y: 0,
+
               size: style.fontSize,
               weight: style.fontWeight,
               family: style.fontFamily,
@@ -60,26 +59,11 @@ export const TextFromDom = (props) => {
             width: tmp.width,
             height: tmp.height,
           })
-
-          const offset = {
-            x: 0,
-            y: 0,
-          }
-
-          /* const boxBody = Matter.Bodies.rectangle(
-            tmp.left + (tmp.width - offset.x) / 2,
-            tmp.top + (tmp.height - offset.y) / 2,
-            tmp.width - offset.x,
-            tmp.height - offset.y,
-          )
-
-          Matter.Composite.add(engine.world, boxBody) */
         }
       })
-      //console.log('m', items)
     }
     return items
-  }, [props.textRef, style])
+  }, [style])
 
   const textGroup = useMemo(() => {
     return getGroup().map((config, index) => (

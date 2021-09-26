@@ -12,20 +12,12 @@ import Matter from 'matter-js'
 import { EngineContext } from '../util'
 import { useRender, useApp } from '../util'
 
-export const useBox = (args) => {
-  return useBody('rectangle', args)
-}
-
-export const useCircle = (args) => {
-  return useBody('circle', args)
-}
-
 const useBody = (type, args) => {
   const physics = useContext(EngineContext)
   const ref = useRef()
   const bodyref = useRef()
 
-  useRender((frame) => {
+  useRender(() => {
     ref.current.position.set(
       bodyref.current.position.x,
       bodyref.current.position.y,
@@ -43,7 +35,6 @@ const useBody = (type, args) => {
         args.radius || object.width / 2,
         args.options,
       )
-
       return
     }
 
@@ -74,7 +65,7 @@ const useBody = (type, args) => {
     }
   }, [])
 
-  const setSize = useCallback((x, y) => {}, [])
+  //const setSize = useCallback((x, y) => {}, [])
 
   const applyForce = useCallback((force, vector) => {
     const deltaVector = Matter.Vector.sub(vector, bodyref.current.position)
@@ -89,7 +80,15 @@ const useBody = (type, args) => {
     return bodyref.current.speed > 0.5 ? true : false
   }, [])
 
-  return [ref, { setPosition, setSize, applyForce, isMoving }]
+  return [ref, { setPosition, applyForce, isMoving }]
+}
+
+export const useBox = (args) => {
+  return useBody('rectangle', args)
+}
+
+export const useCircle = (args) => {
+  return useBody('circle', args)
 }
 
 export const Physics = (props) => {
@@ -101,21 +100,10 @@ export const Physics = (props) => {
       //enableSleeping: true,
       gravity: { x: 0, y: 0 },
     })
-    //const runner = Matter.Runner.create()
-    //Matter.Runner.run(runner, engine)
-    const vertices = [
-      { x: 0, y: 0 },
-      { x: 500, y: 500 },
-    ]
-    //const m = Matter.Bounds.create(vertices)
-    //engine.world.setBounds(0, 0, 1800, 1800, 15)
-    //let bounds = Matter.Bounds.create(vertices)
-    //Matter.World.add(engine.world, bounds)
 
     setPhysics(engine)
     return () => {
       Matter.Engine.clear(engine)
-      //Matter.Runner.stop(runner)
     }
   }, [])
 
@@ -124,20 +112,15 @@ export const Physics = (props) => {
   useRender((frame) => {
     if (!physics) return
 
-    // Matter.Engine.update(physics, 1000 / 60)
-
-    Matter.Engine.update(physics, (1 / 3 / 60) * 1000)
+    Matter.Engine.update(physics, (1 / 3 / 60) * 1000) // (1000 / 60)
 
     // avoid tunneling
     //if (frame > 2) return
     const world = physics.world
     world.bodies.map((body) => {
-
       //console.log(Matter.Vertices.contains(body.vertices, {x: app.width, y: body.position.y}))
 
-      
       if (body.position.x > app.width) {
-
         console.log('out', body)
         Matter.Body.setPosition(body, { x: app.width - 5, y: body.position.y })
 
