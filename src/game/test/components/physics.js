@@ -10,149 +10,73 @@ import {
 import Matter from 'matter-js'
 
 import { EngineContext } from '../util'
-import { useRender } from '../util'
-
-export const useTextBox = (width, height, args) => {
-  const physics = useContext(EngineContext)
-  const ref = useRef()
-  const bodyref = useRef()
-
-  useRender((frame) => {
-    //if(frame > 6) return
-    /*  if (
-      bodyref.current.position.x !== ref.current.position.x ||
-      bodyref.current.position.y !== ref.current.position.y
-    ) { */
-    //  console.log('update', bodyref.current.position.x, ref.current.position.x)
-     ref.current.position.set(
-      bodyref.current.position.x, // - ref.current.width/2, // - width / 2,
-      bodyref.current.position.y,
-    ) 
-    ref.current.rotation =  bodyref.current.angle
- 
-    // }
-  })
-
-  useLayoutEffect(() => {
-    const object = ref.current
-    const tmp = object.getBoundingClientRect()
-
-    const boxBody = Matter.Bodies.rectangle(
-      object.position.x + width / 2,
-      object.position.y ,
-      width,
-      height,
-      args,
-    )
-
-    bodyref.current = boxBody
-  }, [])
-
-  useLayoutEffect(() => {
-    if (physics) {
-      Matter.Composite.add(physics.world, bodyref.current)
-    }
-  }, [physics])
-
-  const setPosition = useCallback((x, y) => {
-    if (bodyref.current.position.x != x || bodyref.current.position.y != y) {
-      Matter.Body.setPosition(bodyref.current, { x: x, y: y })
-      ref.current.position.set(x, y)
-      console.log('update pos')
-    }
-  }, [])
-
-  const setSize = useCallback((x, y) => {}, [])
-
-  return [ref, { setPosition, setSize }]
-}
+import { useRender, useApp } from '../util'
 
 export const useBox = (args) => {
-  const physics = useContext(EngineContext)
-  const ref = useRef()
-  const bodyref = useRef()
-
-  useLayoutEffect(() => {
-    const object = ref.current
-    const tmp = object.getBoundingClientRect()
-
-    const boxBody = Matter.Bodies.rectangle(
-      object.position.x,
-      object.position.y,
-      object.width,
-      object.height,
-      args,
-    )
-
-    bodyref.current = boxBody
-  }, [])
-
-  useLayoutEffect(() => {
-    if (physics) {
-      Matter.Composite.add(physics.world, bodyref.current)
-    }
-  }, [physics])
-
-  const setPosition = useCallback((x, y) => {
-    if (bodyref.current.position.x != x || bodyref.current.position.y != y) {
-      Matter.Body.setPosition(bodyref.current, { x: x, y: y })
-      ref.current.position.set(x, y)
-      console.log('update pos')
-    }
-  }, [])
-
-  const setSize = useCallback((x, y) => {}, [])
-
-  return [ref, { setPosition, setSize }]
+  return useBody('rectangle', args)
 }
-export const useCircle = (radius, args) => {
+
+export const useCircle = (args) => {
+  return useBody('circle', args)
+}
+
+const useBody = (type, args) => {
   const physics = useContext(EngineContext)
   const ref = useRef()
   const bodyref = useRef()
 
   useRender((frame) => {
-    /*  if (
-      bodyref.current.position.x !== ref.current.position.x ||
-      bodyref.current.position.y !== ref.current.position.y
-    ) { */
-    //  console.log('update', bodyref.current.position.x, ref.current.position.x)
     ref.current.position.set(
       bodyref.current.position.x,
       bodyref.current.position.y,
     )
-    // }
+    ref.current.rotation = bodyref.current.angle
   })
 
   useLayoutEffect(() => {
     const object = ref.current
-    console.log(object)
 
-    const boxBody = Matter.Bodies.circle(
+    if (type == 'circle') {
+      bodyref.current = Matter.Bodies.circle(
+        object.position.x,
+        object.position.y,
+        args.radius || object.width / 2,
+        args.options,
+      )
+
+      return
+    }
+
+    bodyref.current = Matter.Bodies.rectangle(
       object.position.x,
       object.position.y,
-      radius,
-      args,
+      args.width || object.width,
+      args.height || object.height,
+      args.options,
     )
-    bodyref.current = boxBody
   }, [])
 
   useLayoutEffect(() => {
     if (physics) {
       Matter.Composite.add(physics.world, bodyref.current)
     }
+    return () => {
+      if (physics) {
+        Matter.Composite.remove(physics.world, bodyref.current)
+      }
+    }
   }, [physics])
 
-  const applyForce = useCallback((force, vector) => {
-    //applay force
-    //if (bodyref.current.velocity.x > 1 || bodyref.current.velocity.y > 1) {
-    if (bodyref.current.speed > 0.5) {
-      console.log('no force')
-      return
+  const setPosition = useCallback((x, y) => {
+    if (bodyref.current.position.x != x || bodyref.current.position.y != y) {
+      Matter.Body.setPosition(bodyref.current, { x: x, y: y })
+      console.log('update pos')
     }
+  }, [])
 
-    console.log('force', force, vector)
+  const setSize = useCallback((x, y) => {}, [])
 
-    //const force = 0.1 // 0.2;
+  const applyForce = useCallback((force, vector) => {
     const deltaVector = Matter.Vector.sub(vector, bodyref.current.position)
     const normalizedDelta = Matter.Vector.normalise(deltaVector)
     const forceVector = Matter.Vector.mult(normalizedDelta, force)
@@ -161,17 +85,15 @@ export const useCircle = (radius, args) => {
     Matter.Body.applyForce(bodyref.current, bodyref.current.position, op)
   }, [])
 
-  return [ref, applyForce]
-}
+  const isMoving = useCallback(() => {
+    return bodyref.current.speed > 0.5 ? true : false
+  }, [])
 
-const useBody = (props, ref, deps) => {
-  console.log(ref)
-  return null
+  return [ref, { setPosition, setSize, applyForce, isMoving }]
 }
 
 export const Physics = (props) => {
   const [physics, setPhysics] = useState(null)
-
   const engineProviderValue = useMemo(() => physics, [physics])
 
   useEffect(() => {
@@ -181,21 +103,68 @@ export const Physics = (props) => {
     })
     //const runner = Matter.Runner.create()
     //Matter.Runner.run(runner, engine)
+    const vertices = [
+      { x: 0, y: 0 },
+      { x: 500, y: 500 },
+    ]
+    //const m = Matter.Bounds.create(vertices)
+    //engine.world.setBounds(0, 0, 1800, 1800, 15)
+    //let bounds = Matter.Bounds.create(vertices)
+    //Matter.World.add(engine.world, bounds)
 
     setPhysics(engine)
     return () => {
-      //cleanup
       Matter.Engine.clear(engine)
       //Matter.Runner.stop(runner)
     }
   }, [])
 
-   useRender((frame) => {
-    if (physics) 
-    Matter.Engine.update(physics, 1000 / 60);
+  const app = useApp()
 
-   
-  }) 
+  useRender((frame) => {
+    if (!physics) return
+
+    // Matter.Engine.update(physics, 1000 / 60)
+
+    Matter.Engine.update(physics, (1 / 3 / 60) * 1000)
+
+    // avoid tunneling
+    //if (frame > 2) return
+    const world = physics.world
+    world.bodies.map((body) => {
+
+      //console.log(Matter.Vertices.contains(body.vertices, {x: app.width, y: body.position.y}))
+
+      
+      if (body.position.x > app.width) {
+
+        console.log('out', body)
+        Matter.Body.setPosition(body, { x: app.width - 5, y: body.position.y })
+
+        let v = Matter.Vector.neg(body.velocity)
+        Matter.Body.setVelocity(body, { x: v.x, y: body.velocity.y })
+        //console.log('out', v, body.velocity)
+      }
+      if (body.position.x < 0) {
+        Matter.Body.setPosition(body, { x: 0, y: body.position.y })
+
+        let v = Matter.Vector.neg(body.velocity)
+        Matter.Body.setVelocity(body, { x: v.x, y: body.velocity.y })
+      }
+      if (body.position.y > app.height) {
+        Matter.Body.setPosition(body, { x: body.position.x, y: app.height })
+
+        let v = Matter.Vector.neg(body.velocity)
+        Matter.Body.setVelocity(body, { x: body.velocity.x, y: v.y })
+      }
+      if (body.position.y < 0) {
+        Matter.Body.setPosition(body, { x: body.position.x, y: 0 })
+
+        let v = Matter.Vector.neg(body.velocity)
+        Matter.Body.setVelocity(body, { x: body.velocity.x, y: v.y })
+      }
+    })
+  })
 
   return (
     <EngineContext.Provider value={engineProviderValue}>

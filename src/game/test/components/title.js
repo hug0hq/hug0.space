@@ -1,12 +1,12 @@
-import React, {
-  useLayoutEffect,
-  useCallback,
-  useEffect,
-  useRef,
-  useMemo,
-  useState,
-} from 'react'
-import { Text, Ellipse, Group, RoundedRectangle, Path } from '../type'
+import React, { useLayoutEffect, useCallback, useMemo, useState } from 'react'
+import {
+  Text,
+  Ellipse,
+  Group,
+  RoundedRectangle,
+  Path,
+  Rectangle,
+} from '../type'
 import { useApp, useRender, usePhysics } from '../util'
 import { useBox, useTextBox } from './physics'
 
@@ -36,7 +36,6 @@ export const TextFromDom = (props) => {
   const getGroup = useCallback(() => {
     const items = []
     if (props.textRef && style) {
-
       const bounding = app.renderer.domElement.getBoundingClientRect()
 
       props.textRef.current.childNodes.forEach((c, index) => {
@@ -44,17 +43,22 @@ export const TextFromDom = (props) => {
 
         if (c.innerText && c.innerText !== ' ') {
           items.push({
-            text: c.innerText,
-            x: tmp.x,
+            text: {
+              text: c.innerText,
+              //x: 0,
+              //y: 0,
+              size: style.fontSize,
+              weight: style.fontWeight,
+              family: style.fontFamily,
+              alignment: 'left',
+              fill: '#f3f3f3',
+            },
+
+            x: tmp.x + tmp.width / 2,
             y: tmp.y + tmp.height / 2 - bounding.top,
-            size: style.fontSize,
-            weight: style.fontWeight,
-            family: style.fontFamily,
-            alignment: 'left',
-            fill: '#f3f3f3',
 
             width: tmp.width,
-            height: tmp.height
+            height: tmp.height,
           })
 
           const offset = {
@@ -87,14 +91,29 @@ export const TextFromDom = (props) => {
 }
 
 const TextBody = (props) => {
-  const [textBody, api] = useTextBox(props.width, props.height, {
-    restitution: 1,
-    friction: 0.3,
-    collisionFilter: {
-      category: '0x0002',
+  const [textBody, api] = useBox({
+    width: props.width,
+    height: props.height,
+    options: {
+      restitution: 0.8,
+      friction: 0,
+      frictionAir: 0.3,
+      collisionFilter: {
+        category: '0x0002',
+      },
     },
   })
-  //console.log('text body call')
 
-  return <Text ref={textBody} /*  key={index} */ {...props} />
+  return (
+    <Group x={props.x} y={props.y} ref={textBody}>
+      <Text x={-props.width / 2} {...props.text} />
+      <Rectangle
+        noFill
+        linewidth={2}
+        stroke={'#FFED4A'}
+        width={props.width}
+        height={props.height}
+      ></Rectangle>
+    </Group>
+  )
 }

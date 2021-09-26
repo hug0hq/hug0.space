@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { /* Text, */ Ellipse, Group, RoundedRectangle, Path } from '../type'
-import { useApp } from '../util'
+import { useApp, useRender } from '../util'
 
 import { useSpring, useChain, animated, useSpringRef } from '@react-spring/web'
 
@@ -10,6 +10,28 @@ import { useCircle } from './physics'
 const AnimatedGroup = animated(Group)
 
 export const Hole = (props) => {
+  const app = useApp()
+
+  const hole = useRef()
+
+  useRender((frame) => {
+    hole.current.position.set(app.width - 100, app.height - 100)
+  })
+
+  return (
+    <Ellipse
+      ref={hole}
+      x={app.width - 100}
+      y={app.height - 100}
+      width={16}
+      height={12}
+      fill={'#424242'}
+      noStroke
+    />
+  )
+}
+
+export const Flag = (props) => {
   const app = useApp()
 
   const [play, setPlay] = useState(true)
@@ -24,16 +46,21 @@ export const Hole = (props) => {
     mass: 1,
     position: [0, 5, 0],
   })) */
+  const flag = useRef()
+
+  useRender((frame) => {
+    flag.current.position.set(app.width - 100, app.height - 100)
+  })
 
   return (
-    <Group x={app.width - 100} y={app.height - 100}>
-      <Ellipse
+    <Group ref={flag} x={app.width - 100} y={app.height - 100}>
+      {/* <Ellipse
         //ref={pointhole}
         width={16}
         height={12}
         fill={'#424242'}
         noStroke
-      />
+      /> */}
       <AnimatedGroup
         rotation={r.to({ range: [0, 0.5, 1], output: [0, 0.08, 0] })}
       >

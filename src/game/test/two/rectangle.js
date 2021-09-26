@@ -9,13 +9,19 @@ const Rectangle = (root, props) => {
     fill = '#fff',
     stroke = '#000',
     noStroke = false,
+    noFill = false,
+    linewidth = 1
   } = props
 
   const twoRoundedRec = new Two.Rectangle(x, y, width, height)
 
   twoRoundedRec.fill = fill
   twoRoundedRec.stroke = stroke
+  twoRoundedRec.linewidth = linewidth
 
+  if (noFill) {
+    twoRoundedRec.noFill()
+  }
   if (noStroke) {
     twoRoundedRec.noStroke()
   }

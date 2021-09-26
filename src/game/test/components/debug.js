@@ -32,7 +32,7 @@ export const Debug = (props) => {
   //let tmplib = []
 
   useRender((frameCount) => {
-    //return
+    return
     //if (frameCount > 2) return
 
     /* if (!debugGroup.current) {

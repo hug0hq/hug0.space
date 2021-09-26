@@ -3,7 +3,7 @@ import Stage from './stage'
 
 import { /* Text, */ Ellipse, Group } from './type'
 import { TextFromDom } from './components/title'
-import { Hole } from './components/hole'
+import { Hole, Flag } from './components/hole'
 import { Player } from './components/player'
 import { Walls } from './components/walls'
 import { TitleContainer } from './components/titleContiner'
@@ -43,10 +43,11 @@ const Game = () => {
         imageSmoothingEnabled
       >
         <Physics>
-          <Walls />
+          <Hole/>
+          {/* <Walls /> */}
           <TextFromDom textRef={textRef}></TextFromDom>
           <Player />
-          <Hole />
+          <Flag />
           <Debug />
         </Physics>
       </Stage>

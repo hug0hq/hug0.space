@@ -65,18 +65,18 @@ export const Walls = (props) => {
     ])
   }, [two, physics])
 
-  const [textBody0] = useBox({ isStatic: true, label: 'wall' })
-  const [textBody1] = useBox({ isStatic: true, label: 'wall' })
-  const [textBody2, api2] = useBox({ isStatic: true, label: 'wall' })
-  const [textBody3, api3] = useBox({ isStatic: true, label: 'wall' })
-
-  useEffect(() => {
-    console.log(api2)
-  }, [api2])
+  const [textBody0] = useBox({ options: { isStatic: true, label: 'wall' } })
+  const [textBody1] = useBox({ options: { isStatic: true, label: 'wall' } })
+  const [textBody2, api2] = useBox({
+    options: { isStatic: true, label: 'wall' },
+  })
+  const [textBody3, api3] = useBox({
+    options: { isStatic: true, label: 'wall' },
+  })
 
   useRender((frame) => {
-    api2.setPosition(two.width, two.height / 2)
-    api3.setPosition(two.width / 2, two.height)
+    api2.setPosition(two.width + 190, two.height / 2)
+    api3.setPosition(two.width / 2, two.height + 190)
     //api.setSize(40, two.height)
   })
 
@@ -84,39 +84,39 @@ export const Walls = (props) => {
     <>
       <Rectangle
         ref={textBody0}
-        x={0}
+        x={-190}
         y={two.height / 2}
-        width={40}
+        width={400}
         height={two.height}
-        fill={'#f3f3f3'}
-        noStroke
+        stroke={'#878787'}
+        noFill
       ></Rectangle>
       <Rectangle
         ref={textBody1}
         x={two.width / 2}
-        y={0}
+        y={-190}
         width={two.width}
-        height={40}
-        fill={'#f3f3f3'}
-        noStroke
+        height={400}
+        stroke={'#878787'}
+        noFill
       ></Rectangle>
       <Rectangle
         ref={textBody2}
-        x={two.width}
+        x={two.width + 190 }
         y={two.height / 2}
-        width={40}
+        width={400}
         height={two.height}
-        fill={'#f3f3f3'}
-        noStroke
+        stroke={'#878787'}
+        noFill
       ></Rectangle>
       <Rectangle
         ref={textBody3}
         x={two.width / 2}
-        y={two.height}
+        y={two.height + 190}
         width={two.width}
-        height={40}
-        fill={'#f3f3f3'}
-        noStroke
+        height={400}
+        stroke={'#878787'}
+        noFill
       ></Rectangle>
     </>
   )
