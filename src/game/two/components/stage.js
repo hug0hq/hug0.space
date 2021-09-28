@@ -69,6 +69,8 @@ class Stage extends React.Component {
     TwoFiber.updateContainer(null, this.twoContainer, this)
 
     this._container.removeChild(this._canvas)
+
+    this.app.pause()
     this.app.clear()
   }
 

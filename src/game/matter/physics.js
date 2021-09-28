@@ -17,11 +17,16 @@ const useBody = (type, args) => {
   const bodyref = useRef()
 
   useRender(() => {
-    ref.current.position.set(
-      bodyref.current.position.x,
-      bodyref.current.position.y,
+    if (
+      ref.current.position.x != bodyref.current.position.x ||
+      ref.current.position.y != bodyref.current.position.y
     )
-    ref.current.rotation = bodyref.current.angle
+      ref.current.position.set(
+        bodyref.current.position.x,
+        bodyref.current.position.y,
+      )
+    if (ref.current.rotation != bodyref.current.angle)
+      ref.current.rotation = bodyref.current.angle
   })
 
   useLayoutEffect(() => {
@@ -95,10 +100,7 @@ export const Physics = (props) => {
   const engineProviderValue = useMemo(() => physics, [physics])
 
   useEffect(() => {
-    const engine = Matter.Engine.create({
-      //enableSleeping: true,
-      gravity: { x: 0, y: 0 },
-    })
+    const engine = Matter.Engine.create({ ...props })
 
     setPhysics(engine)
     return () => {
@@ -120,7 +122,7 @@ export const Physics = (props) => {
       //console.log(Matter.Vertices.contains(body.vertices, {x: app.width, y: body.position.y}))
 
       if (body.position.x > app.width) {
-        console.log('out', body)
+        //console.log('out', body)
         Matter.Body.setPosition(body, { x: app.width - 5, y: body.position.y })
 
         let v = Matter.Vector.neg(body.velocity)

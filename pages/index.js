@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import Head from 'next/head'
 //import Image from 'next/image'
 
@@ -26,10 +24,6 @@ export default function Home() {
       'Creative developer doing interactive experiences, games and art. o_o',
     metaCard: baseURL + '/meta-card.png',
   }
-
-  useEffect(() => {
-    console.log('Hello! 😋')
-  }, [])
 
   return (
     <div>

@@ -3,10 +3,17 @@ import React, { useRef } from 'react'
 import { Stage } from './two'
 import { Physics } from './matter'
 
-import { TitleContainer, TextFromDom, Hole, Flag, Player } from './components'
+import {
+  TitleContainer,
+  TextFromDom,
+  Hole,
+  Flag,
+  Player,
+  Stats,
+} from './components'
 
-import { Walls } from './components/walls'
-import { Debug } from './components/debug'
+import { Walls } from './components/_walls'
+import { Debug } from './components/_debug'
 
 const Game = () => {
   const textDomRef = useRef()
@@ -27,13 +34,14 @@ const Game = () => {
         fitted
         imageSmoothingEnabled
       >
-        <Physics>
+        <Physics gravity={{ x: 0, y: 0 }}>
           <Hole />
           {/* <Walls /> */}
           <TextFromDom textDomRef={textDomRef}></TextFromDom>
           <Player />
           <Flag />
-          <Debug />
+          {/* <Debug /> */}
+          {process.env.NODE_ENV !== 'production' ? <Stats /> : null}
         </Physics>
       </Stage>
     </>

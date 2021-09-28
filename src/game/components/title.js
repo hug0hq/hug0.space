@@ -34,7 +34,6 @@ export const TextFromDom = (props) => {
           items.push({
             text: {
               text: c.innerText,
-
               size: style.fontSize,
               weight: style.fontWeight,
               family: style.fontFamily,
@@ -68,25 +67,24 @@ const TextBody = (props) => {
     width: props.width,
     height: props.height,
     options: {
-      restitution: 0.8,
+      restitution: 0.9,
       friction: 0,
-      frictionAir: 0.3,
-      collisionFilter: {
-        category: '0x0002',
-      },
+      frictionAir: 0.2,
     },
   })
 
   return (
     <Group x={props.x} y={props.y} ref={textBody}>
       <Text x={-props.width / 2} {...props.text} />
-      <Rectangle
-        noFill
-        linewidth={2}
-        stroke={'#FFED4A'}
-        width={props.width}
-        height={props.height}
-      ></Rectangle>
+      {process.env.NODE_ENV !== 'production' ? (
+        <Rectangle
+          noFill
+          linewidth={2}
+          stroke={'#FFED4A'}
+          width={props.width}
+          height={props.height}
+        ></Rectangle>
+      ) : null}
     </Group>
   )
 }

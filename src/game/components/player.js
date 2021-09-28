@@ -35,7 +35,7 @@ export const Player = () => {
 
     if (Math.abs(bounding.top) < bounding.height) {
       if (!api.isMoving())
-        api.applyForce(0.9 /*0.1*/, {
+        api.applyForce(0.8 /*0.1*/, {
           x: e.clientX - bounding.left,
           y: e.clientY - bounding.top,
         })
@@ -78,7 +78,7 @@ export const Player = () => {
   }, [mousePosition])
 
   const draw = useMemo(() => {
-    const height = 40
+    const height = 50
     return [
       new Two.Anchor(8, 0),
       new Two.Anchor(-8, 0),
@@ -95,9 +95,6 @@ export const Player = () => {
       friction: 0,
       frictionAir: 0.05,
       label: 'ball',
-      collisionFilter: {
-        category: '0x0002',
-      },
     },
   })
 

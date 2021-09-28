@@ -11,14 +11,14 @@ export const Debug = (props) => {
   const [stats] = useState(new Stats())
 
   useRender((frameCount) => {
-    stats.begin()
-    stats.end()
+    /* stats.begin()
+    stats.end() */
   })
 
   useEffect(() => {
-    document.body.appendChild(stats.dom)
+    //document.body.appendChild(stats.dom)
     return () => {
-      document.body.removeChild(stats.dom)
+      //document.body.removeChild(stats.dom)
     }
   }, [stats.dom])
 
@@ -33,7 +33,7 @@ export const Debug = (props) => {
   //let tmplib = []
 
   useRender((frameCount) => {
-    return
+    //return
     //if (frameCount > 2) return
 
     /* if (!debugGroup.current) {
