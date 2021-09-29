@@ -10,6 +10,8 @@ const Path = (root, props) => {
     linewidth = 1,
   } = props
 
+  console.log('create p')
+
   const twoPath = new Two.Path(vertices)
 
   twoPath.fill = fill

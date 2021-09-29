@@ -15,6 +15,8 @@ import {
 import { useCircle, usePhysics } from '../matter'
 
 const AnimatedGroup = animated(Group)
+const AnimatedRoundedRectangle = animated(RoundedRectangle)
+const AnimatedPath = animated(Path)
 
 export const Hole = (props) => {
   const app = useApp()
@@ -89,13 +91,14 @@ export const Flag = (props) => {
   }, [])
 
   useEffect(() => {
-    if (!engine) return
+    //console.log(physics)
+    //if (!engine) return
     Matter.Events.on(engine, 'collisionStart', handleCollision)
 
     return () => {
       Matter.Events.off(engine, 'collisionStart', handleCollision)
     }
-  }, [engine])
+  }, [])
 
   const [holeBody, api] = useCircle({
     options: {
@@ -117,26 +120,49 @@ export const Flag = (props) => {
     config: { mass: 5, tension: 2000, friction: 40 },
   })
 
+  //
+  //const spring1Ref = useSpringRef()
+  const stickanim = useSpring({
+    to: { b: 80, height: 100 },
+    from: { b: 0, height: 0 },
+    delay: 1000,
+    config: { mass: 5, tension: 1000, friction: 100 },
+    // ref: spring1Ref,
+  })
+
+  const flaganim = useSpring({
+    to: { d: 1, w: 45, h: 15 },
+    from: { d: 0, w: 0, h: 0 },
+    //delay: 1000,
+    config: { mass: 5, tension: 2000, friction: 200 },
+    //ref: spring2Ref,
+  })
+  //useChain([spring1Ref])
+  const o = useRef()
+  console.log(o)
+
   return (
     <>
       <Group ref={flag} x={app.width - 100} y={app.height - 100}>
         <AnimatedGroup
           rotation={rotation.to({ range: [0, 0.5, 1], output: [0, 0.08, 0] })}
         >
-          <RoundedRectangle
+          <AnimatedRoundedRectangle
+          ref={o}
             y={-38}
+            {...stickanim}
             width={10}
-            height={100}
+            //height={100}
             radius={5}
             noStroke
           />
           <Group x={-5} y={-60}>
-            <Path
+            <AnimatedPath
               fill={'#F04D4D'}
               noStroke
               vertices={[
                 new Two.Anchor(0, 20),
-                new Two.Anchor(-45, 0),
+                new Two.Anchor(stickanim.h, 0),
                 new Two.Anchor(0, -20),
               ]}
             />
@@ -156,4 +182,8 @@ export const Flag = (props) => {
       />
     </>
   )
+}
+
+const FlagStick = (props) => {
+  return null
 }

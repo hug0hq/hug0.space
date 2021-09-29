@@ -5,6 +5,7 @@ import { useBox } from '../matter'
 
 const useComputedStyle = (textDomRef) => {
   const [style, setStyle] = useState()
+  //const [tm] = useState()
 
   useLayoutEffect(() => {
     const computedStyle = window.getComputedStyle(textDomRef.current)
@@ -14,6 +15,8 @@ const useComputedStyle = (textDomRef) => {
       fontWeight: parseInt(computedStyle.fontWeight, 10) || 700,
       fontFamily: computedStyle.fontFamily,
     })
+
+    //console.log(computedStyle)
   }, [textDomRef])
   return style
 }

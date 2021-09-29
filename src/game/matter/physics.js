@@ -7,14 +7,15 @@ import {
   useLayoutEffect,
   useCallback,
 } from 'react'
-import { EngineContext } from './context'
+import { EngineContext, usePhysics } from './context'
 import { useRender, useApp } from '../two'
 import Matter from 'matter-js'
 
 const useBody = (type, args) => {
-  const physics = useContext(EngineContext)
   const ref = useRef()
   const bodyref = useRef()
+
+  const physics = usePhysics()
 
   useRender(() => {
     if (
@@ -52,15 +53,18 @@ const useBody = (type, args) => {
   }, [])
 
   useLayoutEffect(() => {
-    if (physics) {
-      Matter.Composite.add(physics.world, bodyref.current)
-    }
+    //console.log(physics)
+    //if (!physics) return
+    Matter.Composite.add(physics.world, bodyref.current)
+    // if (physics) {
+
+    // }
     return () => {
-      if (physics) {
-        Matter.Composite.remove(physics.world, bodyref.current)
-      }
+      //if (physics) {
+      Matter.Composite.remove(physics.world, bodyref.current)
+      // }
     }
-  }, [physics])
+  }, [])
 
   const setPosition = useCallback((x, y) => {
     if (bodyref.current.position.x != x || bodyref.current.position.y != y) {
@@ -96,31 +100,86 @@ export const useCircle = (args) => {
 }
 
 export const Physics = (props) => {
-  const [physics, setPhysics] = useState(null)
+  const [physics, setPhysics] = useState(Matter.Engine.create({ ...props }))
+  const app = useApp()
+  //const physics = useRef()
   const engineProviderValue = useMemo(() => physics, [physics])
 
   useEffect(() => {
-    const engine = Matter.Engine.create({ ...props })
+    //const engine = Matter.Engine.create({ ...props })
 
-    setPhysics(engine)
+    //physics.current = engine
+    //setPhysics(engine)
     return () => {
-      Matter.Engine.clear(engine)
+      Matter.Engine.clear(physics)
     }
   }, [])
 
-  const app = useApp()
-
   useRender((frame) => {
-    if (!physics) return
+    //if (!physics) return
 
     Matter.Engine.update(physics, (1 / 3 / 60) * 1000) // (1000 / 60)
 
     // avoid tunneling
-    //if (frame > 2) return
-    const world = physics.world
-    world.bodies.map((body) => {
-      //console.log(Matter.Vertices.contains(body.vertices, {x: app.width, y: body.position.y}))
 
+    //if (frame > 2) return
+    //const world = physics.world
+    physics.world.bodies.forEach((body) => {
+      body.vertices.forEach((vertice) => {
+        const velocity = Matter.Vector.neg(vertice.body.velocity)
+        if (vertice.x > app.width) {
+          //console.log(  'collision', vertice)
+          Matter.Body.setPosition(vertice.body, {
+            x: app.width - (vertice.x - vertice.body.position.x), // vertice.body.positionPrev.x, 
+            y: vertice.body.position.y,
+          })
+          Matter.Body.setVelocity(vertice.body, {
+            x: velocity.x,
+            y: vertice.body.velocity.y,
+          })
+          //console.log(vertice)
+        }
+
+        if (vertice.x < 0) {
+          Matter.Body.setPosition(vertice.body, {
+            x: vertice.body.positionPrev.x,
+            y: vertice.body.position.y,
+          })
+          //let v = Matter.Vector.neg(body.velocity)
+          Matter.Body.setVelocity(vertice.body, {
+            x: velocity.x,
+            y: vertice.body.velocity.y,
+          })
+        }
+        if (vertice.y > app.height) {
+          Matter.Body.setPosition(vertice.body, {
+            x: vertice.body.position.x,
+            y: vertice.body.positionPrev.y,
+          })
+          //let v = Matter.Vector.neg(body.velocity)
+          Matter.Body.setVelocity(vertice.body, {
+            x: vertice.body.velocity.x,
+            y: velocity.y,
+          })
+        }
+        if (vertice.y < 0) {
+          Matter.Body.setPosition(vertice.body, {
+            x: vertice.body.position.x,
+            y: vertice.body.positionPrev.y,
+          })
+          //let v = Matter.Vector.neg(body.velocity)
+          Matter.Body.setVelocity(vertice.body, {
+            x: vertice.body.velocity.x,
+            y: velocity.y,
+          })
+        }
+        /*  const o = vertices.filter(element => element.x > app.width);
+        console.log('collision', o) */
+      })
+
+      return
+      //console.log(Matter.Vertices.contains(body.vertices, {x: app.width, y: body.position.y}))
+      //console.log(body.vertices)
       if (body.position.x > app.width) {
         //console.log('out', body)
         Matter.Body.setPosition(body, { x: app.width - 5, y: body.position.y })
