@@ -8,11 +8,12 @@ const Path = (root, props) => {
     noStroke = false,
     noFill = false,
     linewidth = 1,
+    closed = true,
+    curved = false,
+    manual = false,
   } = props
 
-  console.log('create p')
-
-  const twoPath = new Two.Path(vertices)
+  const twoPath = new Two.Path(vertices, closed, curved, manual)
 
   twoPath.fill = fill
   twoPath.stroke = stroke

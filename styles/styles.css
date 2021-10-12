@@ -309,6 +309,7 @@ footer .container {
 .p5js .card {
   margin-bottom: 2em;
   min-height: 100px;
+  aspect-ratio: 1/1;
 }
 
 /* .im canvas {

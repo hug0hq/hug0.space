@@ -14,8 +14,6 @@ const RoundedRectangle = (root, props) => {
     linewidth = 1,
   } = props
 
-  console.log('create r')
-
   const twoRoundedRec = new Two.RoundedRectangle(x, y, width, height, radius)
 
   twoRoundedRec.fill = fill

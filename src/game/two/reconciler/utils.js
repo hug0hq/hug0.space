@@ -30,13 +30,24 @@ export const createElement = (type, props = {}, root = null) => {
 export const applyNodeProps = (instance, oldProps, newProps) => {
   const newPropKeys = Object.keys(newProps || {})
 
+  //console.log(instance, oldProps)
   // hard overwrite
   if (newProps !== oldProps) {
     for (let i = 0; i < newPropKeys.length; i++) {
       const p = newPropKeys[i]
       if (oldProps[p] !== newProps[p]) {
         if (p != 'children') {
-          instance[p] = newProps[p]
+          if (p == 'y') {
+            //console.log(instance.translation, newProps[p], newPropKeys, p)
+            instance.translation.y = newProps[p]
+          } else if (p == 'x') {
+            //console.log(instance.translation, newProps[p], newPropKeys, p)
+            instance.translation.x = newProps[p]
+          } else {
+            instance[p] = newProps[p]
+
+            //console.log(instance, instance[p], newProps[p])
+          }
         }
       }
     }

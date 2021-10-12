@@ -29,7 +29,7 @@ const Game = () => {
           height: '100%',
           width: '100%',
         }}
-        //type="SVGRenderer"
+        type="SVGRenderer"
         autostart
         fitted
         imageSmoothingEnabled
