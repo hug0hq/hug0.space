@@ -131,11 +131,15 @@ export const Flag = (props) => {
   const spring1Ref = useSpringRef()
   const spring2Ref = useSpringRef()
 
+  const [poleVisible, setPoleVisible] = useState(false)
+
+
   const stickanim = useSpring({
     to: { y: -38, height: 100 },
     from: { y: 10, height: 5 },
     //delay: 500,
     config: { mass: 5, tension: 1000, friction: 100 },
+    onStart:   () => setPoleVisible(true) ,
     ref: spring1Ref,
   })
 
@@ -146,7 +150,7 @@ export const Flag = (props) => {
     to: { xy: [40, 5] },
     from: { xy: [0, 20] },
     //delay: 1000,
-    config: { mass: 500, tension: 2000, friction: 200 },
+    config: { mass: 5, tension: 2000, friction: 200 },
     onStart: { xy: () => setFlagVisible(true) },
     ref: spring2Ref,
   })
@@ -170,6 +174,9 @@ export const Flag = (props) => {
         >
           <AnimatedRoundedRectangle
             //y={-38}
+            
+            fill={!poleVisible ? 'transparent' : '#f3f3f3'}
+             
             {...stickanim}
             width={10}
             //height={100}
@@ -186,11 +193,26 @@ export const Flag = (props) => {
                 anchor(0, -20, 0, 0, 0, 0, Two.Commands.move),
                 //anchor(-x+10, y-10 /* -10 */, 0, 0, 0, 0, Two.Commands.line),
 
-                anchor(-x, -y, 0, 0, 0, 0, Two.Commands.line),
-                anchor(-x, y, 0, 0, 0, 0, Two.Commands.line),
+               // anchor(-x, -y-5, 0, 0, 0, 0, Two.Commands.line),
+                // x, y, left, right
+                anchor(-x , -y , 0, 0, -6, 2, Two.Commands.curve),
+
+                anchor(-x -5.2, -y+5, 0, 0, 0, 0, Two.Commands.curve),
+
+                //anchor(-x -5, -y, 0, 0, 0, 0, Two.Commands.line),
+
+                anchor(-x -5.2 , y-5 , 0, 0, 0, 0, Two.Commands.line),
+
+                anchor(-x , y, -6, -2, 0, 0, Two.Commands.curve),
+
+                anchor(0, 20, 0, 0, 0, 0, Two.Commands.line)
+
+                //anchor(-x - 4, y - 5, 0, -4, 0, 0, Two.Commands.curve),
+
+                //anchor(-x, y, 0, 0, 0, 0, Two.Commands.line),
 
                 //anchor(-x, 0, 0, 0, 0, 0, Two.Commands.line),
-                anchor(0, 20, 0, 0, 0, 0, Two.Commands.line),
+                //anchor(0, 20, 0, 0, 0, 0, Two.Commands.line),
               ])}
 
               /*
