@@ -35,11 +35,11 @@ const Game = () => {
         imageSmoothingEnabled
       >
         <Physics gravity={{ x: 0, y: 0 }}>
-          <Hole />
+          <Hole textDomRef={textDomRef}/>
           {/* <Walls /> */}
           <TextFromDom textDomRef={textDomRef}></TextFromDom>
           <Player />
-          <Flag />
+          <Flag textDomRef={textDomRef} />
           {/* <Debug /> */}
           {process.env.NODE_ENV !== 'production' ? <Stats /> : null}
         </Physics>

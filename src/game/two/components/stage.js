@@ -53,7 +53,7 @@ class Stage extends React.Component {
     this.twoContainer = TwoFiber.createContainer(this.app)
     TwoFiber.updateContainer(this.getChildren(), this.twoContainer, this)
 
-    window.addEventListener('resize', this.resizeListener)
+    //window.addEventListener('resize', this.resizeListener)
     window.addEventListener('resize', this.updateSize)
   }
 
@@ -63,7 +63,7 @@ class Stage extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeListener)
+    //window.removeEventListener('resize', this.resizeListener)
     window.removeEventListener('resize', this.updateSize)
 
     TwoFiber.updateContainer(null, this.twoContainer, this)

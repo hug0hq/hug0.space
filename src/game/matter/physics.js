@@ -69,10 +69,38 @@ const useBody = (type, args) => {
   const setPosition = useCallback((x, y) => {
     if (bodyref.current.position.x != x || bodyref.current.position.y != y) {
       Matter.Body.setPosition(bodyref.current, { x: x, y: y })
-      console.log('update pos')
+      //console.log('update pos')
     }
   }, [])
 
+  const setRotation = useCallback((angle) => {
+   
+    Matter.Body.setAngle(bodyref.current, angle)
+    
+  }, [])
+
+  const setRecSize = useCallback((width, height)=>{
+    if (type == 'circle') return
+
+    console.log(bodyref.current)
+
+    Matter.Body.setVertices(bodyref.current, [
+      { x: -width/2 , y: height/2 },
+      { x: width/2 , y: height/2 },
+      { x: width/2 , y: -height/2 },
+      { x: -width/2 , y: -height/2 },
+    ])
+
+  })
+
+  const setVelocity = useCallback((velocity)=>{
+    
+    Matter.Body.setVelocity(bodyref.current, {
+      x: velocity,
+      y: velocity,
+    })
+
+  })
   //const setSize = useCallback((x, y) => {}, [])
 
   const applyForce = useCallback((force, vector) => {
@@ -88,7 +116,7 @@ const useBody = (type, args) => {
     return bodyref.current.speed > 0.5 ? true : false
   }, [])
 
-  return [ref, { setPosition, applyForce, isMoving }]
+  return [ref, { setPosition,setVelocity,  setRotation, applyForce, isMoving, setRecSize }]
 }
 
 export const useBox = (args) => {
@@ -130,7 +158,7 @@ export const Physics = (props) => {
         if (vertice.x > app.width) {
           //console.log(  'collision', vertice)
           Matter.Body.setPosition(vertice.body, {
-            x: app.width - (vertice.x - vertice.body.position.x), // vertice.body.positionPrev.x, 
+            x: app.width - (vertice.x - vertice.body.positionPrev.x), // vertice.body.positionPrev.x, 
             y: vertice.body.position.y,
           })
           Matter.Body.setVelocity(vertice.body, {
@@ -142,7 +170,7 @@ export const Physics = (props) => {
 
         if (vertice.x < 0) {
           Matter.Body.setPosition(vertice.body, {
-            x: vertice.body.positionPrev.x,
+            x: 0 - (vertice.x -  vertice.body.positionPrev.x), //vertice.x + vertice.body.positionPrev.x,
             y: vertice.body.position.y,
           })
           //let v = Matter.Vector.neg(body.velocity)
@@ -154,7 +182,7 @@ export const Physics = (props) => {
         if (vertice.y > app.height) {
           Matter.Body.setPosition(vertice.body, {
             x: vertice.body.position.x,
-            y: vertice.body.positionPrev.y,
+            y: app.height - (vertice.y - vertice.body.positionPrev.y) //vertice.body.positionPrev.y,
           })
           //let v = Matter.Vector.neg(body.velocity)
           Matter.Body.setVelocity(vertice.body, {
@@ -165,7 +193,7 @@ export const Physics = (props) => {
         if (vertice.y < 0) {
           Matter.Body.setPosition(vertice.body, {
             x: vertice.body.position.x,
-            y: vertice.body.positionPrev.y,
+            y: 0 - (vertice.y -  vertice.body.positionPrev.y) //vertice.body.positionPrev.y,
           })
           //let v = Matter.Vector.neg(body.velocity)
           Matter.Body.setVelocity(vertice.body, {
@@ -177,35 +205,6 @@ export const Physics = (props) => {
         console.log('collision', o) */
       })
 
-      return
-      //console.log(Matter.Vertices.contains(body.vertices, {x: app.width, y: body.position.y}))
-      //console.log(body.vertices)
-      if (body.position.x > app.width) {
-        //console.log('out', body)
-        Matter.Body.setPosition(body, { x: app.width - 5, y: body.position.y })
-
-        let v = Matter.Vector.neg(body.velocity)
-        Matter.Body.setVelocity(body, { x: v.x, y: body.velocity.y })
-        //console.log('out', v, body.velocity)
-      }
-      if (body.position.x < 0) {
-        Matter.Body.setPosition(body, { x: 0, y: body.position.y })
-
-        let v = Matter.Vector.neg(body.velocity)
-        Matter.Body.setVelocity(body, { x: v.x, y: body.velocity.y })
-      }
-      if (body.position.y > app.height) {
-        Matter.Body.setPosition(body, { x: body.position.x, y: app.height })
-
-        let v = Matter.Vector.neg(body.velocity)
-        Matter.Body.setVelocity(body, { x: body.velocity.x, y: v.y })
-      }
-      if (body.position.y < 0) {
-        Matter.Body.setPosition(body, { x: body.position.x, y: 0 })
-
-        let v = Matter.Vector.neg(body.velocity)
-        Matter.Body.setVelocity(body, { x: body.velocity.x, y: v.y })
-      }
     })
   })
 

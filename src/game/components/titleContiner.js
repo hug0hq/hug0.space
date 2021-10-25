@@ -1,6 +1,7 @@
 import { forwardRef, Fragment, useMemo } from 'react'
 
 export const TitleContainer = forwardRef(({ text }, ref) => {
+
   const htmlText = useMemo(() => {
     return text.map((sentence, sentenceIndex) => {
       return (
@@ -17,6 +18,7 @@ export const TitleContainer = forwardRef(({ text }, ref) => {
   return (
     <div
       className="section"
+      id="to-observe"
       style={{
         position: 'absolute',
         width: '100%',

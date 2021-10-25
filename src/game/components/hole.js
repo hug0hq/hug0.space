@@ -30,7 +30,9 @@ export const Hole = (props) => {
   const hole = useRef()
 
   useRender(() => {
-    hole.current.position.set(app.width - 100, app.height - 100)
+    const padding = parseInt(window.getComputedStyle(props.textDomRef.current.parentElement).getPropertyValue("padding-left"))
+
+    hole.current.position.set(app.width - padding, app.height - padding)
   })
 
   return (
@@ -101,6 +103,7 @@ export const Flag = (props) => {
     //console.log(physics)
     //if (!engine) return
     Matter.Events.on(engine, 'collisionStart', handleCollision)
+   //console.log(props.textDomRef.current.parentElement.style)
 
     return () => {
       Matter.Events.off(engine, 'collisionStart', handleCollision)
@@ -116,8 +119,10 @@ export const Flag = (props) => {
   })
 
   useRender(() => {
-    flag.current.position.set(app.width - 100, app.height - 100)
-    api.setPosition(app.width - 100, app.height - 100)
+    const padding = parseInt(window.getComputedStyle(props.textDomRef.current.parentElement).getPropertyValue("padding-left"))
+
+    flag.current.position.set(app.width - padding, app.height - padding)
+    api.setPosition(app.width - padding, app.height - padding)
   })
 
   const { rotation } = useSpring({
@@ -157,7 +162,7 @@ export const Flag = (props) => {
 
   useChain([spring1Ref, spring2Ref], [0.5, 1])
 
-  console.log(Two.Commands)
+  //console.log(Two.Commands)
 
   const anchor = useCallback((x, y, l1, l2, r1, r2, command) => {
     //console.log('ooo')
