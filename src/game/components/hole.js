@@ -30,7 +30,11 @@ export const Hole = (props) => {
   const hole = useRef()
 
   useRender(() => {
-    const padding = parseInt(window.getComputedStyle(props.textDomRef.current.parentElement).getPropertyValue("padding-left"))
+    const padding = parseInt(
+      window
+        .getComputedStyle(props.textDomRef.current.parentElement)
+        .getPropertyValue('padding-left')
+    )
 
     hole.current.position.set(app.width - padding, app.height - padding)
   })
@@ -78,10 +82,11 @@ export const Flag = (props) => {
     pairs.forEach((pair) => {
       let { bodyA, bodyB } = pair
       if (bodyA.label === 'ball' && bodyB.label === 'hole') {
-        Matter.Body.setVelocity(bodyA, {
+       /*  Matter.Body.setVelocity(bodyA, {
           x: 0,
           y: 0,
-        })
+        }) */
+
         const w = Matter.Common.random(0, app.width)
         const h = Matter.Common.random(0, app.height)
 
@@ -95,6 +100,27 @@ export const Flag = (props) => {
 
         setPlayScore(true)
         dispatch({ type: 'increment' })
+
+        console.log('b force')
+
+        const force = 0.2
+        const vector = {
+          x: Matter.Common.random(0, app.width),
+          y: Matter.Common.random(0, app.height),
+        }
+        const deltaVector = Matter.Vector.sub(vector, bodyA.position)
+        const normalizedDelta = Matter.Vector.normalise(deltaVector)
+        const forceVector = Matter.Vector.mult(normalizedDelta, force)
+        const op = Matter.Vector.neg(forceVector)
+
+        //Matter.Body.applyForce(bodyA, bodyA.position, op)
+        Matter.Body.setVelocity(bodyA, {
+          x: op.x*12,
+          y: op.y*12,
+        })
+        //console.log(bodyA,bodyA.position,  vector, force, op)
+
+        console.log('b after force')
       }
     })
   }, [])
@@ -103,7 +129,7 @@ export const Flag = (props) => {
     //console.log(physics)
     //if (!engine) return
     Matter.Events.on(engine, 'collisionStart', handleCollision)
-   //console.log(props.textDomRef.current.parentElement.style)
+    //console.log(props.textDomRef.current.parentElement.style)
 
     return () => {
       Matter.Events.off(engine, 'collisionStart', handleCollision)
@@ -119,7 +145,11 @@ export const Flag = (props) => {
   })
 
   useRender(() => {
-    const padding = parseInt(window.getComputedStyle(props.textDomRef.current.parentElement).getPropertyValue("padding-left"))
+    const padding = parseInt(
+      window
+        .getComputedStyle(props.textDomRef.current.parentElement)
+        .getPropertyValue('padding-left')
+    )
 
     flag.current.position.set(app.width - padding, app.height - padding)
     api.setPosition(app.width - padding, app.height - padding)
@@ -138,13 +168,12 @@ export const Flag = (props) => {
 
   const [poleVisible, setPoleVisible] = useState(false)
 
-
   const stickanim = useSpring({
     to: { y: -38, height: 100 },
     from: { y: 10, height: 5 },
     //delay: 500,
     config: { mass: 5, tension: 1000, friction: 100 },
-    onStart:   () => setPoleVisible(true) ,
+    onStart: () => setPoleVisible(true),
     ref: spring1Ref,
   })
 
@@ -179,9 +208,8 @@ export const Flag = (props) => {
         >
           <AnimatedRoundedRectangle
             //y={-38}
-            
+
             fill={!poleVisible ? 'transparent' : '#f3f3f3'}
-             
             {...stickanim}
             width={10}
             //height={100}
@@ -198,19 +226,19 @@ export const Flag = (props) => {
                 anchor(0, -20, 0, 0, 0, 0, Two.Commands.move),
                 //anchor(-x+10, y-10 /* -10 */, 0, 0, 0, 0, Two.Commands.line),
 
-               // anchor(-x, -y-5, 0, 0, 0, 0, Two.Commands.line),
+                // anchor(-x, -y-5, 0, 0, 0, 0, Two.Commands.line),
                 // x, y, left, right
-                anchor(-x , -y , 0, 0, -6, 2, Two.Commands.curve),
+                anchor(-x, -y, 0, 0, -6, 2, Two.Commands.curve),
 
-                anchor(-x -5.2, -y+5, 0, 0, 0, 0, Two.Commands.curve),
+                anchor(-x - 5.2, -y + 5, 0, 0, 0, 0, Two.Commands.curve),
 
                 //anchor(-x -5, -y, 0, 0, 0, 0, Two.Commands.line),
 
-                anchor(-x -5.2 , y-5 , 0, 0, 0, 0, Two.Commands.line),
+                anchor(-x - 5.2, y - 5, 0, 0, 0, 0, Two.Commands.line),
 
-                anchor(-x , y, -6, -2, 0, 0, Two.Commands.curve),
+                anchor(-x, y, -6, -2, 0, 0, Two.Commands.curve),
 
-                anchor(0, 20, 0, 0, 0, 0, Two.Commands.line)
+                anchor(0, 20, 0, 0, 0, 0, Two.Commands.line),
 
                 //anchor(-x - 4, y - 5, 0, -4, 0, 0, Two.Commands.curve),
 

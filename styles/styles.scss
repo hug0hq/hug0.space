@@ -6,6 +6,10 @@ $colorGreen: #77d877;
 $lg: 1020px;
 $sm: 420px;
 
+body {
+  background-color: $colorDark;
+}
+
 .title {
   letter-spacing: 0.05em;
   line-height: 1.5em;
@@ -189,6 +193,35 @@ $sm: 420px;
   &--img {
     height: 100%;
     fill: $colorWhite;
+  }
+}
+
+.textWave {
+  &:hover {
+    span:before {
+      // animation-play-state: play;
+      // animation-iteration-count:infinite;
+      // animation: animate 1s ease-in-out;
+      margin-top: -20px;
+      //animation-delay: calc(0.1s * var(--i));
+    }
+  }
+   span{
+    &:before{
+    content: '';
+   // display: block;
+   display: inline-block;
+    //span {
+      //animation-direction: reverse;
+      margin-top: 0px;
+      // animation: animate 1s ease-in-out;
+      // animation-delay: calc(0.1s * var(--i));
+      //animation-play-state: paused ;
+      transition: margin 0.1s ease-in-out;
+      transition-delay: calc(0.1s * var(--i));
+      // display: inline-block;
+   // }
+    }
   }
 }
 

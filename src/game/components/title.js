@@ -58,7 +58,7 @@ export const TextFromDom = (props) => {
       //fontFamily: style.fontFamily,
     })
 
-    console.log('set size', size, weight, font)
+    //console.log('set size', size, weight, font)
   }, [])
 
 
@@ -195,7 +195,7 @@ const TextBody = (props) => {
     //if(textSize.size != size){
 
      // setTextSize(size)
-      console.log(textSize, size)
+     // console.log(textSize, size)
      setTextSize(prods => ({
           ...prods,
           size: size

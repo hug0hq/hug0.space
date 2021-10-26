@@ -1,4 +1,8 @@
+import React, { useState } from 'react'
+
 const Games = () => {
+  const [store1] = useState('Google Play')
+  const [store2] = useState('Game Jolt')
   return (
     <section className="section section--bg-dark">
       <div className="container">
@@ -19,7 +23,15 @@ const Games = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Google Play
+                {store1.split('').map((char, index) => {
+                  let cssProperties = {}
+                  cssProperties['--i'] = index
+                  return (
+                    <span style={cssProperties} key={index}>
+                      {char}
+                    </span>
+                  )
+                })}
               </a>
             </span>
             {/* </h3> */}

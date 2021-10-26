@@ -22,11 +22,11 @@ export const Connections = () => {
       alt: 'codepen',
       img: './logos/codepen.svg',
     },
-    {
+    /* {
       href: 'https://blog.hug0.space',
       alt: 'blog',
       text: 'Blog',
-    },
+    }, */
   ]
   return (
     <nav className="connections">
