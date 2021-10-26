@@ -6,8 +6,12 @@ $colorGreen: #77d877;
 $lg: 1020px;
 $sm: 420px;
 
-body {
+body, .header--bg {
   background-color: $colorDark;
+}
+
+header {
+  background-color: $colorWhite;
 }
 
 .title {
