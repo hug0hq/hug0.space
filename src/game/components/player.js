@@ -73,7 +73,7 @@ export const Player = () => {
 
   useEffect(() => {
     window.addEventListener('pointerup', up)
-    if (window.matchMedia('(hover: hover)').matches) {
+    if (!window.matchMedia('(pointer: coarse)').matches) {
       // do sth
       window.addEventListener('pointerdown', down)
     }
