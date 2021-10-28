@@ -14,7 +14,6 @@ const Text = (root, props) => {
   } = props
 
   const style = { size, fill, weight, family, alignment, baseline }
-
   const twoText = new Two.Text(text, x, y, style)
 
   return twoText

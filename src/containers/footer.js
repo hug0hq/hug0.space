@@ -1,5 +1,3 @@
-//import { Connections, Contact } from '../components'
-
 import dynamic from 'next/dynamic'
 
 const Connections = dynamic(() => import('../components/connections'))
@@ -15,6 +13,3 @@ export const Footer = () => {
     </footer>
   )
 }
-
-/* export default Footer
- */

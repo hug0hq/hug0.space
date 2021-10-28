@@ -1,15 +1,11 @@
-//import video from ''
-
 import { Video as CloudinaryVideo } from 'cloudinary-react'
-
 
 const Video = (props) => {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
 
-
   return (
     <CloudinaryVideo
-    muted
+      muted
       className="video"
       cloudName={cloudName}
       publicId={props.publicId}
@@ -18,11 +14,9 @@ const Video = (props) => {
       loop
       autoPlay={!props.playOnOver ? true : false}
       poster={{
-        //gravity: 'north',
         startOffset: '0',
-        fetchFormat: 'auto'
-        
-    }}
+        fetchFormat: 'auto',
+      }}
       onMouseOver={(e) => {
         if (props.playOnOver) {
           e.target.play()

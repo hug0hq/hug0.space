@@ -6,6 +6,8 @@ import Two from 'two.js'
 import { Ellipse, Group, Path, useApp, useRender } from '../two'
 import { useCircle } from '../matter'
 
+import ReactGA from 'react-ga'
+
 const angle = (x, y) => {
   return Math.atan2(y, x) + Math.PI / 2
 }
@@ -17,8 +19,7 @@ export const Player = (props) => {
   const [mousePosition, setMousePosition] = useState(null)
 
   useEffect(() => {
-    //const bounding = app.renderer.domElement.getBoundingClientRect()
-    api.applyForce(0.02 , {
+    api.applyForce(0.02, {
       x: 0,
       y: app.height - padding - 10,
     })
@@ -26,8 +27,6 @@ export const Player = (props) => {
 
   //mouse
   useRender(() => {
-    //reset player on scroll
-
     const bounding = app.renderer.domElement.getBoundingClientRect()
     if (Math.abs(bounding.top) < bounding.height) {
       return
@@ -36,7 +35,6 @@ export const Player = (props) => {
   })
   const move = useCallback((e) => {
     const bounding = app.renderer.domElement.getBoundingClientRect()
-
     if (Math.abs(bounding.top) < bounding.height) {
       setMousePosition({
         x: e.clientX - bounding.left,
@@ -47,15 +45,25 @@ export const Player = (props) => {
 
   const up = useCallback((e) => {
     window.removeEventListener('pointermove', move)
-
     const bounding = app.renderer.domElement.getBoundingClientRect()
 
     if (Math.abs(bounding.top) < bounding.height) {
-      if (!api.isMoving())
-        api.applyForce(0.8 /*0.1*/, {
+      if (!api.isMoving()) {
+        api.applyForce(0.8, {
           x: e.clientX - bounding.left,
           y: e.clientY - bounding.top,
         })
+        if (
+          process.env.NODE_ENV === 'production' &&
+          process.env.NEXT_PUBLIC_GA_KEY
+        ) {
+          ReactGA.event({
+            category: 'Game',
+            action: 'swing',
+          })
+        }
+      }
+
       setMousePosition(null)
     }
   }, [])
@@ -74,7 +82,6 @@ export const Player = (props) => {
   useEffect(() => {
     window.addEventListener('pointerup', up)
     if (!window.matchMedia('(pointer: coarse)').matches) {
-      // do sth
       window.addEventListener('pointerdown', down)
     }
 
@@ -118,12 +125,13 @@ export const Player = (props) => {
     },
   })
 
-  const [padding] = useState( parseInt(
-    window
-      .getComputedStyle(props.textDomRef.current.parentElement)
-      .getPropertyValue('padding-left')
-
-  ))
+  const [padding] = useState(
+    parseInt(
+      window
+        .getComputedStyle(props.textDomRef.current.parentElement)
+        .getPropertyValue('padding-left')
+    )
+  )
 
   return (
     <Group ref={body} x={padding + 10} y={app.height - padding - 10}>

@@ -17,22 +17,22 @@ const calcY = (x) =>
 const Card = (props) => {
   const domTarget = useRef(null)
 
-  const  [ { rotateX, rotateY } , api]  = useSpring(() => ({
+  const [{ rotateX, rotateY }, api] = useSpring(() => ({
     rotateX: 0,
     rotateY: 0,
-    config: {  mass: 4, tension: 250, friction: 40 /* mass: 14 , tension: 350, friction: 40 */ },
+    config: { mass: 4, tension: 250, friction: 40 },
   }))
 
   useGesture(
     {
       onMoveStart: ({ xy: [px, py] }) =>
-      api.start({
+        api.start({
           rotateX: calcX(py),
           rotateY: calcY(px),
         }),
 
       onMoveEnd: () =>
-      api.start({
+        api.start({
           rotateX: 0,
           rotateY: 0,
         }),
@@ -50,8 +50,7 @@ const Card = (props) => {
         rotateY,
       }}
     >
-        {props.children}
-     
+      {props.children}
     </animated.div>
   )
 }

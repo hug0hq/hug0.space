@@ -1,7 +1,6 @@
 import { forwardRef, Fragment, useMemo } from 'react'
 
 export const TitleContainer = forwardRef(({ text }, ref) => {
-
   const htmlText = useMemo(() => {
     return text.map((sentence, sentenceIndex) => {
       return (
@@ -26,7 +25,15 @@ export const TitleContainer = forwardRef(({ text }, ref) => {
         boxSizing: 'border-box',
       }}
     >
-      <h1 ref={ref} className="container textWhite tx" style={process.env.NODE_ENV !== 'production' ? {opacity: 0.1} : {opacity: 0} }>
+      <h1
+        ref={ref}
+        className="container textWhite tx"
+        style={
+          process.env.NODE_ENV !== 'production'
+            ? { opacity: 0.1 }
+            : { opacity: 0 }
+        }
+      >
         {htmlText}
       </h1>
     </div>

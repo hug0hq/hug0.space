@@ -1,4 +1,3 @@
-// import Image from 'next/image'
 import { ArtCard } from '../components'
 
 export const Art = () => {
@@ -101,18 +100,7 @@ export const Art = () => {
         </header>
         <div className="container--body p5js">
           {cards.map((card) => {
-            return (
-              <ArtCard
-                linkColor="#000"
-                key={card.publicId}
-                /* publicId={card.publicId}
-                video={card.video}
-                alt={card.alt}
-                href={card.href}
-                aspectRatio={card.aspectRatio} */
-                {...card}
-              />
-            )
+            return <ArtCard key={card.publicId} {...card} />
           })}
 
           {/* <div className="dummy card"></div> */}
@@ -121,5 +109,3 @@ export const Art = () => {
     </section>
   )
 }
-
-/* export default Art */

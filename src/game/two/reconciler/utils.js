@@ -20,7 +20,7 @@ export const createElement = (type, props = {}, root = null) => {
     return COMPONENTS[type](root, props)
   } catch (e) {
     console.error(
-      `react-two has no node with the type '${type}'. Group will be used instead.`,
+      `react-two has no node with the type '${type}'. Group will be used instead.`
     )
   }
 
@@ -30,7 +30,6 @@ export const createElement = (type, props = {}, root = null) => {
 export const applyNodeProps = (instance, oldProps, newProps) => {
   const newPropKeys = Object.keys(newProps || {})
 
-  //console.log(instance, oldProps)
   // hard overwrite
   if (newProps !== oldProps) {
     for (let i = 0; i < newPropKeys.length; i++) {
@@ -38,14 +37,11 @@ export const applyNodeProps = (instance, oldProps, newProps) => {
       if (oldProps[p] !== newProps[p]) {
         if (p != 'children') {
           if (p == 'y') {
-            //console.log(instance.translation, newProps[p], newPropKeys, p)
             instance.translation.y = newProps[p]
           } else if (p == 'x') {
-            //console.log(instance.translation, newProps[p], newPropKeys, p)
             instance.translation.x = newProps[p]
           } else {
             instance[p] = newProps[p]
-
             //console.log(instance, instance[p], newProps[p])
           }
         }
