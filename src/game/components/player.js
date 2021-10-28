@@ -10,7 +10,7 @@ const angle = (x, y) => {
   return Math.atan2(y, x) + Math.PI / 2
 }
 
-export const Player = () => {
+export const Player = (props) => {
   const app = useApp()
   const arrow = useRef()
 
@@ -18,9 +18,9 @@ export const Player = () => {
 
   useEffect(() => {
     //const bounding = app.renderer.domElement.getBoundingClientRect()
-    api.applyForce(0.02 /*0.1*/, {
+    api.applyForce(0.02 , {
       x: 0,
-      y: app.height - 100,
+      y: app.height - padding - 10,
     })
   }, [])
 
@@ -118,8 +118,15 @@ export const Player = () => {
     },
   })
 
+  const [padding] = useState( parseInt(
+    window
+      .getComputedStyle(props.textDomRef.current.parentElement)
+      .getPropertyValue('padding-left')
+
+  ))
+
   return (
-    <Group ref={body} x={100} y={app.height - 100}>
+    <Group ref={body} x={padding + 10} y={app.height - padding - 10}>
       <Path ref={arrow} noStroke fill={'#F04D4D'} vertices={draw} />
       <Ellipse width={10} height={10} fill={'#f3f3f3'} noStroke />
       {process.env.NODE_ENV !== 'production' ? (

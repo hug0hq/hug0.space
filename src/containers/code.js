@@ -1,35 +1,53 @@
 import { Pen } from '../components'
 
-const Code = () => {
+export const Code = () => {
   const cards = [
+    {
+      color: '#170b3d',
+      publicId: 'go_planet',
+      tags: ['three.js', 'glsl'],
+      href: 'https://codesandbox.io/s/q9v81',
+    },
+    {
+      color: '#202a36',
+      publicId: 'go_lemon',
+      tags: ['three.js', 'cannon.js'],
+      href: 'https://codesandbox.io/s/jpsrs',
+    },
     {
       color: '#edda5b',
       publicId: 'codepen-crain',
+      tags: ['three.js', 'cannon.js'],
       href: 'https://codepen.io/hug0hq/pen/KKMVGQg',
     },
     {
       color: '#1d1d1b',
       publicId: 'codepen-2dgolf',
+      tags: ['two.js', 'matter.js'],
       href: 'https://codepen.io/hug0hq/pen/ExyyYNZ',
     },
     {
       color: '#282c34',
+      tags: ['react.js'],
       publicId: 'codepen-amsterdamtext',
       href: 'https://codepen.io/hug0hq/pen/OJXXLyB',
     },
     {
       color: '#0cbab9',
+      tags: ['css'],
       publicId: 'codepen-kawaiighost',
       href: 'https://codepen.io/hug0hq/pen/NEXgKa',
     },
     {
       color: '#f6f8ff',
+      tags: ['gsap.js'],
       publicId: 'codepen-cookie',
       href: 'https://codepen.io/hug0hq/pen/PozNeEQ',
     },
     {
       color: '#A9E2F3',
-      publicId: 'codepen-chick',
+      tags: ['zdog.js'],
+      publicId: 'codepen-chick',      
       href: 'https://codepen.io/hug0hq/pen/ZEzPVLP',
     },
   ]
@@ -46,10 +64,11 @@ const Code = () => {
             return (
               <Pen
                 key={card.publicId}
-                id={card.publicId}
-                color={card.color}
                 linkColor="#fff"
-                href={card.href}
+                /* publicId={card.publicId}
+                color={card.color}
+                href={card.href} */
+                {...card}
               />
             )
           })}
@@ -59,4 +78,5 @@ const Code = () => {
   )
 }
 
-export default Code
+/* export default Code
+ */

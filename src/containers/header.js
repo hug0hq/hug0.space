@@ -7,17 +7,16 @@ import React, { useEffect, useState, useRef } from 'react'
 //const GameThree = dynamic(() => import('../components/game'), { ssr: false })
 //import GameThree from '../components/game'
 import Game from '../game/game'
-
 import { Logo } from '../svg'
 
-const Header = () => {
+export const Header = () => {
   const [text] = useState('Hi there!\nI make cool things')
 
   const h1text = useRef()
 
   return (
-    <header className="main " /* pp */ id="golf">
-      <div className="header--bg"
+    <header className="main topheader" /* pp */ id="golf">
+      <div className="topheader--bg "
         style={{
           position: 'absolute',
           width: '100%',
@@ -55,4 +54,4 @@ const Header = () => {
   )
 }
 
-export default Header
+/* export default Header */

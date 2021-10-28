@@ -36,14 +36,16 @@ export const Hole = (props) => {
         .getPropertyValue('padding-left')
     )
 
-    hole.current.position.set(app.width - padding, app.height - padding)
+    //console.log(padding)
+
+    hole.current.position.set(app.width - padding - 8, app.height - padding - 8)
   })
 
   return (
     <Ellipse
       ref={hole}
-      x={app.width - 100}
-      y={app.height - 100}
+     /*  x={app.width - 100}
+      y={app.height - 100} */
       width={16}
       height={12}
       fill={'#424242'}
@@ -101,7 +103,7 @@ export const Flag = (props) => {
         setPlayScore(true)
         dispatch({ type: 'increment' })
 
-        console.log('b force')
+        //console.log('b force')
 
         const force = 0.2
         const vector = {
@@ -120,7 +122,7 @@ export const Flag = (props) => {
         })
         //console.log(bodyA,bodyA.position,  vector, force, op)
 
-        console.log('b after force')
+        //console.log('b after force')
       }
     })
   }, [])
@@ -151,8 +153,8 @@ export const Flag = (props) => {
         .getPropertyValue('padding-left')
     )
 
-    flag.current.position.set(app.width - padding, app.height - padding)
-    api.setPosition(app.width - padding, app.height - padding)
+    flag.current.position.set(app.width - padding - 8, app.height - padding - 8)
+    api.setPosition(app.width - padding - 8, app.height - padding - 8)
   })
 
   const { rotation } = useSpring({
@@ -202,7 +204,7 @@ export const Flag = (props) => {
 
   return (
     <>
-      <Group ref={flag} x={app.width - 100} y={app.height - 100}>
+      <Group ref={flag} /* x={app.width - 100} y={app.height - 100} */>
         <AnimatedGroup
           rotation={rotation.to({ range: [0, 0.5, 1], output: [0, 0.08, 0] })}
         >
@@ -278,8 +280,8 @@ export const Flag = (props) => {
         </AnimatedGroup>
       </Group>
       <Ellipse
-        x={app.width - 100}
-        y={app.height - 100}
+        /* x={app.width - 100}
+        y={app.height - 100} */
         ref={holeBody}
         width={10}
         height={10}

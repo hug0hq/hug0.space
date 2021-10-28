@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Games = () => {
+export const Games = () => {
   const [store1] = useState('Google Play')
   const [store2] = useState('Game Jolt')
   return (
@@ -67,4 +67,5 @@ const Games = () => {
   )
 }
 
-export default Games
+/* export default Games
+ */

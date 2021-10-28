@@ -1,4 +1,4 @@
-const About = () => {
+export const About = () => {
   return (
     <section className="section section--bg-white">
       <div className="container">
@@ -19,4 +19,5 @@ const About = () => {
   )
 }
 
-export default About
+/* export default About
+ */

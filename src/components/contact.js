@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const Contact = () => {
+const Contact = () => {
   const [mail] = useState('hi@hug0.space')
 
   return (
@@ -22,3 +22,5 @@ export const Contact = () => {
     </div>
   )
 }
+
+export default Contact

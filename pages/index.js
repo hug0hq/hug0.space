@@ -1,17 +1,25 @@
 import Head from 'next/head'
 //import Image from 'next/image'
 
-import dynamic from 'next/dynamic'
+ //import dynamic from 'next/dynamic'
 //import Games from '../src/Games'
 //const App = dynamic(() => import('../src/App'), { ssr: false })
-import Header from '../src/containers/header'
+//import Header from '../src/containers/header'
 //const Header = dynamic(() => import('../src/containers/Header'), { ssr: false })
 
-const About = dynamic(() => import('../src/containers/about'))
+/* const About = dynamic(() => import('../src/containers/about'))
 const Games = dynamic(() => import('../src/containers/games'))
 const Code = dynamic(() => import('../src/containers/code'))
-const Art = dynamic(() => import('../src/containers/art'), { ssr: false })
-const Footer = dynamic(() => import('../src/containers/footer'))
+const Art = dynamic(() => import('../src/containers/art'))
+const Footer = dynamic(() => import('../src/containers/footer')) */
+
+/* const About = dynamic(() => import('../src/containers/about'))
+const Games = dynamic(() => import('../src/containers/games'))
+const Code = dynamic(() => import('../src/containers/code'))
+const Art = dynamic(() => import('../src/containers/art'))
+const Footer = dynamic(() => import('../src/containers/footer')) */
+
+import { Header, About, Games, Code, Art, Footer } from '../src/containers'
 
 export default function Home() {
   const baseURL = process.env.DOMAIN

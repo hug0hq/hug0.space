@@ -17,7 +17,7 @@ export const TitleContainer = forwardRef(({ text }, ref) => {
 
   return (
     <div
-      className="section"
+      className="section "
       id="to-observe"
       style={{
         position: 'absolute',
@@ -26,7 +26,7 @@ export const TitleContainer = forwardRef(({ text }, ref) => {
         boxSizing: 'border-box',
       }}
     >
-      <h1 ref={ref} className="textWhite tx" style={process.env.NODE_ENV !== 'production' ? {opacity: 0.1} : {opacity: 0} }>
+      <h1 ref={ref} className="container textWhite tx" style={process.env.NODE_ENV !== 'production' ? {opacity: 0.1} : {opacity: 0} }>
         {htmlText}
       </h1>
     </div>

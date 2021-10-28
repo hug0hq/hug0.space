@@ -3,4 +3,4 @@ export * from './pen-card'
 export * from './connections'
 export * from './contact'
 
-export * from './video'
+//export * from './video'

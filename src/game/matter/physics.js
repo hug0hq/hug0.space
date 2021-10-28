@@ -82,7 +82,7 @@ const useBody = (type, args) => {
   const setRecSize = useCallback((width, height)=>{
     if (type == 'circle') return
 
-    console.log(bodyref.current)
+    //console.log(bodyref.current)
 
     Matter.Body.setVertices(bodyref.current, [
       { x: -width/2 , y: height/2 },

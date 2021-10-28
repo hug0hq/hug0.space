@@ -1,12 +1,12 @@
 //import { Twitter, Github, Codepen, /* Instagram */ } from '../svg'
 
-export const Connections = () => {
+const Connections = () => {
   const links = [
-    /* {
+    {
       href: 'https://www.instagram.com/hug0hq',
       alt: 'Instagram',
-      img: Instagram,
-    }, */
+      img: './logos/insta.svg',
+    },
     {
       href: 'https://twitter.com/hug0hq',
       alt: 'twitter',
@@ -22,11 +22,18 @@ export const Connections = () => {
       alt: 'codepen',
       img: './logos/codepen.svg',
     },
-    /* {
+    {
+      href: 'https://codesandbox.io/u/hug0',
+      alt: 'codesandbox',
+      img: './logos/sand.svg',
+    },
+
+    {
       href: 'https://blog.hug0.space',
       alt: 'blog',
       text: 'Blog',
-    }, */
+      target: '_self'
+    },
   ]
   return (
     <nav className="connections">
@@ -38,6 +45,7 @@ export const Connections = () => {
             href={link.href}
             /* aria-label="" */
             rel="noreferrer"
+            target={link.target || '_blank'}
           >
             {link.text ? (
               link.text
@@ -50,3 +58,5 @@ export const Connections = () => {
     </nav>
   )
 }
+
+export default Connections
