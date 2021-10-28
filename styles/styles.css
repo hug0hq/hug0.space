@@ -9,8 +9,8 @@
 
 .logo {
   width: 8em;
-  padding-top: 2em;
-  padding-right: 4em;
+  padding-top: 3em;
+  padding-right: 3em;
   pointer-events: none;
 }
 
@@ -18,10 +18,10 @@
   width: 48%;
 }
 
-.mail {
+/* .mail {
   font-size: 5em;
   user-select: none;
-}
+} */
 
 .tx {
   font-size: 5em;
@@ -75,9 +75,9 @@
   .groupgames .t3 {
     font-size: 1.3em;
   }
-  .mail {
+  /* .mail {
     font-size: 5em;
-  }
+  } */
 }
 
 @media (max-width: 930px) {
@@ -102,9 +102,9 @@
   .pens .card {
     width: 100%;
   }
-  .mail {
+ /*  .mail {
     font-size: 10vw;
-  }
+  } */
   .p5js .card {
     width: 48%;
   }
@@ -140,9 +140,9 @@
   .tx {
     font-size: 10vw;
   }
-  .mail {
+ /*  .mail {
     font-size: 2.1em;
-  }
+  } */
   .logoGroup {
     margin: 0 auto;
   }
@@ -155,8 +155,8 @@
 section .container,
 header .container,
 footer .container {
-  max-width: 1500px;
-  margin: 0 auto;
+  /* max-width: 1500px;
+  margin: 0 auto; */
 }
 
 .mailContainer h2 {
@@ -170,9 +170,9 @@ footer .container {
   display: flex;
 }
 
-.mail {
+/* .mail {
   word-break: break-word;
-}
+} */
 
 .main {
   height: 100vh;
@@ -194,10 +194,7 @@ footer .container {
 }
 
 .logo {
-  fill: #f3f3f3;
-  position: absolute;
-  right: 0;
-  top: 0;
+ 
 }
 
 .grouppen {
@@ -214,10 +211,10 @@ footer .container {
 
 .group1 .container {
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   flex-flow: column;
   height: 100%;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 .group1 {
@@ -226,27 +223,32 @@ footer .container {
   background-color: #131618;
 }
 
-.mail a {
+/* .mail a {
   text-decoration: none;
-}
+} */
 
 .logoGroup {
   display: flex;
-  height: 60px;
   user-select: none;
 }
 
-.logoGroup div {
+.logoGroup a {
+  color: #fff;
+  letter-spacing: 0.1em;
   margin: 10px;
   width: 25px;
+  height: 25px;
+  font-size: 1.1em;
 }
 
-.logoGroup img {
+.logoGroup img,
+.logoGroup span {
   position: absolute;
   transition: margin 0.1s ease-in-out;
 }
 
-.logoGroup img:hover {
+.logoGroup img:hover,
+.logoGroup span:hover {
   margin-top: -5px;
 }
 
@@ -307,18 +309,19 @@ footer .container {
 .p5js .card {
   margin-bottom: 2em;
   min-height: 100px;
+  aspect-ratio: 1/1;
 }
 
-.im canvas {
+/* .im canvas {
   width: 100% !important;
   height: 100% !important;
   border-radius: 10px;
-}
+} */
 
 .im {
   width: 100%;
-  height: 100%;
-  border-radius: 10px;
+  /*  height: 100%; */
+  /* border-radius: 10px; */
 }
 
 .txt {
@@ -338,14 +341,14 @@ footer .container {
 .thumbnail {
   overflow: hidden;
   cursor: pointer;
-  border-radius: 10px;
+ /*  border-radius: 10px; */
   /* it fix safari border not render whit a transform */
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .pens .card {
   margin-bottom: 2em;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: box-shadow 0.5s;
   box-shadow: none;
 }
@@ -358,6 +361,19 @@ footer .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.pens video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ /*  -moz-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05); */
+}
+
+.pens video::-webkit-media-controls {
+  display: none !important;
 }
 
 .link {

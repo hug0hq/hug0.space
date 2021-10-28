@@ -1,2 +1,6 @@
-export * from './pens'
-export * from './ga-group'
+export { Header } from './header'
+export { About } from './about'
+export { Games } from './games'
+export { Code } from './code'
+export { Art } from './art'
+export { Footer } from './footer'
