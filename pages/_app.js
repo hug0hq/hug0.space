@@ -8,10 +8,7 @@ import ReactGA from 'react-ga'
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-    if (
-      process.env.NODE_ENV === 'production' &&
-      process.env.NEXT_PUBLIC_GA_KEY
-    ) {
+    if (process.env.NODE_ENV === 'production') {
       ReactGA.initialize(process.env.NEXT_PUBLIC_GA_KEY)
       ReactGA.pageview(window.location.pathname)
     }

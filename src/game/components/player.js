@@ -53,10 +53,7 @@ export const Player = (props) => {
           x: e.clientX - bounding.left,
           y: e.clientY - bounding.top,
         })
-        if (
-          process.env.NODE_ENV === 'production' &&
-          process.env.NEXT_PUBLIC_GA_KEY
-        ) {
+        if (process.env.NODE_ENV === 'production') {
           ReactGA.event({
             category: 'Game',
             action: 'swing',

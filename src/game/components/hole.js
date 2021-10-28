@@ -59,11 +59,7 @@ export const Flag = (props) => {
 
   useEffect(() => {
     console.log('⛳', state.count)
-    if (
-      process.env.NODE_ENV === 'production' &&
-      process.env.NEXT_PUBLIC_GA_KEY &&
-      state.count > 0
-    ) {
+    if (process.env.NODE_ENV === 'production' && state.count > 0) {
       ReactGA.event({
         category: 'Game',
         action: 'hole',
