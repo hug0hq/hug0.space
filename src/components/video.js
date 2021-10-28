@@ -12,6 +12,7 @@ const Video = (props) => {
       controls={false}
       sourceTypes={['webm', 'mp4']}
       loop
+      secure
       autoPlay={!props.playOnOver ? true : false}
       poster={{
         startOffset: '0',
