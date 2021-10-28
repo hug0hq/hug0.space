@@ -22,26 +22,20 @@ class Stage extends React.Component {
       this.app.renderer.setSize(
         rect.width,
         rect.height,
-        this.app.renderer.ratio,
+        this.app.renderer.ratio
       )
     }
   }
 
   componentDidMount() {
-    const {
-      width,
-      height,
-      type,
-      fitted,
-      imageSmoothingEnabled,
-      autostart,
-    } = this.props
+    const { width, height, type, fitted, imageSmoothingEnabled, autostart } =
+      this.props
     const params = {
       width,
       height,
       fitted,
       imageSmoothingEnabled,
-      autostart /* , type: 'CanvasRenderer' */,
+      autostart,
       type: type || 'CanvasRenderer',
     }
 
@@ -53,7 +47,6 @@ class Stage extends React.Component {
     this.twoContainer = TwoFiber.createContainer(this.app)
     TwoFiber.updateContainer(this.getChildren(), this.twoContainer, this)
 
-    //window.addEventListener('resize', this.resizeListener)
     window.addEventListener('resize', this.updateSize)
   }
 
@@ -63,7 +56,6 @@ class Stage extends React.Component {
   }
 
   componentWillUnmount() {
-    //window.removeEventListener('resize', this.resizeListener)
     window.removeEventListener('resize', this.updateSize)
 
     TwoFiber.updateContainer(null, this.twoContainer, this)

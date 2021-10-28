@@ -1,8 +1,4 @@
-import React, { useState } from 'react'
-
 export const Games = () => {
-  const [store1] = useState('Google Play')
-  const [store2] = useState('Game Jolt')
   return (
     <section className="section section--bg-dark">
       <div className="container">
@@ -11,11 +7,10 @@ export const Games = () => {
         </header>
         <div className="container--body gamelist">
           <div className="game">
-            {/* <div className="sname"> */}
             <img className="game--img" src="./img/steve.svg" alt="game logo" />
             {/* </div> */}
             <h2 className="game--title">Steve Vrum! Vrum!</h2>
-            {/* <p className="t4"> */}
+
             <span className="text game--text">
               Available for Android on{' '}
               <a
@@ -23,23 +18,13 @@ export const Games = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                {store1.split('').map((char, index) => {
-                  let cssProperties = {}
-                  cssProperties['--i'] = index
-                  return (
-                    <span style={cssProperties} key={index}>
-                      {char}
-                    </span>
-                  )
-                })}
+                Google Play
               </a>
             </span>
-            {/* </h3> */}
           </div>
           <div className="game">
-            {/* <div > */}
             <img className="game--img" src="./img/jim.svg" alt="game logo" />
-            {/* </div> */}
+
             <h2 className="game--title">Sr. Jim!</h2>
             <span className="text game--text">
               Available for Android on{' '}
@@ -58,7 +43,6 @@ export const Games = () => {
               >
                 Game Jolt
               </a>
-              {/*  </h3> */}
             </span>
           </div>
         </div>
@@ -66,6 +50,3 @@ export const Games = () => {
     </section>
   )
 }
-
-/* export default Games
- */

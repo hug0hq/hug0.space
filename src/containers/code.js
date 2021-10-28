@@ -47,7 +47,7 @@ export const Code = () => {
     {
       color: '#A9E2F3',
       tags: ['zdog.js'],
-      publicId: 'codepen-chick',      
+      publicId: 'codepen-chick',
       href: 'https://codepen.io/hug0hq/pen/ZEzPVLP',
     },
   ]
@@ -61,22 +61,10 @@ export const Code = () => {
         </header>
         <div className="pens">
           {cards.map((card) => {
-            return (
-              <Pen
-                key={card.publicId}
-                linkColor="#fff"
-                /* publicId={card.publicId}
-                color={card.color}
-                href={card.href} */
-                {...card}
-              />
-            )
+            return <Pen key={card.publicId} {...card} />
           })}
         </div>
       </div>
     </section>
   )
 }
-
-/* export default Code
- */

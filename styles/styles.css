@@ -2,7 +2,6 @@
   width: 140px;
 }
 
-/* section, footer, header, */
 .pp {
   padding: 6em;
 }
@@ -17,11 +16,6 @@
 .pens .card {
   width: 48%;
 }
-
-/* .mail {
-  font-size: 5em;
-  user-select: none;
-} */
 
 .tx {
   font-size: 5em;
@@ -55,29 +49,16 @@
   .logo {
     width: 8em;
   }
-  /* h3 {
-    font-size: 1.5em;
-  } */
 }
 
 @media (max-width: 1020px) {
-  /* 
-  section,
-  footer,
-  header,*/
   .pp {
     padding: 4em;
   }
 
-  /*  h2 {
-    font-size: 2.2em;
-  }  */
   .groupgames .t3 {
     font-size: 1.3em;
   }
-  /* .mail {
-    font-size: 5em;
-  } */
 }
 
 @media (max-width: 930px) {
@@ -102,9 +83,7 @@
   .pens .card {
     width: 100%;
   }
- /*  .mail {
-    font-size: 10vw;
-  } */
+
   .p5js .card {
     width: 48%;
   }
@@ -121,10 +100,7 @@
   .sname img {
     width: 40vw;
   }
-  /* ,
-  section,
-  footer,
-  header*/
+
   .pp {
     padding: 2em;
   }
@@ -140,23 +116,10 @@
   .tx {
     font-size: 10vw;
   }
- /*  .mail {
-    font-size: 2.1em;
-  } */
+
   .logoGroup {
     margin: 0 auto;
   }
-}
-
-/* section header {
-  padding: 3em 0;
-} */
-
-section .container,
-header .container,
-footer .container {
-  /* max-width: 1500px;
-  margin: 0 auto; */
 }
 
 .mailContainer h2 {
@@ -169,10 +132,6 @@ footer .container {
   flex-flow: column;
   display: flex;
 }
-
-/* .mail {
-  word-break: break-word;
-} */
 
 .main {
   height: 100vh;
@@ -193,10 +152,6 @@ footer .container {
   touch-action: auto !important;
 }
 
-.logo {
- 
-}
-
 .grouppen {
   background-color: #77d877;
 }
@@ -211,10 +166,9 @@ footer .container {
 
 .group1 .container {
   display: flex;
-  /* justify-content: flex-end; */
+
   flex-flow: column;
   height: 100%;
-  /* box-sizing: border-box; */
 }
 
 .group1 {
@@ -222,10 +176,6 @@ footer .container {
   box-sizing: border-box;
   background-color: #131618;
 }
-
-/* .mail a {
-  text-decoration: none;
-} */
 
 .logoGroup {
   display: flex;
@@ -312,16 +262,8 @@ footer .container {
   aspect-ratio: 1/1;
 }
 
-/* .im canvas {
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 10px;
-} */
-
 .im {
   width: 100%;
-  /*  height: 100%; */
-  /* border-radius: 10px; */
 }
 
 .txt {
@@ -341,14 +283,12 @@ footer .container {
 .thumbnail {
   overflow: hidden;
   cursor: pointer;
- /*  border-radius: 10px; */
   /* it fix safari border not render whit a transform */
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .pens .card {
   margin-bottom: 2em;
-  /* border-radius: 10px; */
   transition: box-shadow 0.5s;
   box-shadow: none;
 }
@@ -367,9 +307,6 @@ footer .container {
   width: 100%;
   height: 100%;
   object-fit: cover;
- /*  -moz-transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05); */
 }
 
 .pens video::-webkit-media-controls {

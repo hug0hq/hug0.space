@@ -1,5 +1,4 @@
 /* common */
-
 $colorWhite: #f3f3f3;
 $colorDark: #131618;
 $colorGreen: #77d877;
@@ -225,7 +224,6 @@ body,
 
   span:before {
     content: '';
-    //display: block;
     transition: margin 0.1s ease-in-out;
   }
 }
@@ -254,83 +252,40 @@ body,
 
 @keyframes animate {
   0% {
-    //transform: translateY(0px);
     margin-top: 0px;
   }
   20% {
-    //transform: translateY(-20px);
     margin-top: -20px;
   }
   40%,
   100% {
-    // transform: translateY(0px);
     margin-top: 0px;
   }
 }
 
-@keyframes activate {
-  0% {
-    //transform: translateY(0px);
-   //opacity: 0;
-   display: 0;
-  }
-  1%, 100%{
-    // transform: translateY(0px);
-    opacity: 1;
-  
-  }
-}
-@keyframes deactivate {
-  0% {
-    //transform: translateY(0px);
-   //opacity: 0;
-   display: 1;
-  }
-  99%, 100%{
-    // transform: translateY(0px);
-    opacity: 0;
-  
-  }
-}
-
 .card {
-
- 
   &:hover {
-
-    
-
     .card--img {
       transform: translate(0px, -40px);
 
       border-radius: 10px 10px 0 0;
     }
-    .card--dec {
-     // animation: activate 0.2s forwards  ;
-  /*    animation-direction: reverse; */
-    }
   }
 
   &--img {
     transition: 0.2s ease-in-out;
-    /*  position: absolute; */
-    height: 100%;
 
+    height: 100%;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
   }
 
   &--dec {
-    /* animation: activate 0.2s forwards ;
-    opacity: 0; */
     background-color: #131618;
     display: flex;
-    /*  justify-content: center; */
     justify-content: space-between;
-
     height: 42px;
-    /* width: 100%; */
     color: $colorWhite;
     position: absolute;
     z-index: -1;
@@ -338,7 +293,6 @@ body,
     left: 0.5px;
     right: 0.5px;
     bottom: 0.5px;
-   /*  bottom: 0; */
 
     align-items: center;
     font-size: 0.9em;
@@ -352,9 +306,6 @@ body,
         p {
           margin: 0 1em 0 0;
         }
-      }
-
-      &--link {
       }
     }
   }

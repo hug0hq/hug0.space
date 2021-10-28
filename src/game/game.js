@@ -12,9 +12,6 @@ import {
   Stats,
 } from './components'
 
-import { Walls } from './components/_walls'
-import { Debug } from './components/_debug'
-
 const Game = () => {
   const textDomRef = useRef()
 
@@ -36,11 +33,9 @@ const Game = () => {
       >
         <Physics gravity={{ x: 0, y: 0 }}>
           <Hole textDomRef={textDomRef} />
-          {/* <Walls /> */}
           <TextFromDom textDomRef={textDomRef}></TextFromDom>
           <Player textDomRef={textDomRef} />
           <Flag textDomRef={textDomRef} />
-          {/* <Debug /> */}
           {process.env.NODE_ENV !== 'production' ? <Stats /> : null}
         </Physics>
       </Stage>

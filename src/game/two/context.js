@@ -32,10 +32,9 @@ export const useRender = (callback) => {
   }, [])
 
   useEffect(() => {
-    app.bind('update', gameLoop).play() // start the animation loop
+    app.bind('update', gameLoop).play()
 
     return () => {
-      // unsubscribe
       app.unbind('update', gameLoop)
     }
   }, [])

@@ -1,5 +1,3 @@
-//import { Twitter, Github, Codepen, /* Instagram */ } from '../svg'
-
 const Connections = () => {
   const links = [
     {
@@ -32,7 +30,7 @@ const Connections = () => {
       href: 'https://blog.hug0.space',
       alt: 'blog',
       text: 'Blog',
-      target: '_self'
+      target: '_self',
     },
   ]
   return (
@@ -43,7 +41,6 @@ const Connections = () => {
             key={link.alt}
             className="connections--link"
             href={link.href}
-            /* aria-label="" */
             rel="noreferrer"
             target={link.target || '_blank'}
           >
