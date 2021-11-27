@@ -10,26 +10,12 @@ import { Text, Group, Rectangle, useApp } from '../two'
 import { useBox } from '../matter'
 
 export const TextFromDom = (props) => {
-  const [style, setStyle] = useState([])
   const [items, setItems] = useState([])
 
   useLayoutEffect(() => {
     const element = window.getComputedStyle(props.textDomRef.current)
-    const size = parseInt(element.fontSize)
-    const weight = parseInt(element.fontWeight, 10)
-    const font = element.fontFamily
-
-    setStyle({
-      fontSize: size,
-      fontWeight: weight || 700,
-      fontFamily: font,
-    })
-  }, [])
-
-  useEffect(() => {
-    const element = window.getComputedStyle(props.textDomRef.current)
     const fontSize = parseInt(element.fontSize)
-    const fontWeight = parseInt(element.fontWeight, 10)
+    const fontWeight = 700
     const fontFamily = element.fontFamily
     const localitems = []
     const bounding = app.renderer.domElement.getBoundingClientRect()
