@@ -17,9 +17,10 @@ const calcY = (x) =>
 const Card = (props) => {
   const domTarget = useRef(null)
 
-  const [{ rotateX, rotateY }, api] = useSpring(() => ({
+  const [{ rotateX, rotateY /* , translateZ */ }, api] = useSpring(() => ({
     rotateX: 0,
     rotateY: 0,
+    //translateZ: 0,
     config: { mass: 4, tension: 250, friction: 40 },
   }))
 
@@ -29,29 +30,33 @@ const Card = (props) => {
         api.start({
           rotateX: calcX(py),
           rotateY: calcY(px),
+          //translateZ: 1
         }),
 
       onMoveEnd: () =>
         api.start({
           rotateX: 0,
           rotateY: 0,
+          //translateZ: 0
         }),
     },
     { target: domTarget, eventOptions: { passive: false } }
   )
 
   return (
-    <animated.div
-      ref={domTarget}
-      className="card"
-      style={{
-        transform: 'perspective(800px)',
-        rotateX,
-        rotateY,
-      }}
-    >
-      {props.children}
-    </animated.div>
+    <div className="card card-parent">
+      <animated.div
+        ref={domTarget}
+        className="card--container "
+        style={{
+          transform: 'perspective(800px)',
+          rotateX,
+          rotateY,
+        }}
+      >
+        {props.children}
+      </animated.div>
+    </div>
   )
 }
 

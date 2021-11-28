@@ -258,8 +258,16 @@
 
 .p5js .card {
   margin-bottom: 2em;
-  min-height: 100px;
   aspect-ratio: 1/1;
+}
+
+.card:hover .card-parent {
+  transform: translateZ(1000px);
+  transform-style: preserve-3d;
+}
+
+.card--container {
+  height: 100%;
 }
 
 .im {
