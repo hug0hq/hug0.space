@@ -1,10 +1,10 @@
 const Connections = () => {
   const links = [
-    {
+    /* {
       href: 'https://www.instagram.com/hug0hq',
       alt: 'Instagram',
       img: './logos/insta.svg',
-    },
+    }, */
     {
       href: 'https://twitter.com/hug0hq',
       alt: 'twitter',
@@ -34,20 +34,20 @@ const Connections = () => {
     },
   ]
   return (
-    <nav className="connections">
+    <nav className='connections'>
       {links.map((link) => {
         return (
           <a
             key={link.alt}
-            className="connections--link"
+            className='connections--link'
             href={link.href}
-            rel="noreferrer"
+            rel='noreferrer'
             target={link.target || '_blank'}
           >
             {link.text ? (
               link.text
             ) : (
-              <img className="connections--img" src={link.img} alt="" />
+              <img className='connections--img' src={link.img} alt='' />
             )}
           </a>
         )
