@@ -25,8 +25,10 @@ export const HostConfig = {
   },
   insertInContainerBefore() {},
   clearContainer() {},
-  now: () => {},
-  isPrimaryRenderer: false,
+  now: () => {
+    Date.now
+  },
+  isPrimaryRenderer: true,
   supportsMutation: true,
   supportsPersistence: false,
   supportsHydration: false,
@@ -61,4 +63,6 @@ export const HostConfig = {
   commitUpdate(instance, updatePayload, type, oldProps, newProps) {
     applyNodeProps(instance, oldProps, newProps)
   },
+  
+  detachDeletedInstance() {},
 }
