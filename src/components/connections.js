@@ -1,7 +1,7 @@
 const Connections = () => {
   const links = [
     /* {
-      href: 'https://www.instagram.com/hug0hq',
+      href: 'https://www.instagram.com/',
       alt: 'Instagram',
       img: './logos/insta.svg',
     }, */

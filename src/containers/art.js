@@ -92,13 +92,13 @@ export const Art = () => {
   ]
 
   return (
-    <section className="section section--bg-white">
-      <div className="container">
-        <header className="container--header">
-          <h1 className="title container--title">Generative Art</h1>
-          <h2 className="title container--subtitle">It's code and art</h2>
+    <section className='section section--bg-white'>
+      <div className='container'>
+        <header className='container--header'>
+          <h1 className='title container--title'>Generative Art</h1>
+          <h2 className='title container--subtitle'>It&apos;s code and art</h2>
         </header>
-        <div className="container--body p5js">
+        <div className='container--body p5js'>
           {cards.map((card) => {
             return <ArtCard key={card.publicId} {...card} />
           })}

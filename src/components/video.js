@@ -6,7 +6,8 @@ const Video = (props) => {
   return (
     <CloudinaryVideo
       muted
-      className="video"
+      disablePictureInPicture
+      className={'video loaded'}
       cloudName={cloudName}
       publicId={props.publicId}
       controls={false}
