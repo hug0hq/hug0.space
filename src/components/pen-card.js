@@ -16,22 +16,25 @@ export const Pen = (props) => {
 
   return (
     <Card>
-      <div className="card--img" style={{ backgroundColor: props.color }}>
-        <Video publicId={props.publicId} playOnOver />
-      </div>
-      <div className="card--dec">
-        <div className="dec--tags" style={{ display: 'flex', flexFlow: 'row' }}>
-          {tags}
+      <div className='card--img' style={{ backgroundColor: props.color }}>        
+        <div className='card--dec'>
+          <div
+            className='dec--tags'
+            style={{ display: 'flex', flexFlow: 'row' }}
+          >
+            {tags}
+          </div>
+          <a
+            href={props.href}
+            target='_black'
+            aria-label='source code'
+            rel='noreferrer'
+            style={{ textDecoration: 'underline', margin: ' 0 1em' }}
+          >
+            See Source
+          </a>
         </div>
-        <a
-          href={props.href}
-          target="_black"
-          aria-label="source code"
-          rel="noreferrer"
-          style={{ textDecoration: 'underline', margin: ' 0 1em' }}
-        >
-          See Source
-        </a>
+        <Video publicId={props.publicId} playOnOver />
       </div>
     </Card>
   )

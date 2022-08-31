@@ -250,12 +250,6 @@
   box-shadow: none;
 }
 
-.card:hover canvas,
-.card:hover img,
-.card:hover .thumbnail {
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
-}
-
 .p5js .card {
   margin-bottom: 2em;
   aspect-ratio: 1/1;
@@ -299,10 +293,6 @@
   margin-bottom: 2em;
   transition: box-shadow 0.5s;
   box-shadow: none;
-}
-
-.pens .card:hover {
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
 }
 
 .pens {
