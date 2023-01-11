@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "eslint": "^8.4.1",
-    "eslint-config-next": "^12.1.6",
+    "eslint-config-next": "^13.1.1",
     "stats.js": "^0.17.0"
   }
 }
