@@ -50,10 +50,11 @@ export const ArtCard = (props) => {
               onLoad={() => {
                 setLoaded(true)
               }}
-              src={`./${props.publicId}.png`}
+              src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/${props.publicId}.png`}
               alt={props.alt}
               className={loaded ? 'loaded' : ''}
-              layout='fill'
+              fill
+              sizes="width: 100%"
             />
           </>
         )}
