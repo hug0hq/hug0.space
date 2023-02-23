@@ -16,6 +16,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
             rel="stylesheet"
           />
+          <script async defer src="https://analytics.umami.is/script.js" data-website-id="d49ae78d-8f54-4f49-b32b-f61015947c6c" data-domains="hug0.space"></script>
         </Head>
         <body>
           <Main />

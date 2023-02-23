@@ -65,7 +65,9 @@ export const Flag = (props) => {
         action: 'hole',
         value: state.count,
       })
+      window.umami.trackEvent('hole', { type: 'game', name: 'hole' });
     }
+
   }, [state.count])
 
   const handleCollision = useCallback((event) => {
