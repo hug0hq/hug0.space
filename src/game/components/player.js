@@ -19,7 +19,7 @@ export const Player = (props) => {
   const [mousePosition, setMousePosition] = useState(null)
 
   useEffect(() => {
-    api.applyForce(0.02, {
+    api.applyForce(0.04, {
       x: 0,
       y: app.height - padding - 10,
     })
@@ -49,7 +49,7 @@ export const Player = (props) => {
 
     if (Math.abs(bounding.top) < bounding.height) {
       if (!api.isMoving()) {
-        api.applyForce(0.8, {
+        api.applyForce(1, {
           x: e.clientX - bounding.left,
           y: e.clientY - bounding.top,
         })
@@ -117,9 +117,9 @@ export const Player = (props) => {
   const [body, api] = useCircle({
     radius: 12,
     options: {
-      restitution: 0.9,
-      friction: 0,
-      frictionAir: 0.05,
+      restitution: 0.8,
+      friction: 0.1,
+      frictionAir: 0.15,
       label: 'ball',
     },
   })
