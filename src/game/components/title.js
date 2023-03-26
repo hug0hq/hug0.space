@@ -59,9 +59,9 @@ const TextBody = (props) => {
     width: props.width,
     height: props.height,
     options: {
-      restitution: 0.9,
-      friction: 0,
-      frictionAir: 0.2,
+      restitution: 0.2,
+      friction: 0.1,
+      frictionAir: 0.15,
     },
   })
 
