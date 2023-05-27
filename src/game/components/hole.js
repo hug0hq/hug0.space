@@ -65,7 +65,7 @@ export const Flag = (props) => {
         action: 'hole',
         value: state.count,
       })
-      window.umami.trackEvent('hole', { type: 'game', name: 'hole' });
+      window.umami.track('hole', { type: 'game', name: 'hole' });
     }
 
   }, [state.count])

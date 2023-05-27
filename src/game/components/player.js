@@ -58,7 +58,7 @@ export const Player = (props) => {
             category: 'Game',
             action: 'swing',
           })
-          window.umami.trackEvent('swing', { type: 'game', name: 'swing' });
+          window.umami.track('swing', { type: 'game', name: 'swing' });
         }
        
       }
