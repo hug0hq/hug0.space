@@ -6,7 +6,7 @@ import Two from 'two.js'
 import { Ellipse, Group, Path, useApp, useRender } from '../two'
 import { useCircle } from '../matter'
 
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 
 const angle = (x, y) => {
   return Math.atan2(y, x) + Math.PI / 2

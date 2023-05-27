@@ -4,7 +4,7 @@ import { useSpring, useChain, animated, useSpringRef } from '@react-spring/web'
 import Two from 'two.js'
 import Matter from 'matter-js'
 
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 
 import {
   Ellipse,
