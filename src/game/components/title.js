@@ -6,6 +6,8 @@ import { useBox } from '../matter'
 export const TextFromDom = (props) => {
 	const [items, setItems] = useState([])
 
+	const app = useApp()
+
 	useLayoutEffect(() => {
 		const element = window.getComputedStyle(props.textDomRef.current)
 		const fontSize = parseInt(element.fontSize)
@@ -13,7 +15,7 @@ export const TextFromDom = (props) => {
 		const fontFamily = element.fontFamily
 		const localitems = []
 		const bounding = app.renderer.domElement.getBoundingClientRect()
-		props.textDomRef.current.childNodes.forEach((c, index) => {
+		props.textDomRef.current.childNodes.forEach((c) => {
 			const tmp = c.getBoundingClientRect()
 
 			if (c.innerText && c.innerText !== ' ') {
@@ -37,9 +39,7 @@ export const TextFromDom = (props) => {
 			}
 		})
 		setItems(localitems)
-	}, [])
-
-	const app = useApp()
+	}, [app.renderer.domElement, props.textDomRef])
 
 	const textGroup = useMemo(() => {
 		return items.map((config, index) => <TextBody key={index} {...config} />)
@@ -82,14 +82,14 @@ const TextBody = (props) => {
 		setWidth(tmp.width)
 		api.setRecSize(tmp.width, tmp.height)
 		api.setVelocity(0)
-	}, [textSize])
+	}, [api, app.renderer.domElement, props.textref])
 	useEffect(() => {
 		window.addEventListener('resize', updateSize)
 
 		return () => {
 			window.removeEventListener('resize', updateSize)
 		}
-	}, [])
+	}, [updateSize])
 
 	return (
 		<Group x={props.x} y={props.y} ref={textBody}>

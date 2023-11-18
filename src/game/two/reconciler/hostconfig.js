@@ -33,7 +33,7 @@ export const HostConfig = {
 	supportsPersistence: false,
 	supportsHydration: false,
 
-	createTextInstance(text, rootContainerInstance, internalInstanceHandler) {
+	createTextInstance(text) {
 		//adding text is not suported
 		throw new Error('react-two error trying to add text node "' + text + '"')
 	},

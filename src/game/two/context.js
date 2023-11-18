@@ -29,5 +29,5 @@ export const useRender = (callback) => {
 		return () => {
 			app.unbind('update', gameLoop)
 		}
-	}, [])
+	}, [app, gameLoop])
 }

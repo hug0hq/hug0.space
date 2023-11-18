@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useContext, useRef, useLayoutEffect, useCallback } from 'react'
+import { useEffect, useState, useMemo, useRef, useLayoutEffect, useCallback } from 'react'
 import { EngineContext, usePhysics } from './context'
 import { useRender, useApp } from '../two'
 import Matter from 'matter-js'
@@ -29,7 +29,8 @@ const useBody = (type, args) => {
 			args.height || object.height,
 			args.options
 		)
-	}, [])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [args.height, args.radius, args.width, type])
 
 	useLayoutEffect(() => {
 		Matter.Composite.add(physics.world, bodyref.current)
@@ -37,7 +38,7 @@ const useBody = (type, args) => {
 		return () => {
 			Matter.Composite.remove(physics.world, bodyref.current)
 		}
-	}, [])
+	}, [physics.world])
 
 	const setPosition = useCallback((x, y) => {
 		if (bodyref.current.position.x != x || bodyref.current.position.y != y) {
@@ -49,7 +50,7 @@ const useBody = (type, args) => {
 		Matter.Body.setAngle(bodyref.current, angle)
 	}, [])
 
-	const setRecSize = useCallback((width, height) => {
+	const setRecSize = (width, height) => {
 		if (type == 'circle') return
 
 		Matter.Body.setVertices(bodyref.current, [
@@ -58,14 +59,14 @@ const useBody = (type, args) => {
 			{ x: width / 2, y: -height / 2 },
 			{ x: -width / 2, y: -height / 2 },
 		])
-	})
+	}
 
-	const setVelocity = useCallback((velocity) => {
+	const setVelocity = (velocity) => {
 		Matter.Body.setVelocity(bodyref.current, {
 			x: velocity,
 			y: velocity,
 		})
-	})
+	}
 
 	const applyForce = useCallback((force, vector) => {
 		const deltaVector = Matter.Vector.sub(vector, bodyref.current.position)
@@ -100,9 +101,9 @@ export const Physics = (props) => {
 		return () => {
 			Matter.Engine.clear(physics)
 		}
-	}, [])
+	}, [physics])
 
-	useRender((frame) => {
+	useRender(() => {
 		Matter.Engine.update(physics, (1 / 3 / 60) * 1000) // (1000 / 60)
 
 		// avoid tunneling

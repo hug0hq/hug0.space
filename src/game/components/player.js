@@ -18,97 +18,7 @@ export const Player = (props) => {
 
 	const [mousePosition, setMousePosition] = useState(null)
 
-	useEffect(() => {
-		api.applyForce(0.04, {
-			x: 0,
-			y: app.height - padding - 10,
-		})
-	}, [])
-
-	//mouse
-	useRender(() => {
-		const bounding = app.renderer.domElement.getBoundingClientRect()
-		if (Math.abs(bounding.top) < bounding.height) {
-			return
-		}
-		setMousePosition(null)
-	})
-	const move = useCallback((e) => {
-		const bounding = app.renderer.domElement.getBoundingClientRect()
-		if (Math.abs(bounding.top) < bounding.height) {
-			setMousePosition({
-				x: e.clientX - bounding.left,
-				y: e.clientY - bounding.top,
-			})
-		}
-	}, [])
-
-	const up = useCallback((e) => {
-		window.removeEventListener('pointermove', move)
-		const bounding = app.renderer.domElement.getBoundingClientRect()
-
-		if (Math.abs(bounding.top) < bounding.height) {
-			if (!api.isMoving()) {
-				api.applyForce(1, {
-					x: e.clientX - bounding.left,
-					y: e.clientY - bounding.top,
-				})
-				if (process.env.NODE_ENV === 'production') {
-					ReactGA.event({
-						category: 'Game',
-						action: 'swing',
-					})
-					window.umami.track('swing', { type: 'game', name: 'swing' })
-				}
-			}
-
-			setMousePosition(null)
-		}
-	}, [])
-
-	const down = useCallback((e) => {
-		window.addEventListener('pointermove', move)
-		const bounding = app.renderer.domElement.getBoundingClientRect()
-		if (Math.abs(bounding.top) < bounding.height) {
-			setMousePosition({
-				x: e.clientX - bounding.left,
-				y: e.clientY - bounding.top,
-			})
-		}
-	}, [])
-
-	useEffect(() => {
-		window.addEventListener('pointerup', up)
-		if (!window.matchMedia('(pointer: coarse)').matches) {
-			window.addEventListener('pointerdown', down)
-		}
-
-		return () => {
-			window.removeEventListener('pointerup', up)
-			window.removeEventListener('pointerdown', down)
-		}
-	}, [])
-
-	useEffect(() => {
-		if (mousePosition && !api.isMoving()) {
-			const deltaVector = Matter.Vector.neg(Matter.Vector.sub(mousePosition, body.current.position))
-			arrow.current.rotation = angle(deltaVector.x, deltaVector.y) - body.current.rotation
-			arrow.current.opacity = 1
-		} else {
-			arrow.current.opacity = 0
-		}
-	}, [mousePosition])
-
-	const draw = useMemo(() => {
-		const height = 50
-		return [
-			new Two.Anchor(8, 0),
-			new Two.Anchor(-8, 0),
-			new Two.Anchor(-8, -height),
-			new Two.Anchor(0, -height - 10),
-			new Two.Anchor(8, -height),
-		]
-	}, [])
+	const [padding] = useState(parseInt(window.getComputedStyle(props.textDomRef.current.parentElement).getPropertyValue('padding-left')))
 
 	const [body, api] = useCircle({
 		radius: 12,
@@ -120,7 +30,107 @@ export const Player = (props) => {
 		},
 	})
 
-	const [padding] = useState(parseInt(window.getComputedStyle(props.textDomRef.current.parentElement).getPropertyValue('padding-left')))
+	useEffect(() => {
+		api.applyForce(0.04, {
+			x: 0,
+			y: app.height - padding - 10,
+		})
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [app.height, padding])
+
+	//mouse
+	useRender(() => {
+		const bounding = app.renderer.domElement.getBoundingClientRect()
+		if (Math.abs(bounding.top) < bounding.height) {
+			return
+		}
+		setMousePosition(null)
+	})
+	const move = useCallback(
+		(e) => {
+			const bounding = app.renderer.domElement.getBoundingClientRect()
+			if (Math.abs(bounding.top) < bounding.height) {
+				setMousePosition({
+					x: e.clientX - bounding.left,
+					y: e.clientY - bounding.top,
+				})
+			}
+		},
+		[app.renderer.domElement]
+	)
+
+	const up = useCallback(
+		(e) => {
+			window.removeEventListener('pointermove', move)
+			const bounding = app.renderer.domElement.getBoundingClientRect()
+
+			if (Math.abs(bounding.top) < bounding.height) {
+				if (!api.isMoving()) {
+					api.applyForce(1, {
+						x: e.clientX - bounding.left,
+						y: e.clientY - bounding.top,
+					})
+					if (process.env.NODE_ENV === 'production') {
+						ReactGA.event({
+							category: 'Game',
+							action: 'swing',
+						})
+						window.umami.track('swing', { type: 'game', name: 'swing' })
+					}
+				}
+
+				setMousePosition(null)
+			}
+		},
+		[api, app.renderer.domElement, move]
+	)
+
+	const down = useCallback(
+		(e) => {
+			window.addEventListener('pointermove', move)
+			const bounding = app.renderer.domElement.getBoundingClientRect()
+			if (Math.abs(bounding.top) < bounding.height) {
+				setMousePosition({
+					x: e.clientX - bounding.left,
+					y: e.clientY - bounding.top,
+				})
+			}
+		},
+		[app.renderer.domElement, move]
+	)
+
+	useEffect(() => {
+		window.addEventListener('pointerup', up)
+		if (!window.matchMedia('(pointer: coarse)').matches) {
+			window.addEventListener('pointerdown', down)
+		}
+
+		return () => {
+			window.removeEventListener('pointerup', up)
+			window.removeEventListener('pointerdown', down)
+		}
+	}, [down, up])
+
+	useEffect(() => {
+		if (mousePosition && !api.isMoving()) {
+			const deltaVector = Matter.Vector.neg(Matter.Vector.sub(mousePosition, body.current.position))
+			arrow.current.rotation = angle(deltaVector.x, deltaVector.y) - body.current.rotation
+			arrow.current.opacity = 1
+		} else {
+			arrow.current.opacity = 0
+		}
+	}, [api, body, mousePosition])
+
+	const draw = useMemo(() => {
+		const height = 50
+		return [
+			new Two.Anchor(8, 0),
+			new Two.Anchor(-8, 0),
+			new Two.Anchor(-8, -height),
+			new Two.Anchor(0, -height - 10),
+			new Two.Anchor(8, -height),
+		]
+	}, [])
 
 	return (
 		<Group ref={body} x={padding + 10} y={app.height - padding - 10}>
