@@ -26,12 +26,12 @@ const Connections = () => {
 			img: './logos/sand.svg',
 		},
 
-		{
+		/* {
 			href: 'https://blog.hug0.space',
 			alt: 'blog',
 			text: 'Blog',
 			target: '_self',
-		},
+		}, */
 	]
 	return (
 		<nav className="connections">

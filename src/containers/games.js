@@ -8,15 +8,14 @@ export const Games = () => {
 				<div className="container--body gamelist">
 					<div className="game">
 						<img className="game--img" src="./img/steve.svg" alt="game logo" />
-						{/* </div> */}
 						<h2 className="game--title">Steve Vrum! Vrum!</h2>
-
-						<span className="text game--text">
+						{/* <span className="text game--text">
 							Available for Android on{' '}
 							<a href="https://play.google.com/store/apps/details?id=com.h0.SteveVrumVrum" target="_blank" rel="noreferrer">
 								Google Play
 							</a>
-						</span>
+						</span> */}
+						<span className="text game--text">Deprecated (critical update needed)</span>
 					</div>
 					<div className="game">
 						<img className="game--img" src="./img/jim.svg" alt="game logo" />
@@ -30,7 +29,8 @@ export const Games = () => {
 							and for the web on{' '}
 							<a href="https://gamejolt.com/games/sr-jim/38705" target="_blank" rel="noreferrer">
 								Game Jolt
-							</a>
+							</a>{' '}
+							(this one needs an update too, you know, old code no time. One day 🫠)
 						</span>
 					</div>
 				</div>
