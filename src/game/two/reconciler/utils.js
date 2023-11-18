@@ -6,46 +6,44 @@ import Rectangle from '../components/rectangle'
 import Path from '../components/path'
 
 export const createElement = (type, props = {}, root = null) => {
-  const COMPONENTS = {
-    Group: Group,
-    Text: Text,
-    Ellipse: Ellipse,
-    RoundedRectangle: RoundedRectangle,
-    Rectangle: Rectangle,
-    Path: Path,
-    default: undefined,
-  }
+	const COMPONENTS = {
+		Group: Group,
+		Text: Text,
+		Ellipse: Ellipse,
+		RoundedRectangle: RoundedRectangle,
+		Rectangle: Rectangle,
+		Path: Path,
+		default: undefined,
+	}
 
-  try {
-    return COMPONENTS[type](root, props)
-  } catch (e) {
-    console.error(
-      `react-two has no node with the type '${type}'. Group will be used instead.`
-    )
-  }
+	try {
+		return COMPONENTS[type](root, props)
+	} catch (e) {
+		console.error(`react-two has no node with the type '${type}'. Group will be used instead.`)
+	}
 
-  return COMPONENTS['Group'](root, props)
+	return COMPONENTS['Group'](root, props)
 }
 
 export const applyNodeProps = (instance, oldProps, newProps) => {
-  const newPropKeys = Object.keys(newProps || {})
+	const newPropKeys = Object.keys(newProps || {})
 
-  // hard overwrite
-  if (newProps !== oldProps) {
-    for (let i = 0; i < newPropKeys.length; i++) {
-      const p = newPropKeys[i]
-      if (oldProps[p] !== newProps[p]) {
-        if (p != 'children') {
-          if (p == 'y') {
-            instance.translation.y = newProps[p]
-          } else if (p == 'x') {
-            instance.translation.x = newProps[p]
-          } else {
-            instance[p] = newProps[p]
-            //console.log(instance, instance[p], newProps[p])
-          }
-        }
-      }
-    }
-  }
+	// hard overwrite
+	if (newProps !== oldProps) {
+		for (let i = 0; i < newPropKeys.length; i++) {
+			const p = newPropKeys[i]
+			if (oldProps[p] !== newProps[p]) {
+				if (p != 'children') {
+					if (p == 'y') {
+						instance.translation.y = newProps[p]
+					} else if (p == 'x') {
+						instance.translation.x = newProps[p]
+					} else {
+						instance[p] = newProps[p]
+						//console.log(instance, instance[p], newProps[p])
+					}
+				}
+			}
+		}
+	}
 }

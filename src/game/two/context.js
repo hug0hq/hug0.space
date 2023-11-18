@@ -1,41 +1,33 @@
-import {
-  createContext,
-  useEffect,
-  useContext,
-  useRef,
-  useCallback,
-} from 'react'
+import { createContext, useEffect, useContext, useRef, useCallback } from 'react'
 
 export const AppContext = createContext(null)
 
 export const useApp = () => {
-  const app = useContext(AppContext)
+	const app = useContext(AppContext)
 
-  if (!app)
-    throw `react-two hooks can only be used within the 'Stage' component!`
-  return app
+	if (!app) throw `react-two hooks can only be used within the 'Stage' component!`
+	return app
 }
 
 export const useRender = (callback) => {
-  const app = useContext(AppContext)
-  const savedRef = useRef(null)
+	const app = useContext(AppContext)
+	const savedRef = useRef(null)
 
-  if (!app)
-    throw `react-two hooks can only be used within the 'Stage' component!`
+	if (!app) throw `react-two hooks can only be used within the 'Stage' component!`
 
-  useEffect(() => {
-    savedRef.current = callback
-  }, [callback])
+	useEffect(() => {
+		savedRef.current = callback
+	}, [callback])
 
-  const gameLoop = useCallback((frameCount) => {
-    savedRef.current(frameCount)
-  }, [])
+	const gameLoop = useCallback((frameCount) => {
+		savedRef.current(frameCount)
+	}, [])
 
-  useEffect(() => {
-    app.bind('update', gameLoop).play()
+	useEffect(() => {
+		app.bind('update', gameLoop).play()
 
-    return () => {
-      app.unbind('update', gameLoop)
-    }
-  }, [])
+		return () => {
+			app.unbind('update', gameLoop)
+		}
+	}, [])
 }
