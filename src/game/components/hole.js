@@ -54,7 +54,7 @@ export const Flag = (props) => {
 				action: 'hole',
 				value: state.count,
 			})
-			window.umami.track('hole', { type: 'game', name: 'hole' })
+			if (window.umami) window.umami.track('hole', { type: 'game', name: 'hole' })
 		}
 	}, [state.count])
 
